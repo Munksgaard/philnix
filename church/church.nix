@@ -1,6 +1,6 @@
 let
   nix2105 = import <nix2105> { config = { allowUnfree = true; }; };
-  secrets = import ./secrets.nix;
+  secrets = import ../secrets.nix;
 
 in { config, pkgs, lib, ... }:
 
