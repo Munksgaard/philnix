@@ -374,6 +374,41 @@ in { config, pkgs, lib, ... }:
     roboto-mono
   ];
 
+  # Let's play with containers and funkwhale
+  # virtualisation.oci-containers = {
+  #   backend = "podman";
+  #   containers = {
+  #     funkwhale = {
+  #       image = "funkwhale/all-in-one:1.1.1";
+  #       ports = ["5000:80"];
+  #       volumes = [
+  #         "/srv/funkwhale/data:/data"
+  #         "/var/music:/music:ro"
+  #       ];
+  #       environment = {
+  #         # Replace 'your.funkwhale.example' with your actual domain
+  #         FUNKWHALE_HOSTNAME = "localhost";
+  #         # Protocol may also be: http
+  #         # FUNKWHALE_PROTOCOL = "https";
+  #         FUNKWHALE_PROTOCOL = "http";
+  #         # This limits the upload size
+  #         NGINX_MAX_BODY_SIZE = "100M";
+  #         # Bind to localhost
+  #         FUNKWHALE_API_IP = "127.0.0.1";
+  #         # Container port you want to expose on the host
+  #         FUNKWHALE_API_PORT = "5000";
+  #         # Generate and store a secure secret key for your instance
+  #         DJANGO_SECRET_KEY = "RANDOM LONG KEY";
+  #         # Remove this if you expose the container directly on ports 80/443
+  #         NESTED_PROXY = "1";
+  #       };
+  #     };
+  #   };
+  # };
+
+  # systemd.services.podman-funkwhale.serviceConfig.User = "funkwhale";
+  # systemd.services.podman-funkwhale.wantedBy = [ "default.target" ];
+
   # From https://github.com/calbrecht/nixpkgs-overlays
   xdg.portal.enable = true;
   xdg.portal.extraPortals = [ # pkgs.xdg-desktop-portal-gtk
