@@ -1,0 +1,393 @@
+let
+  nix2105 = import <nix2105> { config = { allowUnfree = true; }; };
+  secrets = import ./secrets.nix;
+
+in { config, pkgs, lib, ... }:
+
+{
+  imports = [ ./hardware-configuration.nix ];
+
+  # Allow unfree modules
+  nixpkgs.config.allowUnfree = true;
+  nixpkgs.config.allowBroken = true;
+
+  # Use the systemd-boot EFI boot loader.
+  boot.loader.systemd-boot.enable = true;
+  boot.loader.efi.canTouchEfiVariables = true;
+
+  networking.hostName = "church";
+
+  networking.wireless.enable = true;
+
+  networking.useDHCP = false;
+  networking.interfaces.enp0s31f6.useDHCP = true;
+  networking.interfaces.wlp0s20f3.useDHCP = true;
+
+  # Select internationalisation properties.
+  console = {
+    font = "Lat2-Terminus16";
+    keyMap = "us";
+  };
+
+  i18n = { defaultLocale = "en_US.UTF-8"; };
+
+  # Set your time zone.
+  time.timeZone = "Europe/Copenhagen";
+
+  programs.gnupg.agent = { enable = true; };
+
+  # Enable the OpenSSH daemon.
+  services.openssh.enable = true;
+
+  networking.firewall.enable = false;
+
+  # Enable CUPS to print documents.
+  services.printing.enable = true;
+  services.printing.drivers =
+    [ pkgs.gutenprint pkgs.gutenprintBin pkgs.canon-cups-ufr2 ];
+
+  # Enable sound.
+  sound.enable = true;
+
+  hardware.pulseaudio = {
+    enable = true;
+    support32Bit = true;
+    package = pkgs.pulseaudioFull;
+  };
+  nixpkgs.config.pulseaudio = true;
+
+  # Bluetooth
+  hardware.bluetooth.enable = true;
+  services.blueman.enable = true;
+
+  # Enable upower
+  services.upower.enable = true;
+
+  # Add docker virtualization
+  virtualisation.docker.enable = true;
+
+  users.groups.plugdev = { };
+
+  # Define a user account. Don't forget to set a password with ‘passwd’.
+  users.users.munksgaard = {
+    isNormalUser = true;
+    extraGroups = [
+      "wheel" # Enable ‘sudo’ for the user.
+      "video" # Support for using the video device
+      "docker" # Can run docker images
+      "plugdev" # can run udev rules
+      "adbusers" # Can run adb
+    ];
+  };
+
+  # This value determines the NixOS release with which your system is to be
+  # compatible, in order to avoid breaking some software such as database
+  # servers. You should change this only after NixOS release notes say you
+  # should.
+  system.stateVersion = "19.09"; # Did you read the comment?
+
+  # Stuff to make OpenCL work properly...
+  nixpkgs.config.packageOverrides = pkgs: {
+    vaapiIntel = pkgs.vaapiIntel.override { enableHybridCodec = true; };
+    factorio = pkgs.factorio.override {
+      username = "pmunksgaard";
+      token = secrets.factorioToken;
+    };
+  };
+
+  programs.adb.enable = true;
+
+  hardware.opengl = {
+    enable = true;
+    extraPackages = with pkgs; [
+      vaapiIntel
+      vaapiVdpau
+      libvdpau-va-gl
+      intel-media-driver
+      nix2105.intel-ocl
+      nix2105.intel-compute-runtime
+    ];
+    driSupport32Bit = true;
+  };
+
+  programs.sway = {
+    enable = true;
+    extraPackages = with pkgs; [
+      swaylock # lockscreen
+      swayidle
+      xwayland # for legacy apps
+      waybar # status bar
+      mako # notification daemon
+      kanshi # autorandr
+    ];
+  };
+
+  environment = {
+    etc = {
+      # Put config files in /etc. Note that you also can put these in ~/.config, but then you can't manage them with NixOS anymore!
+      # "sway/config".source = ./dotfiles/sway/config;
+      # "xdg/waybar/config".source = ./dotfiles/waybar/config;
+      # "xdg/waybar/style.css".source = ./dotfiles/waybar/style.css;
+    };
+  };
+
+  systemd.user.targets.sway-session = {
+    description = "Sway compositor session";
+    documentation = [ "man:systemd.special(7)" ];
+    bindsTo = [ "graphical-session.target" ];
+    wants = [ "graphical-session-pre.target" ];
+    after = [ "graphical-session-pre.target" ];
+  };
+
+  systemd.user.services.sway = {
+    description = "Sway - Wayland window manager";
+    documentation = [ "man:sway(5)" ];
+    bindsTo = [ "graphical-session.target" ];
+    wants = [ "graphical-session-pre.target" ];
+    after = [ "graphical-session-pre.target" ];
+    # We explicitly unset PATH here, as we want it to be set by
+    # systemctl --user import-environment in startsway
+    environment.PATH = lib.mkForce null;
+    serviceConfig = {
+      Type = "simple";
+      ExecStart = ''
+        ${pkgs.dbus}/bin/dbus-run-session ${pkgs.sway}/bin/sway --debug
+      '';
+      Restart = "on-failure";
+      RestartSec = 1;
+      TimeoutStopSec = 10;
+    };
+  };
+
+  services.redshift = {
+    enable = true;
+    package = pkgs.redshift-wlr;
+  };
+
+  services.lorri.enable = true;
+
+  location.provider = "geoclue2";
+
+  programs.waybar.enable = true;
+
+  programs.ssh.startAgent = true;
+
+  programs.steam.enable = true;
+
+  systemd.user.services.kanshi = {
+    description = "Kanshi output autoconfig ";
+    wantedBy = [ "graphical-session.target" ];
+    partOf = [ "graphical-session.target" ];
+    serviceConfig = {
+      # kanshi doesn't have an option to specifiy config file yet, so it looks
+      # at .config/kanshi/config
+      ExecStart = ''
+        ${pkgs.kanshi}/bin/kanshi
+      '';
+      RestartSec = 5;
+      Restart = "always";
+    };
+  };
+
+  # List packages installed in system profile. To search, run:
+  # $ nix search wget
+  environment.systemPackages = with pkgs; [
+    wget
+    vim
+    alacritty
+    bat
+    exa
+    dmenu
+    xdg_utils
+    # xdg-desktop-portal-wlr
+
+    hicolor-icon-theme
+
+    firefox-wayland
+    chromium
+
+    gitAndTools.gitFull
+    gnupg
+    pass-wayland
+    pavucontrol
+    upower
+
+    zathura
+    feh
+
+    unzip
+    unrar
+
+    emacs
+    aspell
+
+    ripgrep
+    fd
+    zoxide
+    fzf
+    hexyl
+
+    opencl-headers
+    gcc
+    entr
+    file
+    htop
+    killall
+    mpv
+
+    skypeforlinux
+    zoom-us
+
+    spotify
+
+    gnumake
+    rustup
+    sbcl
+    killall
+
+    bc
+
+    # haskell stuff
+    stack
+    ormolu
+    hlint
+
+    mosml
+
+    niv
+    direnv
+
+    tmux
+    sshfs
+
+    ffmpeg
+    vlc
+
+    transmission-gtk
+    # youtube-dl
+
+    brightnessctl
+
+    ## Games
+
+    # dwarf-fortress-packages.dwarf-fortress-full
+
+    # Sea of Thieves override, from here:
+    # https://github.com/NixOS/nixpkgs/issues/76516#issuecomment-599663719
+    # Also take a look at /home/munksgaard/.steam/steam/steamapps/common/SteamLinuxRuntime_soldier/_v2-entry-point
+    # (steam.override { extraPkgs = pkgs: [ cabextract gnutls openldap winetricks ]; })
+    # # steam
+    # mesa.drivers
+    # expat
+    # wayland
+    # xlibs.libxcb
+    # xlibs.libXdamage
+    # xlibs.libxshmfence
+    # xlibs.libXxf86vm
+    # llvm_11.lib
+    # libelf
+
+    # nix stuff
+    nixfmt
+
+    discord
+    element-desktop
+
+    # lutris
+    vulkan-loader
+    vulkan-headers
+
+    # Screenshots (use `grim -g "$(slurp)" screenshot.png`)
+    grim
+    slurp
+
+    # dns
+    bind
+    whois
+
+    zlib
+    pkg-config
+
+    # LaTeX and friends
+    texlive.combined.scheme-full
+    graphviz
+    gnuplot
+    python37
+    python37Packages.pygments
+
+    # Accounting
+    ledger
+
+    # wally for keyboard config
+    wally-cli
+
+    # Sway
+    (pkgs.writeTextFile {
+      name = "startsway";
+      destination = "/bin/startsway";
+      executable = true;
+      text = ''
+        #! ${pkgs.bash}/bin/bash
+
+        # first import environment variables from the login manager
+        systemctl --user import-environment
+        # then start the service
+        exec systemctl --user start sway.service
+      '';
+    })
+  ];
+
+  xdg.mime.enable = true;
+
+  services.udev.packages = [ pkgs.android-udev-rules ];
+
+  # Stuff for the Ergodox Moonlander
+  services.udev.extraRules = ''
+      # Teensy rules for the Ergodox EZ
+      ATTRS{idVendor}=="16c0", ATTRS{idProduct}=="04[789B]?", ENV{ID_MM_DEVICE_IGNORE}="1"
+      ATTRS{idVendor}=="16c0", ATTRS{idProduct}=="04[789A]?", ENV{MTP_NO_PROBE}="1"
+      SUBSYSTEMS=="usb", ATTRS{idVendor}=="16c0", ATTRS{idProduct}=="04[789ABCD]?", MODE:="0666"
+      KERNEL=="ttyACM*", ATTRS{idVendor}=="16c0", ATTRS{idProduct}=="04[789B]?", MODE:="0666"
+
+      # STM32 rules for the Moonlander and Planck EZ
+      SUBSYSTEMS=="usb", ATTRS{idVendor}=="0483", ATTRS{idProduct}=="df11", \
+          MODE:="0666", \
+          SYMLINK+="stm32_dfu"
+
+     # Rule for the Moonlander
+    SUBSYSTEM=="usb", ATTR{idVendor}=="3297", ATTR{idProduct}=="1969", GROUP="plugdev"
+     '';
+
+  fonts.fonts = with pkgs; [
+    noto-fonts
+    noto-fonts-cjk
+    noto-fonts-emoji
+    liberation_ttf
+    fira-code
+    fira-code-symbols
+    mplus-outline-fonts
+    dina-font
+    proggyfonts
+    ubuntu_font_family
+    hack-font
+    vistafonts
+    roboto-mono
+  ];
+
+  # From https://github.com/calbrecht/nixpkgs-overlays
+  xdg.portal.enable = true;
+  xdg.portal.extraPortals = [ # pkgs.xdg-desktop-portal-gtk
+    pkgs.xdg-desktop-portal-wlr
+  ];
+
+  environment.sessionVariables = {
+    MOZ_ENABLE_WAYLAND = "1";
+    XDG_CURRENT_DESKTOP =
+      "sway"; # https://github.com/emersion/xdg-desktop-portal-wlr/issues/20
+    XDG_SESSION_TYPE =
+      "wayland"; # https://github.com/emersion/xdg-desktop-portal-wlr/pull/11
+  };
+
+  # Why is this here?
+  services.pipewire.enable = true;
+}
