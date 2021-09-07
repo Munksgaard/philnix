@@ -307,6 +307,8 @@ in { config, pkgs, lib, ... }:
 
     zlib
     pkg-config
+    inetutils
+    openconnect
 
     # LaTeX and friends
     texlive.combined.scheme-full

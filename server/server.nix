@@ -354,4 +354,10 @@ in { config, pkgs, lib, ... }:
       path = [ pkgs.gitea ];
     };
   };
+
+  nix.gc = {
+    automatic = true;
+    dates = "weekly";
+    options = "--delete-older-than 5d";
+  };
 }
