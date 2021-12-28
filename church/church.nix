@@ -430,4 +430,9 @@ in { config, pkgs, lib, ... }:
 
   # Why is this here?
   services.pipewire.enable = true;
+
+  services.emacs = {
+    enable = true;
+    defaultEditor = true;
+  };
 }
