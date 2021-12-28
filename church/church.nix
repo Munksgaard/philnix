@@ -207,6 +207,7 @@ in { config, pkgs, lib, ... }:
     chromium
 
     gitAndTools.gitFull
+    gitAndTools.git-annex
     gnupg
     pass-wayland
     pavucontrol
