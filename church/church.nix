@@ -227,9 +227,11 @@ in { config, pkgs, lib, ... }:
     zoxide
     fzf
     hexyl
+    bottom
 
     opencl-headers
     gcc
+    glibc
     entr
     file
     htop
