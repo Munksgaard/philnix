@@ -442,4 +442,7 @@ in { config, pkgs, lib, ... }:
     enable = true;
     defaultEditor = true;
   };
+
+  virtualisation.libvirtd.enable = true;
+  programs.dconf.enable = true;
 }
