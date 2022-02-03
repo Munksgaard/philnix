@@ -443,6 +443,10 @@ in { config, pkgs, lib, ... }:
       "wayland"; # https://github.com/emersion/xdg-desktop-portal-wlr/pull/11
   };
 
+  environment.variables = {
+    OCL_ICD_VENDORS = "/run/opengl-driver/etc/OpenCL/vendors";
+  };
+
   # Why is this here?
   services.pipewire.enable = true;
 
