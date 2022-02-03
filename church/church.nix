@@ -327,8 +327,9 @@ in { config, pkgs, lib, ... }:
     texlive.combined.scheme-full
     graphviz
     gnuplot
-    python37
-    python37Packages.pygments
+    python310
+    python310Packages.pygments
+    python310Packages.pip
 
     # Accounting
     ledger
