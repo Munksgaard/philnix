@@ -274,6 +274,7 @@ in { config, pkgs, lib, ... }:
 
     ffmpeg
     vlc
+    mixxx
 
     transmission-gtk
     # youtube-dl
