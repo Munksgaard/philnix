@@ -270,6 +270,7 @@ in { config, pkgs, lib, ... }:
 
     tmux
     sshfs
+    sshpass
 
     ffmpeg
     vlc
