@@ -84,6 +84,7 @@ in { config, pkgs, lib, ... }:
       "docker" # Can run docker images
       "plugdev" # can run udev rules
       "adbusers" # Can run adb
+      "libvirtd" # Can run virt-manager
     ];
   };
 
@@ -347,6 +348,8 @@ in { config, pkgs, lib, ... }:
         exec systemctl --user start sway.service
       '';
     })
+
+    virt-manager
 
     # For guix stuff
     guile
