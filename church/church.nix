@@ -7,6 +7,13 @@ in { config, pkgs, lib, ... }:
 {
   imports = [ ./hardware-configuration.nix ];
 
+  nix = {
+    package = pkgs.nixUnstable;
+    extraOptions = ''
+      experimental-features = nix-command flakes
+    '';
+  };
+
   # Allow unfree modules
   nixpkgs.config.allowUnfree = true;
   nixpkgs.config.allowBroken = true;
