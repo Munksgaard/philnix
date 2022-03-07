@@ -356,6 +356,9 @@ in { config, pkgs, lib, ... }:
 
     # For guix stuff
     guile
+
+    # Bitwarden
+    bitwarden-cli
   ];
 
   xdg.mime.enable = true;
