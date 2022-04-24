@@ -324,7 +324,7 @@ in { config, pkgs, lib, ... }:
     openconnect
 
     # LaTeX and friends
-    texlive.combined.scheme-full
+    texlive.combined.scheme-medium
     graphviz
     gnuplot
     python310
