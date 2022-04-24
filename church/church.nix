@@ -192,6 +192,7 @@ in { config, pkgs, lib, ... }:
     # xdg-desktop-portal-wlr
 
     hicolor-icon-theme
+    gnome.adwaita-icon-theme
 
     firefox-wayland
     chromium
@@ -288,6 +289,8 @@ in { config, pkgs, lib, ... }:
 
     discord
     element-desktop
+    jami-daemon
+    jami-client-gnome
 
     # lutris
     vulkan-loader
