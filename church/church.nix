@@ -402,7 +402,9 @@ in { config, pkgs, lib, ... }:
   };
 
   # Why is this here?
-  services.pipewire.enable = true;
+  services.pipewire.enable = false;
+  services.pipewire.media-session.enable = false;
+  services.pipewire.wireplumber.enable = false;
 
   services.emacs = {
     enable = true;
