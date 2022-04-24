@@ -199,6 +199,7 @@ in { config, pkgs, lib, ... }:
     gitAndTools.gitFull
     gitAndTools.git-annex
     gnupg
+    pinentry
     pass-wayland
     pavucontrol
     upower
