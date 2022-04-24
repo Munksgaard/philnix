@@ -84,7 +84,6 @@ in { config, pkgs, lib, ... }:
       "docker" # Can run docker images
       "plugdev" # can run udev rules
       "adbusers" # Can run adb
-      "libvirtd" # Can run virt-manager
     ];
   };
 
@@ -352,8 +351,6 @@ in { config, pkgs, lib, ... }:
       '';
     })
 
-    virt-manager
-
     # For guix stuff
     guile
 
@@ -459,7 +456,6 @@ in { config, pkgs, lib, ... }:
     defaultEditor = true;
   };
 
-  virtualisation.libvirtd.enable = true;
   programs.dconf.enable = true;
 
   systemd.services.guix-daemon = {
