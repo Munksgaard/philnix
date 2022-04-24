@@ -348,22 +348,6 @@ in { config, pkgs, lib, ... }:
     SUBSYSTEM=="usb", ATTR{idVendor}=="3297", ATTR{idProduct}=="1969", GROUP="plugdev"
      '';
 
-  fonts.fonts = with pkgs; [
-    noto-fonts
-    noto-fonts-cjk
-    noto-fonts-emoji
-    liberation_ttf
-    fira-code
-    fira-code-symbols
-    mplus-outline-fonts
-    dina-font
-    proggyfonts
-    ubuntu_font_family
-    hack-font
-    vistafonts
-    roboto-mono
-  ];
-
   # Let's play with containers and funkwhale
   # virtualisation.oci-containers = {
   #   backend = "podman";
