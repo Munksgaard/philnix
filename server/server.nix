@@ -350,6 +350,9 @@ in { config, pkgs, lib, ... }:
           CSRF_TRUSTED_ORIGINS = "http://127.0.0.1:8000,https://babybuddy.munksgaard.me";
           USE_24_HOUR_TIME_FORMAT = "True";
         };
+        volumes = [
+          "/var/backup/babybuddy:/config"
+        ];
       };
     };
   };
