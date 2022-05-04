@@ -346,13 +346,10 @@ in { config, pkgs, lib, ... }:
       babybuddy = {
         image = "lscr.io/linuxserver/babybuddy";
         ports = ["8000:8000"];
-        volumes = [
-          "/srv/funkwhale/data:/data"
-          "/var/music:/music:ro"
-        ];
         environment = {
           TZ = "Europe/Copenhagen";
-          CSRF_TRUSTED_ORIGINS = "https://babybuddy.munksgaard.me";
+          CSRF_TRUSTED_ORIGINS = "http://127.0.0.1:8000,https://babybuddy.munksgaard.me";
+          USE_24_HOUR_TIME_FORMAT = "True";
         };
       };
     };
