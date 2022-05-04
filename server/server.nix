@@ -176,8 +176,7 @@ in { config, pkgs, lib, ... }:
         enableACME = true;
 
         locations."/" = {
-          proxyPass = "http://localhost:8000";
-          proxyWebsockets = true;
+          proxyPass = "http://127.0.0.1:8000";
           extraConfig = ''
             proxy_set_header X-Forwarded-For $remote_addr;
             proxy_set_header X-Forwarded-Proto $scheme;
