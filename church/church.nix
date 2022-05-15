@@ -41,6 +41,20 @@ in { config, pkgs, lib, ... }:
   # Set your time zone.
   time.timeZone = "Europe/Copenhagen";
 
+  fonts.fonts = with pkgs; [
+    noto-fonts
+    noto-fonts-cjk
+    noto-fonts-emoji
+    liberation_ttf
+    fira-code
+    fira-code-symbols
+    mplus-outline-fonts.githubRelease
+    dina-font
+    proggyfonts
+    hack-font
+  ];
+
+
   programs.gnupg.agent = { enable = true; };
 
   # Enable the OpenSSH daemon.
