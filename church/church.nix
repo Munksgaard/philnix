@@ -251,6 +251,7 @@ in { config, pkgs, lib, ... }:
 
     gnumake
     rustup
+    rust-analyzer
     sbcl
     killall
 
