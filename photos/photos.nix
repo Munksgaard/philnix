@@ -15,6 +15,13 @@
   boot.loader.grub.device = "/dev/sda";
   boot.loader.grub.useOSProber = true;
 
+  nix = {
+    package = pkgs.nixFlakes;
+    extraOptions = ''
+      experimental-features = nix-command flakes
+    '';
+  };
+
   networking = {
     hostName = "photos";
     domain = "photos.munksgaard.me";
@@ -56,6 +63,7 @@
     sudo
     tmux
     htop
+    caddy
   ];
 
   # Enable the OpenSSH daemon.
