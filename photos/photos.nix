@@ -85,6 +85,8 @@
 
   services.fail2ban.enable = true;
 
+  services.logind.lidSwitch = "ignore";
+
   nix.gc = {
     automatic = true;
     dates = "weekly";
