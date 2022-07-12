@@ -101,10 +101,7 @@
 
     config = {
       Peers = [
-        "http://[319:3cf0:dd1d:47b9:20c:29ff:fe2c:39be]/"
-        "tls://185.130.44.194:7040"
-        "http://[319:3cf0:dd1d:47b9:20c:29ff:fe2c:39bd]/"
-        "tls://200:9287:bc2e:cf7b:df22:8f0d:d6ce:2715"
+        "tls://200:9287:bc2e:cf7b:df22:8f0d:d6ce:2715" # church
       ];
     };
   };
