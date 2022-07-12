@@ -391,4 +391,15 @@ in { config, pkgs, lib, ... }:
     dates = "weekly";
     options = "--delete-older-than 5d";
   };
+
+  services.yggdrasil = {
+    enable = true;
+    persistentKeys = true;
+
+    config = {
+      Peers = [
+        "tls://200:9287:bc2e:cf7b:df22:8f0d:d6ce:2715" # church
+      ];
+    };
+  };
 }
