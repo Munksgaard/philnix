@@ -36,7 +36,7 @@ in { config, pkgs, lib, ... }:
     openssh.authorizedKeys.keys = secrets.authorizedKeys;
   };
 
-  environment.systemPackages = with pkgs; [ git sudo tmux htop ];
+  environment.systemPackages = with pkgs; [ git sudo tmux htop yggdrasil ];
 
   # Open ports in the firewall.
   networking.firewall.allowedTCPPorts = [
