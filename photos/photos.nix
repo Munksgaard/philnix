@@ -64,6 +64,7 @@
     tmux
     htop
     caddy
+    yggdrasil
   ];
 
   # Enable the OpenSSH daemon.
