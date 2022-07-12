@@ -343,6 +343,8 @@ in { config, pkgs, lib, ... }:
 
     # Bitwarden
     bitwarden-cli
+
+    yggdrasil
   ];
 
   xdg.mime.enable = true;
@@ -443,6 +445,19 @@ in { config, pkgs, lib, ... }:
       TaskMax= "8192";
     };
     wantedBy = [ "multi-user.target" ];
+  };
+
+  services.yggdrasil = {
+    enable = true;
+    persistentKeys = true;
+
+    config = {
+      Peers = [
+        "http://[319:3cf0:dd1d:47b9:20c:29ff:fe2c:39be]/"
+        "tls://185.130.44.194:7040"
+        "http://[319:3cf0:dd1d:47b9:20c:29ff:fe2c:39bd]/"
+      ];
+    };
   };
 
 }
