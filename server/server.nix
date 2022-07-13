@@ -62,7 +62,7 @@ in { config, pkgs, lib, ... }:
   users.users.root.openssh.authorizedKeys.keys = secrets.authorizedKeys;
 
   security.acme = {
-    email = "philip@munksgaard.me";
+    defaults.email = "philip@munksgaard.me";
     acceptTerms = true;
   };
 
@@ -188,25 +188,26 @@ in { config, pkgs, lib, ... }:
 
   services.matrix-synapse = {
     enable = true;
-    server_name = "matrix.munksgaard.me";
-    listeners = [{
-      port = 8008;
-      bind_address = "::1";
-      type = "http";
-      tls = false;
-      x_forwarded = true;
-      resources = [{
-        names = [ "client" "federation" ];
-        compress = false;
+    settings = {
+      server_name = "matrix.munksgaard.me";
+      listeners = [{
+        port = 8008;
+        bind_addresses = ["::1"];
+        type = "http";
+        tls = false;
+        x_forwarded = true;
+        resources = [{
+          names = [ "client" "federation" ];
+          compress = false;
+        }];
       }];
-    }];
-    registration_shared_secret = secrets.matrixRegistrationSecretKey ;
-    account_threepid_delegates = {
-      email = "https://vector.im";
-      msisdn = "https://vector.im";
+      registration_shared_secret = secrets.matrixRegistrationSecretKey ; # Should be passed in with extraConfigFiles
+      account_threepid_delegates = {
+        email = "https://vector.im";
+        msisdn = "https://vector.im";
+      };
+      public_baseurl = "https://matrix.munksgaard.me/";
     };
-    public_baseurl = "https://matrix.munksgaard.me/";
-    extraConfig = "experimental_features: { spaces_enabled: true }";
   };
 
   services.gitea = {
@@ -294,7 +295,7 @@ in { config, pkgs, lib, ... }:
     };
   };
 
-  services.bitwarden_rs = {
+  services.vaultwarden = {
     enable = true;
     dbBackend = "sqlite";
     config = {
