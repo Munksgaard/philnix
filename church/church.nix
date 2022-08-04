@@ -252,6 +252,7 @@ in { config, pkgs, lib, ... }:
     gnumake
     rustup
     rust-analyzer
+    cargo-crev
     sbcl
     killall
 
@@ -345,6 +346,9 @@ in { config, pkgs, lib, ... }:
     bitwarden-cli
 
     yggdrasil
+
+    # for `man ascii` and others
+    man-pages
   ];
 
   xdg.mime.enable = true;
