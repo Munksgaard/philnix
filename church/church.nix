@@ -306,7 +306,7 @@ in { config, pkgs, lib, ... }:
     discord
     element-desktop
     jami-daemon
-    jami-client-gnome
+    # jami-client-qt
 
     # lutris
     vulkan-loader
