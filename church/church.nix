@@ -54,7 +54,6 @@ in { config, pkgs, lib, ... }:
     hack-font
   ];
 
-
   programs.gnupg.agent = { enable = true; };
 
   # Enable the OpenSSH daemon.
@@ -370,7 +369,7 @@ in { config, pkgs, lib, ... }:
 
      # Rule for the Moonlander
     SUBSYSTEM=="usb", ATTR{idVendor}=="3297", ATTR{idProduct}=="1969", GROUP="plugdev"
-     '';
+  '';
 
   # Let's play with containers and funkwhale
   # virtualisation.oci-containers = {
@@ -441,12 +440,13 @@ in { config, pkgs, lib, ... }:
     enable = true;
     description = "Build daemon for GNU Guix";
     serviceConfig = {
-      ExecStart = "/var/guix/profiles/per-user/root/current-guix/bin/guix-daemon --build-users-group=guixbuild";
-      Environment="GUIX_LOCPATH=/root/.guix-profile/lib/locale";
-      RemainAfterExit="yes";
-      StandardOutput="syslog";
-      StandardError="syslog";
-      TaskMax= "8192";
+      ExecStart =
+        "/var/guix/profiles/per-user/root/current-guix/bin/guix-daemon --build-users-group=guixbuild";
+      Environment = "GUIX_LOCPATH=/root/.guix-profile/lib/locale";
+      RemainAfterExit = "yes";
+      StandardOutput = "syslog";
+      StandardError = "syslog";
+      TaskMax = "8192";
     };
     wantedBy = [ "multi-user.target" ];
   };
