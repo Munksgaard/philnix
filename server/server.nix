@@ -8,7 +8,8 @@
 
   age.secrets.matrix-extra-conf.file = ../secrets/matrix-extra-conf.age;
   age.secrets.gitea-mailer-password.file = ../secrets/gitea-mailer-password.age;
-  age.secrets.vaultwarden-environment.file = ../secrets/vaultwarden-environment.age;
+  age.secrets.vaultwarden-environment.file =
+    ../secrets/vaultwarden-environment.age;
 
   # Use the GRUB 2 boot loader.
   boot.loader.grub.enable = true;
@@ -37,7 +38,9 @@
   users.users.philip = {
     isNormalUser = true;
     extraGroups = [ "wheel" ]; # Enable ‘sudo’ for the user.
-    openssh.authorizedKeys.keys = [ "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINlapwwXZyp/qTm1y9CA5WLVL33TAAznj5FkZW4/Ftvu" ];
+    openssh.authorizedKeys.keys = [
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINlapwwXZyp/qTm1y9CA5WLVL33TAAznj5FkZW4/Ftvu"
+    ];
   };
 
   environment.systemPackages = with pkgs; [ git sudo tmux htop yggdrasil ];
@@ -63,7 +66,9 @@
 
   services.openssh.enable = true;
 
-  users.users.root.openssh.authorizedKeys.keys = [ "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINlapwwXZyp/qTm1y9CA5WLVL33TAAznj5FkZW4/Ftvu" ];
+  users.users.root.openssh.authorizedKeys.keys = [
+    "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINlapwwXZyp/qTm1y9CA5WLVL33TAAznj5FkZW4/Ftvu"
+  ];
 
   security.acme = {
     defaults.email = "philip@munksgaard.me";
@@ -196,7 +201,7 @@
       server_name = "matrix.munksgaard.me";
       listeners = [{
         port = 8008;
-        bind_addresses = ["::1"];
+        bind_addresses = [ "::1" ];
         type = "http";
         tls = false;
         x_forwarded = true;
@@ -211,7 +216,7 @@
       };
       public_baseurl = "https://matrix.munksgaard.me/";
     };
-    extraConfigFiles = ["${config.age.secrets.matrix-extra-conf.path}"];
+    extraConfigFiles = [ "${config.age.secrets.matrix-extra-conf.path}" ];
   };
 
   services.gitea = {
@@ -348,15 +353,14 @@
     containers = {
       babybuddy = {
         image = "lscr.io/linuxserver/babybuddy";
-        ports = ["8000:8000"];
+        ports = [ "8000:8000" ];
         environment = {
           TZ = "Europe/Copenhagen";
-          CSRF_TRUSTED_ORIGINS = "http://127.0.0.1:8000,https://babybuddy.munksgaard.me";
+          CSRF_TRUSTED_ORIGINS =
+            "http://127.0.0.1:8000,https://babybuddy.munksgaard.me";
           USE_24_HOUR_TIME_FORMAT = "True";
         };
-        volumes = [
-          "/var/backup/babybuddy:/config"
-        ];
+        volumes = [ "/var/backup/babybuddy:/config" ];
       };
     };
   };
@@ -385,7 +389,7 @@
 
                          # Overwrite any earlier file since these dumps take up a bit of space.
                          mv -f gitea-dump-*.zip gitea-dump.zip
-              '';
+      '';
       path = [ pkgs.gitea ];
     };
   };
