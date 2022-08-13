@@ -211,7 +211,7 @@
       };
       public_baseurl = "https://matrix.munksgaard.me/";
     };
-    extraConfigFiles = "${config.age.secrets.matrix-extra-conf.path}";
+    extraConfigFiles = ["${config.age.secrets.matrix-extra-conf.path}"];
   };
 
   services.gitea = {
