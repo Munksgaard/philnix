@@ -1,10 +1,14 @@
-let secrets = import ../secrets.nix;
-in { config, pkgs, lib, ... }:
+{ config, pkgs, lib, ... }:
 
 {
   imports = [ # Include the results of the hardware scan.
     ./hardware-configuration.nix
+    "${(import ./nix/sources.nix).agenix}/modules/age.nix"
   ];
+
+  age.secrets.matrix-extra-conf.file = ../secrets/matrix-extra-conf.age;
+  age.secrets.gitea-mailer-password.file = ../secrets/gitea-mailer-password.age;
+  age.secrets.vaultwarden-environment.file = ../secrets/vaultwarden-environment.age;
 
   # Use the GRUB 2 boot loader.
   boot.loader.grub.enable = true;
@@ -33,7 +37,7 @@ in { config, pkgs, lib, ... }:
   users.users.philip = {
     isNormalUser = true;
     extraGroups = [ "wheel" ]; # Enable ‘sudo’ for the user.
-    openssh.authorizedKeys.keys = secrets.authorizedKeys;
+    openssh.authorizedKeys.keys = [ "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINlapwwXZyp/qTm1y9CA5WLVL33TAAznj5FkZW4/Ftvu" ];
   };
 
   environment.systemPackages = with pkgs; [ git sudo tmux htop yggdrasil ];
@@ -59,7 +63,7 @@ in { config, pkgs, lib, ... }:
 
   services.openssh.enable = true;
 
-  users.users.root.openssh.authorizedKeys.keys = secrets.authorizedKeys;
+  users.users.root.openssh.authorizedKeys.keys = [ "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINlapwwXZyp/qTm1y9CA5WLVL33TAAznj5FkZW4/Ftvu" ];
 
   security.acme = {
     defaults.email = "philip@munksgaard.me";
@@ -201,13 +205,13 @@ in { config, pkgs, lib, ... }:
           compress = false;
         }];
       }];
-      registration_shared_secret = secrets.matrixRegistrationSecretKey ; # Should be passed in with extraConfigFiles
       account_threepid_delegates = {
         email = "https://vector.im";
         msisdn = "https://vector.im";
       };
       public_baseurl = "https://matrix.munksgaard.me/";
     };
+    extraConfigFiles = "${age.secrets.matrix-extra-conf.path}";
   };
 
   services.gitea = {
@@ -230,9 +234,9 @@ in { config, pkgs, lib, ... }:
         HOST = "smtp.fastmail.com:465";
         IS_TLS_ENABLED = true;
         USER = "philip@munksgaard.me";
-        PASSWD = secrets.fastmailPassword;
       };
     };
+    mailerPasswordFile = "${age.secrets.gitea-mailer-password.path}";
   };
 
   # services.teeworlds = {
@@ -303,7 +307,6 @@ in { config, pkgs, lib, ... }:
       rocketPort = 8222;
       rocketLog = "critical";
       signupsAllowed = false;
-      adminToken = secrets.bitwardenAdminToken;
       smtpHost = "smtp.fastmail.com";
       smtpFrom = "bitwarden-rs@munksgaard.me";
       smtpFromName = "Bitwarden_RS";
@@ -311,9 +314,9 @@ in { config, pkgs, lib, ... }:
       smtpSsl = true;
       smtpExplicitTls = true;
       smtpUsername = "philip@munksgaard.me";
-      smtpPassword = secrets.fastmailPassword;
       smtpAuthMechanism = "Plain";
     };
+    environmentFile = "${age.secrets.vaultwarden-environment.path}";
     backupDir = "/var/backup/bitwarden_rs";
   };
 
@@ -321,7 +324,7 @@ in { config, pkgs, lib, ... }:
     borgbase_backup = {
       paths = [ "/var/backup" ];
       #exclude = [ "/nix" "'**/.cache'" ];
-      repo = secrets.borgBackupRepo;
+      repo = "oexbg24h@oexbg24h.repo.borgbase.com:repo";
       encryption = {
         mode = "repokey-blake2";
         passCommand = "cat /run/keys/borgbackup_passphrase";
