@@ -404,4 +404,6 @@ in { config, pkgs, lib, ... }:
       ];
     };
   };
+
+  services.journald.extraConfig = "SystemMaxUse=1G";
 }
