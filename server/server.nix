@@ -6,8 +6,14 @@
     "${(import ./nix/sources.nix).agenix}/modules/age.nix"
   ];
 
-  age.secrets.matrix-extra-conf.file = ../secrets/matrix-extra-conf.age;
-  age.secrets.gitea-mailer-password.file = ../secrets/gitea-mailer-password.age;
+  age.secrets.matrix-extra-conf = {
+    file = ../secrets/matrix-extra-conf.age;
+    owner = "matrix-synapse";
+  };
+  age.secrets.gitea-mailer-password = {
+    file = ../secrets/gitea-mailer-password.age;
+    owner = "gitea";
+  };
   age.secrets.vaultwarden-environment.file =
     ../secrets/vaultwarden-environment.age;
 
