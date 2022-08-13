@@ -3,7 +3,6 @@
 {
   imports = [ # Include the results of the hardware scan.
     ./hardware-configuration.nix
-    "${(import ./nix/sources.nix).agenix}/modules/age.nix"
   ];
 
   age.secrets.matrix-extra-conf = {
