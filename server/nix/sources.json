@@ -1,0 +1,26 @@
+{
+    "agenix": {
+        "branch": "main",
+        "description": "age-encrypted secrets for NixOS",
+        "homepage": "https://matrix.to/#/#agenix:nixos.org",
+        "owner": "ryantm",
+        "repo": "agenix",
+        "rev": "7e5e58b98c3dcbf497543ff6f22591552ebfe65b",
+        "sha256": "1cfdd2ja56g8clllygf91il7dignr90ij1bl29g3kl7dl977dhl4",
+        "type": "tarball",
+        "url": "https://github.com/ryantm/agenix/archive/7e5e58b98c3dcbf497543ff6f22591552ebfe65b.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
+    },
+    "nixpkgs": {
+        "branch": "release-21.05",
+        "description": "Nix Packages collection",
+        "homepage": "",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "5f244caea76105b63d826911b2a1563d33ff1cdc",
+        "sha256": "1xlgynfw9svy7nvh9nkxsxdzncv9hg99gbvbwv3gmrhmzc3sar75",
+        "type": "tarball",
+        "url": "https://github.com/NixOS/nixpkgs/archive/5f244caea76105b63d826911b2a1563d33ff1cdc.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
+    }
+}
