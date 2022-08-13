@@ -26,8 +26,8 @@ in { config, pkgs, lib, ... }:
   # Select internationalisation properties.
   i18n.defaultLocale = "en_US.UTF-8";
 
-  system.autoUpgrade.enable = true;
-  system.autoUpgrade.channel = "https://nixos.org/channels/nixos-21.05";
+  # system.autoUpgrade.enable = true;
+  # system.autoUpgrade.channel = "https://nixos.org/channels/nixos-21.05";
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.philip = {
