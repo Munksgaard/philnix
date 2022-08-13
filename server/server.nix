@@ -22,6 +22,8 @@
 
   boot.loader.grub.device = "/dev/sda";
 
+  boot.enableContainers = false;
+
   networking = {
     hostName = "munksgaard-me";
     domain = "munksgaard.me";
