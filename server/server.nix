@@ -211,7 +211,7 @@
       };
       public_baseurl = "https://matrix.munksgaard.me/";
     };
-    extraConfigFiles = "${age.secrets.matrix-extra-conf.path}";
+    extraConfigFiles = "${config.age.secrets.matrix-extra-conf.path}";
   };
 
   services.gitea = {
@@ -236,7 +236,7 @@
         USER = "philip@munksgaard.me";
       };
     };
-    mailerPasswordFile = "${age.secrets.gitea-mailer-password.path}";
+    mailerPasswordFile = "${config.age.secrets.gitea-mailer-password.path}";
   };
 
   # services.teeworlds = {
@@ -316,7 +316,7 @@
       smtpUsername = "philip@munksgaard.me";
       smtpAuthMechanism = "Plain";
     };
-    environmentFile = "${age.secrets.vaultwarden-environment.path}";
+    environmentFile = "${config.age.secrets.vaultwarden-environment.path}";
     backupDir = "/var/backup/bitwarden_rs";
   };
 
