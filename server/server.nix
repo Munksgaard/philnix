@@ -1,8 +1,9 @@
-{ config, pkgs, lib, ... }:
+{ config, pkgs, lib, geomyidae, munksgaard-gopher, ... }:
 
 {
   imports = [ # Include the results of the hardware scan.
     ./hardware-configuration.nix
+    geomyidae.nixosModule
   ];
 
   age.secrets.matrix-extra-conf = {
@@ -420,4 +421,9 @@
   };
 
   services.journald.extraConfig = "SystemMaxUse=1G";
+
+  services.geomyidae = {
+    enable = true;
+    base = "${munksgaard-gopher}";
+  };
 }

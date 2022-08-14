@@ -69,6 +69,24 @@
         "type": "sourcehut"
       }
     },
+    "munksgaard-gopher": {
+      "inputs": {
+        "nixpkgs": "nixpkgs_3"
+      },
+      "locked": {
+        "lastModified": 1660473983,
+        "narHash": "sha256-qIXrHkIfBTJ9Gx4P916OpLMldZ0DEV1CpPhFJ7Gho6A=",
+        "owner": "~munksgaard",
+        "repo": "munksgaard.me-gopher",
+        "rev": "af394f36e27aaffd61821fbcf74dd03fe704f5b8",
+        "type": "sourcehut"
+      },
+      "original": {
+        "owner": "~munksgaard",
+        "repo": "munksgaard.me-gopher",
+        "type": "sourcehut"
+      }
+    },
     "nixpkgs": {
       "locked": {
         "lastModified": 1638587357,
@@ -103,6 +121,20 @@
     },
     "nixpkgs_3": {
       "locked": {
+        "lastModified": 1660435756,
+        "narHash": "sha256-M2R7f3JvXIyyYyX50YxgasNCnFc0ES8S46eEfv8iIyE=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "4fb60f3177290558355e1cdc2e03b9da449c41ef",
+        "type": "github"
+      },
+      "original": {
+        "id": "nixpkgs",
+        "type": "indirect"
+      }
+    },
+    "nixpkgs_4": {
+      "locked": {
         "lastModified": 1660305968,
         "narHash": "sha256-r0X1pZCSEA6mzt5OuTA7nHuLmvnbkwgpFAh1iLIx4GU=",
         "owner": "NixOS",
@@ -122,7 +154,8 @@
         "agenix": "agenix",
         "deploy-rs": "deploy-rs",
         "geomyidae": "geomyidae",
-        "nixpkgs": "nixpkgs_3"
+        "munksgaard-gopher": "munksgaard-gopher",
+        "nixpkgs": "nixpkgs_4"
       }
     },
     "utils": {

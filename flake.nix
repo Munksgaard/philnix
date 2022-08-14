@@ -6,13 +6,15 @@
   inputs.nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
 
   inputs.geomyidae.url = "sourcehut:~munksgaard/geomyidae-flake";
+  inputs.munksgaard-gopher.url = "sourcehut:~munksgaard/munksgaard.me-gopher";
 
   inputs.agenix.url = "github:ryantm/agenix";
 
-  outputs = { self, nixpkgs, deploy-rs, geomyidae, agenix }: {
+  outputs = { self, nixpkgs, deploy-rs, geomyidae, agenix, munksgaard-gopher }@attrs: {
 
     nixosConfigurations."munksgaard.me" = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
+      specialArgs = attrs;
       modules = [
         server/server.nix
         agenix.nixosModule
