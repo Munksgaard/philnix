@@ -56,11 +56,11 @@
     },
     "geomyidae": {
       "locked": {
-        "lastModified": 1660475092,
-        "narHash": "sha256-djVFoiWeubfznHANZ88BwcSEKXEAZb9JuDlnRLk9WyY=",
+        "lastModified": 1660475300,
+        "narHash": "sha256-VVSqi9hFMagw/+oWZO0W57FXhz5aca1ziZnqJjoqPXE=",
         "owner": "~munksgaard",
         "repo": "geomyidae-flake",
-        "rev": "9f77dbcb8eaf599645145d64fab585a73d474f28",
+        "rev": "66613eec03588027eeb5f635e1fe6408a4b429cd",
         "type": "sourcehut"
       },
       "original": {
