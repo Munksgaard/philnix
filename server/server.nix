@@ -425,6 +425,6 @@
 
   services.geomyidae = {
     enable = true;
-    base = "${munksgaard-gopher}";
+    base = "${munksgaard-gopher/src}";
   };
 }
