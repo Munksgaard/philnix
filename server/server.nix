@@ -426,5 +426,6 @@
   services.geomyidae = {
     enable = true;
     base = "${munksgaard-gopher}/src";
+    host = "0.0.0.0";
   };
 }
