@@ -56,6 +56,7 @@
   # Open ports in the firewall.
   networking.firewall.allowedTCPPorts = [
     22 # ssh
+    70 # gopher
     80 # http
     443 # https
   ];
