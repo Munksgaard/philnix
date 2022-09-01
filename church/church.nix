@@ -304,8 +304,9 @@ in { config, pkgs, lib, ... }:
 
     discord
     element-desktop
+
     jami-daemon
-    # jami-client-qt
+    jami-client-qt
 
     # lutris
     vulkan-loader
@@ -466,4 +467,10 @@ in { config, pkgs, lib, ... }:
     };
   };
 
+  services.dbus = {
+    enable = true;
+    packages = [ pkgs.jami-daemon ];
+  };
+
+  systemd.packages = [ pkgs.jami-daemon ] ;
 }
