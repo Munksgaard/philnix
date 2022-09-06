@@ -237,8 +237,6 @@
     #   enable = true;
     #   backupDir = "/var/backup/gitea";
     # };
-    disableRegistration = true;
-    cookieSecure = true;
     settings = {
       mailer = {
         ENABLED = true;
@@ -251,6 +249,8 @@
       server = {
         DISABLE_SSH = false;
       };
+      service.DISABLE_REGISTRATION = true;
+      session.COOKIE_SECURE = true;
     };
     mailerPasswordFile = "${config.age.secrets.gitea-mailer-password.path}";
   };

@@ -453,7 +453,7 @@
     enable = true;
     persistentKeys = true;
 
-    config = {
+    settings = {
       Peers = [
         "http://[319:3cf0:dd1d:47b9:20c:29ff:fe2c:39be]/"
         "tls://185.130.44.194:7040"
