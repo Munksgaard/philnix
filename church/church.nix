@@ -1,8 +1,4 @@
-let
-  nix2105 = import <nix2105> { config = { allowUnfree = true; }; };
-  secrets = import ../secrets.nix;
-
-in { config, pkgs, lib, ... }:
+{ config, pkgs, lib, ... }:
 
 {
   imports = [ ./hardware-configuration.nix ];
@@ -109,10 +105,6 @@ in { config, pkgs, lib, ... }:
   # Stuff to make OpenCL work properly...
   nixpkgs.config.packageOverrides = pkgs: {
     vaapiIntel = pkgs.vaapiIntel.override { enableHybridCodec = true; };
-    factorio = pkgs.factorio.override {
-      username = "pmunksgaard";
-      token = secrets.factorioToken;
-    };
   };
 
   programs.adb.enable = true;
@@ -124,8 +116,8 @@ in { config, pkgs, lib, ... }:
       vaapiVdpau
       libvdpau-va-gl
       intel-media-driver
-      nix2105.intel-ocl
-      nix2105.intel-compute-runtime
+      intel-ocl
+      intel-compute-runtime
     ];
     driSupport32Bit = true;
   };
@@ -263,6 +255,11 @@ in { config, pkgs, lib, ... }:
     hlint
 
     mosml
+
+    cabal-install
+    haskell.compiler.ghc924
+    ghcid
+    haskell.packages.ghc924.ormolu_0_5_0_1
 
     niv
     direnv

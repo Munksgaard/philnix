@@ -32,13 +32,14 @@
       };
     };
 
-    # nixosConfigurations.church = nixpkgs.lib.nixosSystem {
-    #   system = "x86_64-linux";
-    #   modules = [
-    #     church/church.nix
-    #   ];
-    # };
+    nixosConfigurations.church = nixpkgs.lib.nixosSystem {
+      system = "x86_64-linux";
+      modules = [
+        church/church.nix
+      ];
+    };
 
+    # No deploy for localhost, use `sudo nixos-rebuild switch --flake .#church` instead
     # deploy.nodes.church = {
     #   hostname = "localhost";
 

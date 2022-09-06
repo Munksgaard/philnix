@@ -232,7 +232,6 @@
     enable = true;
     rootUrl = "https://git.munksgaard.me";
     domain = "git.munksgaard.me";
-    ssh = { enable = true; };
     # We use a cron script instead. This takes up way too much space
     # dump = {
     #   enable = true;
@@ -248,6 +247,9 @@
         HOST = "smtp.fastmail.com:465";
         IS_TLS_ENABLED = true;
         USER = "philip@munksgaard.me";
+      };
+      server = {
+        DISABLE_SSH = false;
       };
     };
     mailerPasswordFile = "${config.age.secrets.gitea-mailer-password.path}";
