@@ -74,11 +74,11 @@
         "nixpkgs": "nixpkgs_3"
       },
       "locked": {
-        "lastModified": 1662473273,
-        "narHash": "sha256-7TVGPNW1ekZ1paEhV1G1yOp39jRYhtuVgVpLPvo4WF4=",
+        "lastModified": 1663093612,
+        "narHash": "sha256-wH6i8MojauWROv7ow4NVoWMJHow9gokybPyUbTyE4rE=",
         "owner": "~munksgaard",
         "repo": "munksgaard.me-gopher",
-        "rev": "81fe4536d70bdd04b1a6d3f28ee5b6cf7f7ab410",
+        "rev": "e83c9f1843a391b4d67e8498cd663aab4ab138a5",
         "type": "sourcehut"
       },
       "original": {
