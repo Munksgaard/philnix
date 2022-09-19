@@ -110,7 +110,7 @@
     enable = true;
     persistentKeys = true;
 
-    config = {
+    settings = {
       Peers = [
         "tls://200:9287:bc2e:cf7b:df22:8f0d:d6ce:2715" # church
         "tls://yggdrasil.su:62586" # Why is this needed?
