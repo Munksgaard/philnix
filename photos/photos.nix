@@ -117,4 +117,33 @@
       ];
     };
   };
+
+  age.secrets.photos-secret-key = {
+    file = ../secrets/photos-secret-key.age;
+    owner = "root";
+  };
+
+  age.secrets.photos-smtp-password = {
+    file = ../secrets/photos-smtp-password.age;
+    owner = "root";
+  };
+
+  services.photos = {
+    enable = true;
+    address = "0.0.0.0";
+    port = 8000;
+    secretKeyFile = config.age.secrets.photos-secret-key.path;
+    smtp = {
+      username = "philip@munksgaard.me";
+      passwordFile = config.age.secrets.photos-smtp-password.path;
+      host = "smtp.fastmail.com";
+    };
+  };
+
+  services.caddy = {
+    enable = true;
+    virtualHosts."photos.munksgaard.me".extraConfig = ''
+      reverse_proxy http://localhost:8000
+    '';
+  };
 }
