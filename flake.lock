@@ -226,11 +226,11 @@
         "nixpkgs": "nixpkgs_6"
       },
       "locked": {
-        "lastModified": 1663582442,
-        "narHash": "sha256-Vyy4BQYufVDWoSGlJDnbUI6Y1JYNFCvBOtQkyLJTMas=",
+        "lastModified": 1663701717,
+        "narHash": "sha256-/lyR1zrXUguJNAa1SvEa5t1jX/Xp65uFQ9+MUJOC4Bg=",
         "owner": "~munksgaard",
         "repo": "photo-album",
-        "rev": "ed18fd9ecc63d350cb365813f0f3c2bee4db78ab",
+        "rev": "9c2fb3ef9b8059a21bd6c5784e5871c05cf7c008",
         "type": "sourcehut"
       },
       "original": {
