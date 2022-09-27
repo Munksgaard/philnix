@@ -217,8 +217,6 @@
     unrar
 
     emacs
-    aspell
-
     ripgrep
     fd
     zoxide
@@ -346,6 +344,10 @@
 
     # for `man ascii` and others
     man-pages
+
+    aspell
+    aspellDicts.en
+    aspellDicts.da
   ];
 
   xdg.mime.enable = true;
