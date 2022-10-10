@@ -10,7 +10,7 @@ deploy-munksgaard.me:
 	nix run github:serokell/deploy-rs '.#"munksgaard.me".'
 
 deploy-photos.munksgaard.me:
-	nix run github:serokell/deploy-rs '.#"photos.munksgaard.me".'
+	nix run github:serokell/deploy-rs '.#"photos.munksgaard.me".' -- --magic-rollback=false
 
 deploy-church:
 	sudo nixos-rebuild switch --flake .#church
