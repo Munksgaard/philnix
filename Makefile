@@ -6,6 +6,9 @@ help:
 	@echo "  update-munksgaard.me-gopher"
 	@echo "  update-photos"
 
+deploy:
+	nix run github:serokell/deploy-rs '.'
+
 deploy-munksgaard.me:
 	nix run github:serokell/deploy-rs '.#"munksgaard.me".'
 
