@@ -3,7 +3,7 @@
 
   inputs.deploy-rs.url = "github:serokell/deploy-rs";
 
-  inputs.nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+  inputs.nixpkgs.url = "github:NixOS/nixpkgs/staging-next";
 
   inputs.geomyidae.url = "sourcehut:~munksgaard/geomyidae-flake";
   inputs.munksgaard-gopher.url = "sourcehut:~munksgaard/munksgaard.me-gopher";
