@@ -219,10 +219,6 @@
           compress = false;
         }];
       }];
-      account_threepid_delegates = {
-        email = "https://vector.im";
-        msisdn = "https://vector.im";
-      };
       public_baseurl = "https://matrix.munksgaard.me/";
     };
     extraConfigFiles = [ "${config.age.secrets.matrix-extra-conf.path}" ];
