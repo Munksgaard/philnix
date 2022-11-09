@@ -348,6 +348,12 @@
     aspell
     aspellDicts.en
     aspellDicts.da
+
+    # racket
+    racket
+
+    # notmuch
+    notmuch
   ];
 
   xdg.mime.enable = true;
