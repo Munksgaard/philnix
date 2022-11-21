@@ -354,6 +354,8 @@
 
     # notmuch
     notmuch
+
+    libreoffice
   ];
 
   xdg.mime.enable = true;
