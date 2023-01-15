@@ -251,13 +251,15 @@
     stack
     ormolu
     hlint
-
-    mosml
-
     cabal-install
     haskell.compiler.ghc924
     ghcid
     haskell.packages.ghc924.ormolu_0_5_0_1
+
+    mosml
+    mlton
+    smlfmt
+    millet
 
     niv
     direnv
