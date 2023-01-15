@@ -249,12 +249,13 @@
 
     # haskell stuff
     stack
-    ormolu
     hlint
     cabal-install
     haskell.compiler.ghc924
+    haskell.packages.ghc924.ormolu
+    haskell.packages.ghc924.weeder
+    haskell.packages.ghc924.haskell-language-server
     ghcid
-    haskell.packages.ghc924.ormolu_0_5_0_1
 
     mosml
     mlton
