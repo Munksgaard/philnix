@@ -359,6 +359,11 @@
     notmuch
 
     libreoffice
+
+    # scuttlebutt
+    ssb-patchwork
+
+    dhall
   ];
 
   xdg.mime.enable = true;
