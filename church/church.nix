@@ -360,9 +360,6 @@
 
     libreoffice
 
-    # scuttlebutt
-    ssb-patchwork
-
     dhall
   ];
 
