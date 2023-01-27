@@ -262,6 +262,8 @@
     smlfmt
     millet
 
+    twelf
+
     niv
     direnv
 
