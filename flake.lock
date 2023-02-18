@@ -210,16 +210,16 @@
     },
     "nixpkgs_5": {
       "locked": {
-        "lastModified": 1671559268,
-        "narHash": "sha256-xIwnMydffXG/n3rpEiSXKFFVwnd3SyAYnjdY99yLy+k=",
+        "lastModified": 1673631141,
+        "narHash": "sha256-AprpYQ5JvLS4wQG/ghm2UriZ9QZXvAwh1HlgA/6ZEVQ=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "aa06bc33c02f83b863c21b5e164b5331e431bbe2",
+        "rev": "befc83905c965adfd33e5cae49acb0351f6e0404",
         "type": "github"
       },
       "original": {
         "owner": "NixOS",
-        "ref": "staging-next",
+        "ref": "nixos-unstable",
         "repo": "nixpkgs",
         "type": "github"
       }
@@ -232,11 +232,11 @@
         "nixpkgs": "nixpkgs_5"
       },
       "locked": {
-        "lastModified": 1671567459,
-        "narHash": "sha256-e36GbPofcJExbwvbqHvjG9ogs1wQpVfOa+z2w8KO2Eo=",
+        "lastModified": 1676717286,
+        "narHash": "sha256-Px8TO4uvauvqETfk2cPh47W3ZSS3KeyZrDyTMqZOXJM=",
         "owner": "~munksgaard",
         "repo": "photo-album",
-        "rev": "e208838412ec31038b2107c6bf8e40683d198d04",
+        "rev": "ef62e2da1d469ff5b73d9d520eddfef20d059481",
         "type": "sourcehut"
       },
       "original": {
