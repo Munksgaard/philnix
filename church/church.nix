@@ -251,11 +251,13 @@
     stack
     hlint
     cabal-install
-    haskell.compiler.ghc924
-    haskell.packages.ghc924.ormolu
-    haskell.packages.ghc924.weeder
-    haskell.packages.ghc924.haskell-language-server
-    ghcid
+
+    # If these start to require manual rebuilding, check if the default ghc
+    # package has been updated
+    haskell.compiler.ghc927
+    haskell.packages.ghc927.ormolu
+    haskell.packages.ghc927.weeder
+    haskell.packages.ghc927.haskell-language-server
 
     mosml
     mlton
