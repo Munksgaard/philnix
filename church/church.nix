@@ -217,6 +217,10 @@
     unrar
 
     emacs
+
+    # for emacs?
+    sqlite
+
     ripgrep
     fd
     zoxide
