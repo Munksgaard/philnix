@@ -449,7 +449,6 @@
 
   # Why is this here?
   services.pipewire.enable = false;
-  services.pipewire.media-session.enable = false;
   services.pipewire.wireplumber.enable = false;
 
   services.emacs = {
