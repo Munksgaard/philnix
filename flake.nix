@@ -1,15 +1,31 @@
 {
   description = "Deployment for my server cluster";
 
-  inputs.deploy-rs.url = "github:serokell/deploy-rs";
-
   inputs.nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
 
-  inputs.geomyidae.url = "sourcehut:~munksgaard/geomyidae-flake";
-  inputs.munksgaard-gopher.url = "sourcehut:~munksgaard/munksgaard.me-gopher";
-  inputs.photos.url = "sourcehut:~munksgaard/photo-album";
+  inputs.deploy-rs = {
+    url = "github:serokell/deploy-rs";
+    inputs.nixpkgs.follows = "nixpkgs";
+  };
 
-  inputs.agenix.url = "github:ryantm/agenix";
+  inputs.geomyidae = {
+    url = "sourcehut:~munksgaard/geomyidae-flake";
+  };
+
+  inputs.munksgaard-gopher = {
+    url = "sourcehut:~munksgaard/munksgaard.me-gopher";
+    inputs.nixpkgs.follows = "nixpkgs";
+  };
+
+  inputs.photos = {
+    url = "sourcehut:~munksgaard/photo-album";
+    inputs.nixpkgs.follows = "nixpkgs";
+  };
+
+  inputs.agenix = {
+    url = "github:ryantm/agenix";
+    inputs.nixpkgs.follows = "nixpkgs";
+  };
 
   outputs = { self, nixpkgs, deploy-rs, geomyidae, agenix, munksgaard-gopher, photos }@attrs: {
 
@@ -51,6 +67,7 @@
         user = "root";
         path = deploy-rs.lib.x86_64-linux.activate.nixos
           self.nixosConfigurations."photos.munksgaard.me";
+        magicRollback = false;
       };
     };
 
