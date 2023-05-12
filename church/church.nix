@@ -368,7 +368,9 @@
 
     libreoffice
 
-    dhall
+    # elixir
+    elixir
+    elixir_ls
   ];
 
   xdg.mime.enable = true;
