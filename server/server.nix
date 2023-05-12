@@ -71,7 +71,7 @@
 
   # Initial empty root password for easy login:
   users.users.root.initialHashedPassword = "";
-  services.openssh.permitRootLogin = "prohibit-password";
+  services.openssh.settings.PermitRootLogin = "prohibit-password";
 
   services.openssh.enable = true;
 
@@ -226,8 +226,6 @@
 
   services.gitea = {
     enable = true;
-    rootUrl = "https://git.munksgaard.me";
-    domain = "git.munksgaard.me";
     # We use a cron script instead. This takes up way too much space
     # dump = {
     #   enable = true;
@@ -244,6 +242,8 @@
       };
       server = {
         DISABLE_SSH = false;
+        ROOT_URL = "https://git.munksgaard.me";
+        DOMAIN = "git.munksgaard.me";
       };
       service.DISABLE_REGISTRATION = true;
       session.COOKIE_SECURE = true;

@@ -34,7 +34,7 @@
       specialArgs = attrs;
       modules = [
         server/server.nix
-        agenix.nixosModule
+        agenix.nixosModules.default
       ];
     };
 
@@ -43,7 +43,7 @@
       specialArgs = attrs;
       modules = [
         photos/photos.nix
-        agenix.nixosModule
+        agenix.nixosModules.default
         photos.nixosModules.photos
       ];
     };
