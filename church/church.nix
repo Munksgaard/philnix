@@ -118,6 +118,7 @@
       intel-media-driver
       intel-ocl
       intel-compute-runtime
+      ocl-icd
     ];
     driSupport32Bit = true;
   };
