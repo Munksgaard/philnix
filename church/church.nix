@@ -218,7 +218,7 @@
     unzip
     unrar
 
-    emacs
+    emacs29
 
     # for emacs?
     sqlite
@@ -456,6 +456,7 @@
   services.emacs = {
     enable = true;
     defaultEditor = true;
+    package = pkgs.emacs29;
   };
 
   programs.dconf.enable = true;
