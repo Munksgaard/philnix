@@ -59,6 +59,7 @@
     70 # gopher
     80 # http
     443 # https
+    30000 # foundry vtt
   ];
 
   # This value determines the NixOS release from which the default
