@@ -371,7 +371,7 @@
     libreoffice
 
     # elixir
-    elixir
+    elixir_1_15
     elixir_ls
   ];
 
