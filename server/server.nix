@@ -294,24 +294,6 @@
     backupAll = true;
   };
 
-  services.grocy = {
-    enable = true;
-    hostName = "grocy.munksgaard.me";
-    settings = {
-      currency = "DKK";
-      culture = "da";
-      calendar = {
-        # Whether or not to show the week-numbers
-        # in the calendar.
-        showWeekNumber = true;
-
-        # Index of the first day to be shown in the calendar (0=Sunday, 1=Monday,
-        # 2=Tuesday and so on).
-        firstDayOfWeek = 1;
-      };
-    };
-  };
-
   services.vaultwarden = {
     enable = true;
     dbBackend = "sqlite";
