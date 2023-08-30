@@ -223,11 +223,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1678653751,
-        "narHash": "sha256-xmH+wwMpG+4Md4IEZ4OHg0KBI8/92XPpe6hu+QORip8=",
+        "lastModified": 1693254045,
+        "narHash": "sha256-tOMbLNxWLR4LUFcJOkbHWiTjkblJjgnGivcS5HwNftY=",
         "owner": "~munksgaard",
         "repo": "photo-album",
-        "rev": "3720167268ac2b08152ad9179d8627a5ae342ff8",
+        "rev": "19f9ede37f9e19078932bf871a85c58d871e1af0",
         "type": "sourcehut"
       },
       "original": {
