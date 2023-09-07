@@ -37,7 +37,7 @@
   # Set your time zone.
   time.timeZone = "Europe/Copenhagen";
 
-  fonts.fonts = with pkgs; [
+  fonts.packages = with pkgs; [
     noto-fonts
     noto-fonts-cjk
     noto-fonts-emoji
