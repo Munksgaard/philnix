@@ -23,3 +23,6 @@ update-munksgaard.me-gopher:
 
 update-photos:
 	nix flake lock --update-input photos
+
+update-nixpkgs:
+	nix flake lock --update-input nixpkgs
