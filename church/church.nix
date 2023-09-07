@@ -225,9 +225,6 @@
 
     ripgrep
     fd
-    zoxide
-    fzf
-    hexyl
     bottom
 
     opencl-headers
@@ -239,9 +236,6 @@
     killall
     mpv
 
-    skypeforlinux
-    zoom-us
-
     spotify
 
     gnumake
@@ -249,30 +243,14 @@
     rust-analyzer
     cargo-crev
     sbcl
-    killall
 
     bc
-
-    # haskell stuff
-    stack
-    hlint
-    cabal-install
-
-    # If these start to require manual rebuilding, check if the default ghc
-    # package has been updated
-    haskell.compiler.ghc927
-    haskell.packages.ghc927.ormolu
-    haskell.packages.ghc927.weeder
-    haskell.packages.ghc927.haskell-language-server
 
     mosml
     mlton
     smlfmt
     millet
 
-    twelf
-
-    niv
     direnv
 
     tmux
@@ -280,11 +258,8 @@
     sshpass
 
     ffmpeg
-    vlc
-    mixxx
 
     transmission-gtk
-    # youtube-dl
 
     brightnessctl
 
@@ -332,14 +307,6 @@
     pkg-config
     inetutils
     openconnect
-
-    # LaTeX and friends
-    texlive.combined.scheme-medium
-    graphviz
-    gnuplot
-    python310
-    python310Packages.pygments
-    python310Packages.pip
 
     # Accounting
     ledger
