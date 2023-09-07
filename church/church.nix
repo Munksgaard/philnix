@@ -193,7 +193,7 @@
     vim
     alacritty
     bat
-    exa
+    eza
     dmenu
     xdg_utils
     # xdg-desktop-portal-wlr
