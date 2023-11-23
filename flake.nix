@@ -27,7 +27,24 @@
     inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  outputs = { self, nixpkgs, deploy-rs, geomyidae, agenix, munksgaard-gopher, photos }@attrs: {
+  outputs = { self, nixpkgs, deploy-rs, geomyidae, agenix, munksgaard-gopher, photos }@attrs:
+    let system = "x86_64-linux";
+        # Unmodified nixpkgs
+        pkgs = import nixpkgs { inherit system; };
+        # nixpkgs with deploy-rs overlay but force the nixpkgs package
+        deployPkgs = import nixpkgs {
+          inherit system;
+          overlays = [
+            deploy-rs.overlay
+            (self: super: { deploy-rs = { inherit (pkgs) deploy-rs; lib = super.deploy-rs.lib; }; })
+          ];
+        };
+    in {
+
+    devShells."x86_64-linux".default =
+      pkgs.mkShell {
+        buildInputs = [ pkgs.deploy-rs ];
+      };
 
     nixosConfigurations."munksgaard.me" = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
@@ -54,7 +71,7 @@
       profiles.system = {
         sshUser = "root";
         user = "root";
-        path = deploy-rs.lib.x86_64-linux.activate.nixos
+        path = deployPkgs.deploy-rs.lib.activate.nixos
           self.nixosConfigurations."munksgaard.me";
       };
     };
@@ -65,7 +82,7 @@
       profiles.system = {
         sshUser = "root";
         user = "root";
-        path = deploy-rs.lib.x86_64-linux.activate.nixos
+        path = deployPkgs.deploy-rs.lib.activate.nixos
           self.nixosConfigurations."photos.munksgaard.me";
         magicRollback = false;
       };
@@ -91,9 +108,7 @@
     #   };
     # };
 
-
-    checks =
-      builtins.mapAttrs (system: deployLib: deployLib.deployChecks self.deploy)
-      deploy-rs.lib;
+    # This is highly advised, and will prevent many possible mistakes
+    checks = builtins.mapAttrs (system: deployLib: deployLib.deployChecks self.deploy) deploy-rs.lib;
   };
 }
