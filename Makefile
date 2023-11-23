@@ -7,13 +7,13 @@ help:
 	@echo "  update-photos"
 
 deploy:
-	nix run github:serokell/deploy-rs '.'
+	nix develop -c deploy '.'
 
 deploy-munksgaard.me:
-	nix run github:serokell/deploy-rs '.#"munksgaard.me".'
+	nix develop -c deploy '.#"munksgaard.me".'
 
 deploy-photos.munksgaard.me:
-	nix run github:serokell/deploy-rs '.#"photos.munksgaard.me".'
+	nix develop -c deploy '.#"photos.munksgaard.me".'
 
 deploy-church:
 	sudo nixos-rebuild switch --flake .#church
