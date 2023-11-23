@@ -112,12 +112,6 @@
         serverAliases = [ "www.munksgaard.me" ];
       };
 
-      "pelledoingthings.com" = {
-        forceSSL = true;
-        enableACME = true;
-        root = "/var/www/pelledoingthings.com";
-      };
-
       "bw.munksgaard.me" = {
         forceSSL = true;
         enableACME = true;
