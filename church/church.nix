@@ -251,8 +251,6 @@
     smlfmt
     millet
 
-    direnv
-
     tmux
     sshfs
     sshpass
@@ -464,4 +462,6 @@
   };
 
   systemd.packages = [ pkgs.jami-daemon ] ;
+
+  programs.direnv.enable = true;
 }
