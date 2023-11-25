@@ -1,9 +1,10 @@
-{ config, pkgs, lib, geomyidae, munksgaard-gopher, ... }:
+{ config, pkgs, lib, geomyidae, munksgaard-gopher, digit, ... }:
 
 {
   imports = [ # Include the results of the hardware scan.
     ./hardware-configuration.nix
     geomyidae.nixosModule
+    digit.nixosModules.digit
   ];
 
   age.secrets.matrix-extra-conf = {
@@ -56,6 +57,7 @@
   networking.firewall.allowedTCPPorts = [
     22 # ssh
     70 # gopher
+    79 # finger
     80 # http
     443 # https
     30000 # foundry vtt
@@ -401,5 +403,9 @@
     enable = true;
     base = "${munksgaard-gopher}/src";
     host = "munksgaard.me";
+  };
+
+  services.digit = {
+    enable = true;
   };
 }

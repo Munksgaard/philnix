@@ -26,3 +26,6 @@ update-photos:
 
 update-nixpkgs:
 	nix flake lock --update-input nixpkgs
+
+update-digit:
+	nix flake lock --update-input digit
