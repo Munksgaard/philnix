@@ -73,11 +73,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1700940331,
-        "narHash": "sha256-NNH+tG/azfv9hkkXhpdqWNyPPX2qj4mVpkinDajYCr8=",
+        "lastModified": 1701029186,
+        "narHash": "sha256-9f68kU3cOA0jUSpjMjRt4ExrEnoGiwrM9DwDUfVD9NM=",
         "owner": "~munksgaard",
         "repo": "digit",
-        "rev": "b3e23b75a46bd0fb7666113272200586fe37335e",
+        "rev": "ea91f3ece165a3d4eae32c7d7a368c124ca92b16",
         "type": "sourcehut"
       },
       "original": {
