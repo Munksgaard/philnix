@@ -27,12 +27,7 @@
     inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  inputs.digit = {
-    url = "sourcehut:~munksgaard/digit";
-    inputs.nixpkgs.follows = "nixpkgs";
-  };
-
-  outputs = { self, nixpkgs, deploy-rs, geomyidae, agenix, munksgaard-gopher, photos, digit }@attrs:
+  outputs = { self, nixpkgs, deploy-rs, geomyidae, agenix, munksgaard-gopher, photos }@attrs:
     let system = "x86_64-linux";
         # Unmodified nixpkgs
         pkgs = import nixpkgs { inherit system; };

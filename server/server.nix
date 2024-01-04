@@ -1,10 +1,9 @@
-{ config, pkgs, lib, geomyidae, munksgaard-gopher, digit, ... }:
+{ config, pkgs, lib, geomyidae, munksgaard-gopher, ... }:
 
 {
   imports = [ # Include the results of the hardware scan.
     ./hardware-configuration.nix
     geomyidae.nixosModule
-    digit.nixosModules.digit
   ];
 
   age.secrets.matrix-extra-conf = {
@@ -403,9 +402,5 @@
     enable = true;
     base = "${munksgaard-gopher}/src";
     host = "munksgaard.me";
-  };
-
-  services.digit = {
-    enable = true;
   };
 }

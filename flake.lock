@@ -66,26 +66,6 @@
         "type": "github"
       }
     },
-    "digit": {
-      "inputs": {
-        "nixpkgs": [
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1701029186,
-        "narHash": "sha256-9f68kU3cOA0jUSpjMjRt4ExrEnoGiwrM9DwDUfVD9NM=",
-        "owner": "~munksgaard",
-        "repo": "digit",
-        "rev": "ea91f3ece165a3d4eae32c7d7a368c124ca92b16",
-        "type": "sourcehut"
-      },
-      "original": {
-        "owner": "~munksgaard",
-        "repo": "digit",
-        "type": "sourcehut"
-      }
-    },
     "fenix": {
       "inputs": {
         "nixpkgs": [
@@ -260,7 +240,6 @@
       "inputs": {
         "agenix": "agenix",
         "deploy-rs": "deploy-rs",
-        "digit": "digit",
         "geomyidae": "geomyidae",
         "munksgaard-gopher": "munksgaard-gopher",
         "nixpkgs": "nixpkgs",
