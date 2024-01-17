@@ -1,6 +1,11 @@
 { config, pkgs, lib, ... }:
 
-{
+let
+  beam_pkgs = pkgs.beam.packagesWith pkgs.beam.interpreters.erlang;
+  my_elixir = beam_pkgs.elixir_1_16;
+  livebook = pkgs.livebook.override { elixir = my_elixir; };
+
+in {
   imports = [ ./hardware-configuration.nix ];
 
   nix = {
@@ -140,7 +145,7 @@
   };
 
   environment = {
-    extraOutputsToInstall = ["dev"];
+    extraOutputsToInstall = [ "dev" ];
     etc = {
       # Put config files in /etc. Note that you also can put these in ~/.config, but then you can't manage them with NixOS anymore!
       # "sway/config".source = ./dotfiles/sway/config;
@@ -335,9 +340,9 @@
 
     libreoffice
 
-    # elixir
-    elixir_1_15
-    elixir_ls
+    beam_pkgs.erlang
+    beam_pkgs.elixir-ls
+    my_elixir
   ];
 
   xdg.mime.enable = true;
@@ -461,7 +466,17 @@
     packages = [ pkgs.jami-daemon ];
   };
 
-  systemd.packages = [ pkgs.jami-daemon ] ;
+  systemd.packages = [ pkgs.jami-daemon ];
 
   programs.direnv.enable = true;
+
+  services.livebook = {
+    package = livebook;
+    enableUserService = true;
+    port = 20123;
+    # See note below about security
+    environmentFile = pkgs.writeText "livebook.env" ''
+      LIVEBOOK_PASSWORD = "password1234"
+    '';
+  };
 }
