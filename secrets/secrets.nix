@@ -1,6 +1,6 @@
 let
   munksgaard = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINlapwwXZyp/qTm1y9CA5WLVL33TAAznj5FkZW4/Ftvu";
-  server-root = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFv07cWCKk60J1+L/elzpxb/HHXN+FPBrsqQ1FXdkTxb";
+  server-root = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIGxPR0Civ+OXbgju3bGzKP/NZe4/BRrPTqpAGnL7uik5";
   photos-root = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOQbpVcIFvROq0kwPSwfub0TcuWnwXJ6uO1nY0d+N0xO";
 in
 {

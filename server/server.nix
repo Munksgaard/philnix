@@ -262,6 +262,7 @@
 
   services.postgresql = {
     enable = true;
+    package = pkgs.postgresql_16;
     initialScript = pkgs.writeText "synapse-init.sql" ''
       CREATE ROLE "matrix-synapse";
       CREATE DATABASE "matrix-synapse" WITH OWNER "matrix-synapse"
@@ -272,7 +273,7 @@
     ensureDatabases = [ "bitwarden" ];
     ensureUsers = [{
       name = "bitwarden";
-      ensurePermissions = { "DATABASE bitwarden" = "ALL PRIVILEGES"; };
+      ensureDBOwnership = true;
     }];
     settings = {
       log_connections = true;
@@ -403,4 +404,6 @@
     base = "${munksgaard-gopher}/src";
     host = "munksgaard.me";
   };
+
+  services.cloud-init.enable = true;
 }
