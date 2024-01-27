@@ -183,19 +183,6 @@
         };
         extraConfig = "client_max_body_size 128M;";
       };
-
-      "babybuddy.munksgaard.me" = {
-        forceSSL = true;
-        enableACME = true;
-
-        locations."/" = {
-          proxyPass = "http://127.0.0.1:8000";
-          extraConfig = ''
-            proxy_set_header X-Forwarded-For $remote_addr;
-            proxy_set_header X-Forwarded-Proto $scheme;
-          '';
-        };
-      };
     };
   };
 
@@ -332,23 +319,6 @@
   };
 
   services.fail2ban.enable = true;
-
-  virtualisation.oci-containers = {
-    backend = "podman";
-    containers = {
-      babybuddy = {
-        image = "lscr.io/linuxserver/babybuddy";
-        ports = [ "8000:8000" ];
-        environment = {
-          TZ = "Europe/Copenhagen";
-          CSRF_TRUSTED_ORIGINS =
-            "http://127.0.0.1:8000,https://babybuddy.munksgaard.me";
-          USE_24_HOUR_TIME_FORMAT = "True";
-        };
-        volumes = [ "/var/backup/babybuddy:/config" ];
-      };
-    };
-  };
 
   systemd = {
     timers.gitea-dump = {
