@@ -23,15 +23,20 @@
   inputs.agenix = {
     url = "github:ryantm/agenix";
     inputs.nixpkgs.follows = "nixpkgs";
+    inputs.home-manager.follows = "home-manager";
   };
 
   inputs.flake-parts = {
     url = "github:hercules-ci/flake-parts";
+  };
+
+  inputs.home-manager = {
+    url = "github:nix-community/home-manager";
     inputs.nixpkgs.follows = "nixpkgs";
   };
 
   outputs = inputs@{ flake-parts, self, nixpkgs, deploy-rs, geomyidae, agenix
-    , munksgaard-gopher, photos }:
+    , munksgaard-gopher, photos, home-manager }:
     let
       system = "x86_64-linux";
       pkgs = import nixpkgs { inherit system; };
@@ -48,7 +53,7 @@
         ];
       };
     in flake-parts.lib.mkFlake { inherit inputs; } {
-      systems = [system];
+      systems = [ system ];
       flake =
         # nixpkgs with deploy-rs overlay but force the nixpkgs package
         {
@@ -98,7 +103,15 @@
           nixosConfigurations.church = nixpkgs.lib.nixosSystem {
             system = "${system}";
             specialArgs = inputs;
-            modules = [ church/church.nix ];
+            modules = [
+              church/church.nix
+              home-manager.nixosModules.default
+              {
+                home-manager.useGlobalPkgs = true;
+                home-manager.useUserPackages = true;
+                home-manager.users.munksgaard = import ./church/home.nix;
+              }
+            ];
           };
 
           # No deploy for localhost, use `sudo nixos-rebuild switch --flake .#church` instead
