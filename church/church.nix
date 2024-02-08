@@ -196,9 +196,6 @@ in {
   environment.systemPackages = with pkgs; [
     wget
     vim
-    alacritty
-    bat
-    eza
     dmenu
     xdg_utils
     # xdg-desktop-portal-wlr
@@ -206,24 +203,14 @@ in {
     hicolor-icon-theme
     gnome.adwaita-icon-theme
 
-    firefox-wayland
-    chromium
-
-    gitAndTools.gitFull
-    gitAndTools.git-annex
     gnupg
     pinentry
     pass-wayland
     pavucontrol
     upower
 
-    zathura
-    feh
-
     unzip
     unrar
-
-    emacs29
 
     # for emacs?
     sqlite
@@ -290,9 +277,6 @@ in {
 
     discord
     element-desktop
-
-    jami-daemon
-    jami-client-qt
 
     # lutris
     vulkan-loader
@@ -423,12 +407,6 @@ in {
   services.pipewire.enable = false;
   services.pipewire.wireplumber.enable = false;
 
-  services.emacs = {
-    enable = true;
-    defaultEditor = true;
-    package = pkgs.emacs29;
-  };
-
   programs.dconf.enable = true;
 
   systemd.services.guix-daemon = {
@@ -460,15 +438,6 @@ in {
       ];
     };
   };
-
-  services.dbus = {
-    enable = true;
-    packages = [ pkgs.jami-daemon ];
-  };
-
-  systemd.packages = [ pkgs.jami-daemon ];
-
-  programs.direnv.enable = true;
 
   services.livebook = {
     package = livebook;

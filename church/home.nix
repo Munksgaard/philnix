@@ -1,19 +1,49 @@
 { pkgs, ... }: {
-  home.packages = [ pkgs.atool pkgs.httpie ];
+  home.packages = with pkgs; [ atool httpie wget ];
 
   # The state version is required and should stay at the version you
   # originally installed.
   home.stateVersion = "23.11";
 
   programs = {
+    alacritty.enable = true;
     bash.enable = true;
-
-    starship = {
+    bat.enable = true;
+    chromium.enable = true;
+    direnv.enable = true;
+    emacs = {
       enable = true;
-      settings = {
-        time.disabled = false;
-        status.disabled = false;
+      package = pkgs.emacs29;
+    };
+    eza = {
+      enable = true;
+      enableAliases = true;
+    };
+    feh.enable = true;
+    firefox = {
+      enable = true;
+      package = pkgs.firefox-wayland;
+      policies = { DefaultDownloadDirectory = "\${home}/tmp"; };
+    };
+    git = {
+      enable = true;
+      package = pkgs.gitAndTools.gitFull;
+      ignores = [ "*~" "*.swp" ];
+      userName = "Philip Munksgaard";
+      userEmail = "philip@munksgaard.me";
+      signing = {
+        key = "56584D0971AFE45FCC296BD74CE62A90EFC0B9B2";
+        signByDefault = true;
       };
+    };
+    vim.enable = true;
+    zathura.enable = true;
+  };
+
+  services = {
+    emacs = {
+      enable = true;
+      defaultEditor = true;
     };
   };
 }
