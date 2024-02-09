@@ -1,5 +1,5 @@
 { pkgs, ... }: {
-  home.packages = with pkgs; [ atool httpie wget ];
+  home.packages = with pkgs; [ atool fd httpie wget ];
 
   # The state version is required and should stay at the version you
   # originally installed.
@@ -9,6 +9,7 @@
     alacritty.enable = true;
     bash.enable = true;
     bat.enable = true;
+    bottom.enable = true;
     chromium.enable = true;
     direnv.enable = true;
     emacs = {
@@ -36,6 +37,7 @@
         signByDefault = true;
       };
     };
+    ripgrep.enable = true;
     vim.enable = true;
     zathura.enable = true;
   };

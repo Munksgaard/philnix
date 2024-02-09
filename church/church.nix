@@ -215,10 +215,6 @@ in {
     # for emacs?
     sqlite
 
-    ripgrep
-    fd
-    bottom
-
     opencl-headers
     gcc
     glibc
