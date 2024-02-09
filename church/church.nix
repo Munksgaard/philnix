@@ -67,19 +67,20 @@ in {
   services.printing.drivers =
     [ pkgs.gutenprint pkgs.gutenprintBin pkgs.canon-cups-ufr2 ];
 
-  # Enable sound.
-  sound.enable = true;
 
-  hardware.pulseaudio = {
+  # rtkit is optional but recommended
+  security.rtkit.enable = true;
+  services.pipewire = {
     enable = true;
-    support32Bit = true;
-    package = pkgs.pulseaudioFull;
+    alsa.enable = true;
+    alsa.support32Bit = true;
+    pulse.enable = true;
+    # If you want to use JACK applications, uncomment this
+    #jack.enable = true;
   };
-  nixpkgs.config.pulseaudio = true;
 
   # Bluetooth
   hardware.bluetooth.enable = true;
-  services.blueman.enable = true;
 
   # Enable upower
   services.upower.enable = true;
@@ -151,6 +152,14 @@ in {
       # "sway/config".source = ./dotfiles/sway/config;
       # "xdg/waybar/config".source = ./dotfiles/waybar/config;
       # "xdg/waybar/style.css".source = ./dotfiles/waybar/style.css;
+	    "wireplumber/bluetooth.lua.d/51-bluez-config.lua".text = ''
+        bluez_monitor.properties = {
+          ["bluez5.enable-sbc-xq"] = true,
+          ["bluez5.enable-msbc"] = true,
+          ["bluez5.enable-hw-volume"] = true,
+          ["bluez5.headset-roles"] = "[ hsp_hs hsp_ag hfp_hf hfp_ag ]"
+        }
+      '';
     };
   };
 
@@ -398,10 +407,6 @@ in {
   environment.variables = {
     OCL_ICD_VENDORS = "/run/opengl-driver/etc/OpenCL/vendors";
   };
-
-  # Why is this here?
-  services.pipewire.enable = false;
-  services.pipewire.wireplumber.enable = false;
 
   programs.dconf.enable = true;
 
