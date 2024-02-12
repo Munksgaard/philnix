@@ -29,7 +29,7 @@
     git = {
       enable = true;
       package = pkgs.gitAndTools.gitFull;
-      ignores = [ "*~" "*.swp" ];
+      ignores = [ "*~" "*.swp" "*#" ];
       userName = "Philip Munksgaard";
       userEmail = "philip@munksgaard.me";
       signing = {
