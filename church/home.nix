@@ -11,7 +11,13 @@
     bat.enable = true;
     bottom.enable = true;
     chromium.enable = true;
-    direnv.enable = true;
+
+    direnv = {
+      enable = true;
+      enableBashIntegration = true; # see note on other shells below
+      nix-direnv.enable = true;
+    };
+
     emacs = {
       enable = true;
       package = pkgs.emacs29;
