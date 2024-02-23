@@ -247,7 +247,6 @@ in {
     smlfmt
     millet
 
-    tmux
     sshfs
     sshpass
 

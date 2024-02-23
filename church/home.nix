@@ -41,6 +41,26 @@
       };
     };
     ripgrep.enable = true;
+
+    tmux = {
+      enable = true;
+      clock24 = true;
+      plugins = with pkgs.tmuxPlugins; [
+        sensible
+        yank
+        {
+          plugin = dracula;
+          extraConfig = ''
+            set -g @dracula-show-powerline true
+            set -g @dracula-show-battery false
+            set -g @dracula-plugins " "
+          '';
+        }
+      ];
+
+      extraConfig = "set -g mouse on";
+    };
+
     vim.enable = true;
     zathura.enable = true;
   };
