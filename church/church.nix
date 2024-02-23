@@ -67,7 +67,6 @@ in {
   services.printing.drivers =
     [ pkgs.gutenprint pkgs.gutenprintBin pkgs.canon-cups-ufr2 ];
 
-
   # rtkit is optional but recommended
   security.rtkit.enable = true;
   services.pipewire = {
@@ -152,7 +151,7 @@ in {
       # "sway/config".source = ./dotfiles/sway/config;
       # "xdg/waybar/config".source = ./dotfiles/waybar/config;
       # "xdg/waybar/style.css".source = ./dotfiles/waybar/style.css;
-	    "wireplumber/bluetooth.lua.d/51-bluez-config.lua".text = ''
+      "wireplumber/bluetooth.lua.d/51-bluez-config.lua".text = ''
         bluez_monitor.properties = {
           ["bluez5.enable-sbc-xq"] = true,
           ["bluez5.enable-msbc"] = true,
