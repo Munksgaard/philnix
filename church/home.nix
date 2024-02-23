@@ -5,10 +5,9 @@
   # originally installed.
   home.stateVersion = "23.11";
 
-  imports = [ ./emacs.nix ];
+  imports = [ ./alacritty.nix ./emacs.nix ];
 
   programs = {
-    alacritty.enable = true;
     bash.enable = true;
     bat.enable = true;
     bottom.enable = true;
