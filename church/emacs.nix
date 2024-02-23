@@ -230,7 +230,6 @@
           (setq magit-diff-options (quote ("--word-diff")))
           (setq magit-diff-refine-hunk 'all)
           (add-to-list 'magit-repository-directories '("~/src/" . 1))
-          (setq magit-completing-read-function 'ivy-completing-read)
           (add-to-list 'git-commit-style-convention-checks
                        'overlong-summary-line)
           (define-key magit-status-mode-map (kbd "C-<tab>") nil)
