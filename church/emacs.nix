@@ -237,10 +237,6 @@
         '';
       };
 
-      #tramp = {
-      #  enable = true;
-      #};
-
       ido = {
         enable = true;
         config = ''
@@ -260,29 +256,6 @@
         enable = true;
         bind = { "M-j" = "avy-goto-char-timer"; };
       };
-
-      #lsp-ui = {
-      #  enable = true;
-      #  command = [ "lsp-ui-mode" ];
-      #  bind = {
-      #    "C-c r d" = "lsp-ui-doc-show";
-      #    "C-c f s" = "lsp-ui-find-workspace-symbol";
-      #  };
-      #  config = ''
-      #    (setq lsp-ui-sideline-enable t
-      #          lsp-ui-sideline-show-symbol nil
-      #          lsp-ui-sideline-show-hover nil
-      #          lsp-ui-sideline-show-code-actions nil
-      #          lsp-ui-sideline-update-mode 'point
-      #          lsp-ui-doc-enable nil)
-      #  '';
-      #};
-
-      #lsp-ui-flycheck = {
-      #  enable = true;
-      #  command = [ "lsp-ui-flycheck-enable" ];
-      #  after = [ "flycheck" "lsp-ui" ];
-      #};
 
       eglot = {
         enable = true;
@@ -365,7 +338,6 @@
 
       company = {
         enable = true;
-        # diminish = [ "company-mode" ];
         hook = [ "(after-init . global-company-mode)" ];
         extraConfig = ''
           :bind (:map company-mode-map
