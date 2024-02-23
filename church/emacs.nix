@@ -151,9 +151,12 @@
         command = [ "ansi-color-apply-on-region" ];
       };
 
-      base16-theme = {
+      dracula-theme = {
         enable = true;
-        config = "(load-theme 'base16-dracula t)";
+        earlyInit = ''
+          (require 'dracula-theme)
+          (load-theme 'dracula t)
+        '';
       };
 
       # From https://github.com/mlb-/emacs.d/blob/a818e80f7790dffa4f6a775987c88691c4113d11/init.el#L472-L482
