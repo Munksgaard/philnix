@@ -30,8 +30,8 @@
       (scroll-bar-mode -1)
       (menu-bar-mode -1)
 
-      ;; Allow splitting vertically on my screen
-      (setq split-height-threshold 40)
+      ;; Always prefer horizontal splits on my screen
+      (setq split-height-threshold nil)
 
       ;; Set frame title.
       (setq frame-title-format
