@@ -7,6 +7,9 @@
     [ epkgs.treesit-grammars.with-all-grammars ];
 
   programs.emacs.init = {
+    # Lots of inspiration from
+    # https://git.sr.ht/~rycee/configurations/tree/34b13ff0054a8a3a26b5b74b83fd703fbf467de7/item/user/emacs.nix
+
     enable = true;
     recommendedGcSettings = true;
 
