@@ -428,20 +428,18 @@
 
       elpher = {
         enable = true;
-        hook = [
-          "(elpher-mode-mode . (lambda () (setq show-trailing-whitespace nil)))"
-        ];
+        hook = [ "(elpher . (lambda () (setq show-trailing-whitespace nil)))" ];
       };
 
       ledger-mode = {
         enable = true;
         hook = [''
-                    (ledger-mode-mode .
-          	  (lambda ()
-                         (setq-local tab-always-indent 'complete)
-                         (setq-local completion-cycle-threshold t)
-                         (setq-local ledger-complete-in-steps t)
-                         (setq-local ledger-default-date-format ledger-iso-date-format)))
+          (ledger-mode .
+            (lambda ()
+              (setq-local tab-always-indent 'complete)
+              (setq-local completion-cycle-threshold t)
+              (setq-local ledger-complete-in-steps t)
+              (setq-local ledger-default-date-format ledger-iso-date-format)))
         ''];
       };
 
