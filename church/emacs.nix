@@ -394,7 +394,17 @@
 
       erlang = { enable = true; };
 
-      elixir-ts-mode = { enable = true; };
+      elixir-mode = {
+        enable = true;
+        hook = [
+          "(elixir-mode . (lambda () (add-hook 'before-save-hook 'elixir-format nil t)))"
+        ];
+      };
+
+      exunit = {
+        enable = true;
+        hook = [ "(elixir-mode . exunit-mode)" ];
+      };
 
       rust-mode = {
         enable = true;
