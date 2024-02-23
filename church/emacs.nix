@@ -395,13 +395,9 @@
         mode = [ ''"\\.yaml\\'"'' ];
       };
 
-      erlang = {
-        enable = true;
-      };
+      erlang = { enable = true; };
 
-      elixir-ts-mode = {
-        enable = true;
-      };
+      elixir-ts-mode = { enable = true; };
 
       rust-mode = {
         enable = true;
