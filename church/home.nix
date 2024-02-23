@@ -5,6 +5,8 @@
   # originally installed.
   home.stateVersion = "23.11";
 
+  imports = [ ./emacs.nix ];
+
   programs = {
     alacritty.enable = true;
     bash.enable = true;
@@ -18,10 +20,6 @@
       nix-direnv.enable = true;
     };
 
-    emacs = {
-      enable = true;
-      package = pkgs.emacs29;
-    };
     eza = {
       enable = true;
       enableAliases = true;

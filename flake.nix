@@ -33,8 +33,10 @@
     inputs.nixpkgs.follows = "nixpkgs";
   };
 
+  inputs.nur.url = "github:nix-community/NUR";
+
   outputs = inputs@{ flake-parts, self, nixpkgs, deploy-rs, geomyidae, agenix
-    , munksgaard-gopher, photos, home-manager }:
+    , munksgaard-gopher, photos, home-manager, ... }:
     let
       system = "x86_64-linux";
       pkgs = import nixpkgs { inherit system; };
@@ -50,6 +52,12 @@
           })
         ];
       };
+
+      nurNoPkgs = import inputs.nur {
+        pkgs = null;
+        nurpkgs = pkgs;
+      };
+
     in flake-parts.lib.mkFlake { inherit inputs; } {
       systems = [ system ];
       flake =
@@ -107,7 +115,10 @@
               {
                 home-manager.useGlobalPkgs = true;
                 home-manager.useUserPackages = true;
-                home-manager.users.munksgaard = import ./church/home.nix;
+                home-manager.users.munksgaard.imports = [
+                  ./church/home.nix
+                  nurNoPkgs.repos.rycee.hmModules.emacs-init
+                ];
               }
             ];
           };
