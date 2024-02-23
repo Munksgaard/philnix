@@ -175,7 +175,7 @@
 
       direnv = {
         enable = true;
-        command = [ "direnv-mode" "direnv-update-environment" ];
+        config = "(direnv-mode)";
       };
 
       js = {
