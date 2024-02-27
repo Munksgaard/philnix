@@ -38,6 +38,9 @@
 (line-number-mode)
 (column-number-mode)
 
+;; Delete highlighted selection with a keypress
+(delete-selection-mode t)
+
 ;; Enable some features that are disabled by default.
 ;(put 'narrow-to-region 'disabled nil)
 
