@@ -107,7 +107,8 @@
           (add-to-list 'magit-repository-directories '("~/src/" . 1))
           (add-to-list 'git-commit-style-convention-checks
                        'overlong-summary-line)
-          (define-key magit-status-mode-map (kbd "C-<tab>") nil)
+          (unbind-key "C-<Tab>" magit-status-mode-map)
+          (unbind-key "C-<Tab>" magit-process-mode-map)
         '';
       };
 
