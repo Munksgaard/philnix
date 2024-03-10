@@ -16,6 +16,10 @@
   };
   age.secrets.vaultwarden-environment.file =
     ../secrets/vaultwarden-environment.age;
+  age.secrets.foundry-password = {
+    file = ../secrets/foundry-password.age;
+    owner = "nginx";
+  };
 
   # Use the GRUB 2 boot loader.
   boot.loader.grub.enable = true;
@@ -59,7 +63,6 @@
     79 # finger
     80 # http
     443 # https
-    30000 # foundry vtt
   ];
 
   # This value determines the NixOS release from which the default
@@ -182,6 +185,22 @@
           '';
         };
         extraConfig = "client_max_body_size 128M;";
+      };
+
+      "foundry.munksgaard.me" = {
+        forceSSL = true;
+        enableACME = true;
+
+        locations."/" = {
+          proxyPass = "http://localhost:30000";
+          proxyWebsockets = true;
+          extraConfig = ''
+            proxy_set_header X-Forwarded-For $remote_addr;
+            proxy_set_header X-Forwarded-Proto $scheme;
+            auth_basic "Restricted Content";
+            auth_basic_user_file "${config.age.secrets.foundry-password.path}";
+          '';
+        };
       };
     };
   };

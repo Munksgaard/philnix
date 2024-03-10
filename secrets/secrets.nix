@@ -9,4 +9,5 @@ in
   "vaultwarden-environment.age".publicKeys = [ munksgaard server-root ];
   "photos-secret-key.age".publicKeys = [ munksgaard server-root photos-root ];
   "photos-smtp-password.age".publicKeys = [ munksgaard server-root photos-root ];
+  "foundry-password.age".publicKeys = [ munksgaard server-root ];
 }
