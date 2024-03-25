@@ -440,14 +440,4 @@ in {
       ];
     };
   };
-
-  services.livebook = {
-    package = livebook;
-    enableUserService = true;
-    port = 20123;
-    # See note below about security
-    environmentFile = pkgs.writeText "livebook.env" ''
-      LIVEBOOK_PASSWORD = "password1234"
-    '';
-  };
 }
