@@ -14,6 +14,9 @@
 (scroll-bar-mode -1)
 (menu-bar-mode -1)
 
+;; Don't ring a bell
+(setq ring-bell-function 'ignore)
+
 ;; Always prefer horizontal splits on my screen
 (setq split-height-threshold nil)
 
