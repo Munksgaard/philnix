@@ -107,9 +107,13 @@
           (add-to-list 'magit-repository-directories '("~/src/" . 1))
           (add-to-list 'git-commit-style-convention-checks
                        'overlong-summary-line)
-          (unbind-key "C-<Tab>" magit-status-mode-map)
-          (unbind-key "C-<Tab>" magit-process-mode-map)
         '';
+        hook = [''
+          ;; Unfortunately magit hijacks my preferred window switching keybinding.
+          (magit-mode
+           . (lambda ()
+               (local-unset-key [C-tab])))
+        ''];
       };
 
       ido = {
@@ -178,12 +182,20 @@
           "C-c a" = "org-agenda";
           "C-c l" = "org-store-link";
         };
-        hook = [''
-          (org-mode
-           . (lambda ()
-               (add-hook 'completion-at-point-functions
-                         'pcomplete-completions-at-point nil t)))
-        ''];
+        hook = [
+          ''
+            (org-mode
+             . (lambda ()
+                 (add-hook 'completion-at-point-functions
+                           'pcomplete-completions-at-point nil t)))
+          ''
+          ''
+            ;; Unfortunately org-mode takes over my preferred window switching keybinding.
+            (org-mode
+             . (lambda ()
+                 (local-unset-key [C-tab])))
+          ''
+        ];
         config = ''
           ;; Some general stuff.
           (setq org-reverse-note-order t
@@ -197,9 +209,6 @@
                 org-refile-use-outline-path t
                 org-outline-path-complete-in-steps nil
                 org-refile-allow-creating-parent-nodes 'confirm)
-
-          ;; Unfortunately org-mode takes over my preferred window switching keybinding.
-          (unbind-key "C-<Tab>" org-mode-map)
         '';
       };
 
