@@ -319,6 +319,8 @@
           "C-c i R" = "inf-elixir-reload-module";
         };
       };
+
+      just-mode.enable = true;
     };
   };
 }
