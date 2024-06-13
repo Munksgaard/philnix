@@ -35,8 +35,10 @@
 
   inputs.nur.url = "github:nix-community/NUR";
 
+  inputs.sorgenfri.url = "sourcehut:~munksgaard/sorgenfri";
+
   outputs = inputs@{ flake-parts, self, nixpkgs, deploy-rs, geomyidae, agenix
-    , munksgaard-gopher, photos, home-manager, ... }:
+    , munksgaard-gopher, photos, home-manager, sorgenfri, ... }:
     let
       system = "x86_64-linux";
       pkgs = import nixpkgs { inherit system; };
@@ -77,9 +79,9 @@
             system = "${system}";
             specialArgs = inputs;
             modules = [
-              photos/photos.nix
+              sorgenfri-test/sorgenfri.nix
               agenix.nixosModules.default
-              photos.nixosModules.photos
+              sorgenfri.nixosModules.sorgenfri
             ];
           };
 
@@ -95,7 +97,7 @@
           };
 
           deploy.nodes."photos.munksgaard.me" = {
-            hostname = "202:1519:efec:5cbb:b1b5:f995:920e:31a9";
+            hostname = "photos.munksgaard.me";
 
             profiles.system = {
               sshUser = "root";

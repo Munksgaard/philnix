@@ -15,6 +15,9 @@ deploy-munksgaard.me:
 deploy-photos.munksgaard.me:
 	nix develop -c deploy '.#"photos.munksgaard.me".'
 
+deploy-sorgenfri.munksgaard.me:
+	nix develop -c deploy '.#"sorgenfri.munksgaard.me".'
+
 deploy-church:
 	sudo nixos-rebuild switch --flake .#church
 
