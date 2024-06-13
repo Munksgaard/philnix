@@ -50,7 +50,7 @@
 ;; Typically, I only want spaces when pressing the TAB key. I also
 ;; want 4 of them.
 (setq-default indent-tabs-mode nil
-              tab-width 4
+              tab-width 8
               c-basic-offset 2)
 
 ;; Trailing white space are banned!

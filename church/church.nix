@@ -283,6 +283,7 @@ in {
 
     discord
     element-desktop
+    signal-desktop
 
     # lutris
     vulkan-loader
@@ -333,6 +334,8 @@ in {
     beam_pkgs.erlang
     beam_pkgs.elixir-ls
     my_elixir
+
+    futhark
   ];
 
   xdg.mime.enable = true;

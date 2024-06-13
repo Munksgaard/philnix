@@ -19,10 +19,7 @@
       nix-direnv.enable = true;
     };
 
-    eza = {
-      enable = true;
-      enableAliases = true;
-    };
+    eza.enable = true;
     feh.enable = true;
     firefox = {
       enable = true;

@@ -183,12 +183,12 @@
           "C-c l" = "org-store-link";
         };
         hook = [
-          ''
-            (org-mode
-             . (lambda ()
-                 (add-hook 'completion-at-point-functions
-                           'pcomplete-completions-at-point nil t)))
-          ''
+          # ''
+          #   (org-mode
+          #    . (lambda ()
+          #        (add-hook 'completion-at-point-functions
+          #                  'pcomplete-completions-at-point nil t)))
+          # ''
           ''
             ;; Unfortunately org-mode takes over my preferred window switching keybinding.
             (org-mode
@@ -320,7 +320,14 @@
         };
       };
 
-      just-mode.enable = true;
+      just-mode = {
+        enable = true;
+        config = ''
+          (setq just-indent-offset 2)
+        '';
+      };
+
+      deadgrep.enable = true;
     };
   };
 }
