@@ -125,7 +125,7 @@ in {
 
   programs.adb.enable = true;
 
-  hardware.opengl = {
+  hardware.graphics = {
     enable = true;
     extraPackages = with pkgs; [
       vaapiIntel
@@ -136,7 +136,7 @@ in {
       intel-compute-runtime
       ocl-icd
     ];
-    driSupport32Bit = true;
+    enable32Bit = true;
   };
 
   programs.sway = {
@@ -212,7 +212,7 @@ in {
     # xdg-desktop-portal-wlr
 
     hicolor-icon-theme
-    gnome.adwaita-icon-theme
+    adwaita-icon-theme
 
     gnupg
     pinentry
@@ -255,7 +255,7 @@ in {
 
     ffmpeg
 
-    transmission-gtk
+    transmission_4-gtk
 
     brightnessctl
 
@@ -279,7 +279,7 @@ in {
     # libelf
 
     # nix stuff
-    nixfmt
+    nixfmt-classic
 
     discord
     element-desktop
