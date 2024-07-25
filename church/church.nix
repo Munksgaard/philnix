@@ -145,7 +145,6 @@ in {
     extraPackages = with pkgs; [
       swaylock
       swayidle
-      xwayland
       wl-clipboard
       waybar # status bar
       mako # notification daemon
