@@ -127,3 +127,6 @@
     (if (= ret 0)
         (revert-buffer t t t)
       (message "smlfmt failed: %s" ret))))
+
+;; Fix colors in dark terminal
+(setq frame-background-mode 'dark)
