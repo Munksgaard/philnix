@@ -88,4 +88,6 @@
       reverse_proxy http://localhost:4000
     '';
   };
+
+  services.cloud-init.enable = true;
 }
