@@ -234,8 +234,6 @@ in {
     killall
     mpv
 
-    spotify
-
     gnumake
     rustup
     rust-analyzer
