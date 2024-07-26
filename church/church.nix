@@ -281,7 +281,7 @@ in {
     nixfmt-classic
 
     discord
-    element-desktop
+    element-desktop-wayland
     signal-desktop
 
     # lutris
