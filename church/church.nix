@@ -313,8 +313,6 @@ in {
     # Bitwarden
     bitwarden-cli
 
-    yggdrasil
-
     # for `man ascii` and others
     man-pages
 
@@ -413,20 +411,6 @@ in {
 
   programs.dconf.enable = true;
 
-  services.yggdrasil = {
-    enable = true;
-    persistentKeys = true;
-
-    settings = {
-      Peers = [
-        "http://[319:3cf0:dd1d:47b9:20c:29ff:fe2c:39be]/"
-        "tls://185.130.44.194:7040"
-        "http://[319:3cf0:dd1d:47b9:20c:29ff:fe2c:39bd]/"
-        "tls://[202:1519:efec:5cbb:b1b5:f995:920e:31a9]" # photos
-        "tls://[200:d513:d94c:fa8d:8357:f8c0:9c0e:153e]" # hetzner
-      ];
-    };
-  };
-
   services.tailscale.enable = true;
+
 }
