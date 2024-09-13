@@ -1,5 +1,5 @@
 { pkgs, ... }: {
-  home.packages = with pkgs; [ atool fd httpie wget ];
+  home.packages = with pkgs; [ atool fd httpie wget nix-init ];
 
   # The state version is required and should stay at the version you
   # originally installed.
