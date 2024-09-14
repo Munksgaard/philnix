@@ -2,7 +2,7 @@ let
   munksgaard = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINlapwwXZyp/qTm1y9CA5WLVL33TAAznj5FkZW4/Ftvu";
   server-root = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIGxPR0Civ+OXbgju3bGzKP/NZe4/BRrPTqpAGnL7uik5";
   photos-root = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOQbpVcIFvROq0kwPSwfub0TcuWnwXJ6uO1nY0d+N0xO";
-  sorgenfri-test-root = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIIDQ3tfiixfEb8cxF0byyWUmgxh01cE5jEbTO6NbPAp6";
+  sorgenfri-test-root = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJ8Q/6udC5yG6i5FoYLjhGIaLc+9u5Pe+iEWSPWWYD/k root@sorgenfri-test";
 in
 {
   "matrix-extra-conf.age".publicKeys = [ munksgaard server-root ];
