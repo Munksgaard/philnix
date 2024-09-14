@@ -70,6 +70,9 @@
 
   age.secrets.photos-smtp-password.file = ../secrets/photos-smtp-password.age;
 
+  age.secrets.sorgenfri-s3-access-key.file = ../secrets/sorgenfri-s3-access-key.age;
+  age.secrets.sorgenfri-s3-secret-access-key.file = ../secrets/sorgenfri-s3-secret-access-key.age;
+
   services.sorgenfri = {
     enable = true;
     address = "photos.munksgaard.me";
@@ -79,6 +82,13 @@
       username = "philip@munksgaard.me";
       passwordFile = config.age.secrets.photos-smtp-password.path;
       host = "smtp.fastmail.com";
+    };
+
+    s3 = {
+      host = "s3.eu-central-1.wasabisys.com";
+      region = "eu-central-1";
+      accessKeyFile = config.age.secrets.sorgenfri-s3-access-key.path;
+      secretAccessKeyFile = config.age.secrets.sorgenfri-s3-secret-access-key.path;
     };
   };
 

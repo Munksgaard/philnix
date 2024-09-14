@@ -12,4 +12,6 @@ in
   "photos-secret-key-base.age".publicKeys = [ munksgaard sorgenfri-test-root ];
   "photos-smtp-password.age".publicKeys = [ munksgaard server-root photos-root sorgenfri-test-root ];
   "foundry-password.age".publicKeys = [ munksgaard server-root ];
+  "sorgenfri-s3-access-key.age".publicKeys = [  munksgaard sorgenfri-test-root ];
+  "sorgenfri-s3-secret-access-key.age".publicKeys = [  munksgaard sorgenfri-test-root ];
 }
