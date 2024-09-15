@@ -32,3 +32,6 @@ update-nixpkgs:
 
 update-digit:
 	nix flake lock --update-input digit
+
+update-sorgenfri:
+	nix flake lock --update-input sorgenfri
