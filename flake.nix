@@ -77,7 +77,9 @@
 
           nixosConfigurations."photos.munksgaard.me" = nixpkgs.lib.nixosSystem {
             system = "${system}";
-            specialArgs = inputs;
+            specialArgs = inputs // {
+              sorgenfri = sorgenfri.packages."x86_64-linux".sorgenfri;
+            };
             modules = [
               sorgenfri-test/sorgenfri.nix
               agenix.nixosModules.default
