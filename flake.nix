@@ -1,7 +1,7 @@
 {
   description = "Deployment for my server cluster";
 
-  inputs.nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable-small";
+  inputs.nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
 
   inputs.deploy-rs = {
     url = "github:serokell/deploy-rs";
