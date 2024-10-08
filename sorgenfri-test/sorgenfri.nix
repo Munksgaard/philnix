@@ -87,8 +87,8 @@
     };
 
     s3 = {
-      host = "s3.eu-central-1.wasabisys.com";
-      region = "eu-central-1";
+      host = "fra1.digitaloceanspaces.com";
+      region = "fra1";
       accessKeyFile = config.age.secrets.sorgenfri-s3-access-key.path;
       secretAccessKeyFile = config.age.secrets.sorgenfri-s3-secret-access-key.path;
     };
