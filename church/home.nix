@@ -5,7 +5,7 @@
   # originally installed.
   home.stateVersion = "23.11";
 
-  imports = [ ./alacritty.nix ./emacs.nix ];
+  imports = [ ./alacritty.nix ./emacs.nix ./firefox.nix ];
 
   programs = {
     bash.enable = true;
@@ -21,11 +21,6 @@
 
     eza.enable = true;
     feh.enable = true;
-    firefox = {
-      enable = true;
-      package = pkgs.firefox-wayland;
-      policies = { DefaultDownloadDirectory = "\${home}/tmp"; };
-    };
     git = {
       enable = true;
       package = pkgs.gitAndTools.gitFull;
