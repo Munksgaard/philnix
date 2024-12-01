@@ -108,12 +108,13 @@
           (add-to-list 'git-commit-style-convention-checks
                        'overlong-summary-line)
         '';
-        hook = [''
-          ;; Unfortunately magit hijacks my preferred window switching keybinding.
-          (magit-mode
-           . (lambda ()
-               (local-unset-key [C-tab])))
-        ''];
+        # Try to use ace-window
+        # hook = [''
+        #   ;; Unfortunately magit hijacks my preferred window switching keybinding.
+        #   (magit-mode
+        #    . (lambda ()
+        #        (local-unset-key [C-tab])))
+        # ''];
       };
 
       ido = {
@@ -189,12 +190,13 @@
           #        (add-hook 'completion-at-point-functions
           #                  'pcomplete-completions-at-point nil t)))
           # ''
-          ''
-            ;; Unfortunately org-mode takes over my preferred window switching keybinding.
-            (org-mode
-             . (lambda ()
-                 (local-unset-key [C-tab])))
-          ''
+          # Try to use ace-window
+          # ''
+          #   ;; Unfortunately org-mode takes over my preferred window switching keybinding.
+          #   (org-mode
+          #    . (lambda ()
+          #        (local-unset-key [C-tab])))
+          # ''
         ];
         config = ''
           ;; Some general stuff.
