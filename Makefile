@@ -35,3 +35,6 @@ update-digit:
 
 update-sorgenfri:
 	nix flake lock --update-input sorgenfri
+
+update-home-manager:
+	nix flake lock --update-input home-manager
