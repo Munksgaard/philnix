@@ -15,7 +15,6 @@
           consent-o-matic
           violentmonkey
           multi-account-containers
-          tridactyl
         ];
       };
     };
