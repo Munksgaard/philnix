@@ -36,10 +36,10 @@
 
     tmux = {
       enable = true;
+
       clock24 = true;
+      historyLimit = 10000;
       plugins = with pkgs.tmuxPlugins; [
-        sensible
-        yank
         {
           plugin = dracula;
           extraConfig = ''
@@ -50,7 +50,7 @@
         }
       ];
 
-      extraConfig = "set -g mouse on";
+      sensibleOnTop = true;
     };
 
     vim.enable = true;
