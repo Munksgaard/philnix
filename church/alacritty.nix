@@ -4,9 +4,7 @@
 
     enable = true;
 
-    settings = {
-      import = [./dracula.toml];
-    };
+    settings = { general = { import = [ ./dracula.toml ]; }; };
 
   };
 }
