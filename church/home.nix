@@ -38,7 +38,6 @@
       enable = true;
 
       clock24 = true;
-      historyLimit = 10000;
       plugins = with pkgs.tmuxPlugins; [
         {
           plugin = dracula;
