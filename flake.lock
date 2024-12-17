@@ -484,11 +484,11 @@
         "nixpkgs": "nixpkgs_3"
       },
       "locked": {
-        "lastModified": 1728417166,
-        "narHash": "sha256-Z+jHTbWRtzGsaSYxLM/rT0u+GSFC211GTXZ5GDYl6Sk=",
+        "lastModified": 1734468236,
+        "narHash": "sha256-fEDR9HCgAZ2lqXI/qxFJYsmoJNhGO+p9uYiwx8XQesU=",
         "owner": "~munksgaard",
         "repo": "sorgenfri",
-        "rev": "af580693695012b9014d303635028be220b84b8e",
+        "rev": "2500c3aaf0c2008c39486c482758e7c424b915ac",
         "type": "sourcehut"
       },
       "original": {

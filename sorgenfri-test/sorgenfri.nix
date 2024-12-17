@@ -80,6 +80,8 @@
     address = "photos.munksgaard.me";
     port = 8000;
     secretKeyBaseFile = config.age.secrets.photos-secret-key-base.path;
+    releaseCookie = "my_cookie";
+    releaseDistribution = "sname";
     smtp = {
       username = "philip@munksgaard.me";
       passwordFile = config.age.secrets.photos-smtp-password.path;
