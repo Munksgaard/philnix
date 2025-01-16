@@ -6,6 +6,8 @@
     geomyidae.nixosModule
   ];
 
+  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+
   age.secrets.matrix-extra-conf = {
     file = ../secrets/matrix-extra-conf.age;
     owner = "matrix-synapse";
