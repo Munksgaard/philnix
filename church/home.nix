@@ -50,6 +50,12 @@
       ];
 
       sensibleOnTop = true;
+
+      # These are usually set by sensible, but due to
+      # https://github.com/nix-community/home-manager/issues/2541
+      # they are unintentionally overwritten by programs.tmux
+      terminal = "screen-256color";
+      historyLimit = 50000;
     };
 
     vim.enable = true;
