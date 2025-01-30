@@ -6,7 +6,7 @@ let
   livebook = pkgs.livebook.override { elixir = my_elixir; };
 
 in {
-  imports = [ ./hardware-configuration.nix ];
+  imports = [ ./hardware-configuration.nix ./sway.nix ];
 
   nix = {
     package = pkgs.nixVersions.stable;
@@ -139,20 +139,20 @@ in {
     enable32Bit = true;
   };
 
-  programs.sway = {
-    enable = true;
-    wrapperFeatures.gtk = true; # so that gtk works properly
-    extraPackages = with pkgs; [
-      swaylock
-      swayidle
-      wl-clipboard
-      waybar # status bar
-      mako # notification daemon
-      alacritty # Alacritty is the default terminal in the config
-      dmenu
-      kanshi # autorandr
-    ];
-  };
+  # programs.sway = {
+  #   enable = true;
+  #   wrapperFeatures.gtk = true; # so that gtk works properly
+  #   extraPackages = with pkgs; [
+  #     swaylock
+  #     swayidle
+  #     wl-clipboard
+  #     waybar # status bar
+  #     mako # notification daemon
+  #     alacritty # Alacritty is the default terminal in the config
+  #     dmenu
+  #     kanshi # autorandr
+  #   ];
+  # };
 
   environment = {
     extraOutputsToInstall = [ "dev" ];
