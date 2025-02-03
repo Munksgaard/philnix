@@ -281,7 +281,7 @@ in {
     nixfmt-classic
 
     discord
-    element-desktop-wayland
+    element-desktop
     signal-desktop
 
     # lutris
@@ -403,6 +403,7 @@ in {
       "sway"; # https://github.com/emersion/xdg-desktop-portal-wlr/issues/20
     XDG_SESSION_TYPE =
       "wayland"; # https://github.com/emersion/xdg-desktop-portal-wlr/pull/11
+    NIXOS_OZONE_WL = "1";
   };
 
   environment.variables = {
