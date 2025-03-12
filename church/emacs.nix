@@ -1,7 +1,7 @@
 { pkgs, ... }: {
 
   programs.emacs.enable = true;
-  programs.emacs.package = pkgs.emacs29-pgtk;
+  programs.emacs.package = pkgs.emacs30-pgtk;
   programs.emacs.extraPackages = epkgs:
     with epkgs;
     [ epkgs.treesit-grammars.with-all-grammars ];
