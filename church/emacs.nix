@@ -108,13 +108,6 @@
           (add-to-list 'git-commit-style-convention-checks
                        'overlong-summary-line)
         '';
-        # Try to use ace-window
-        # hook = [''
-        #   ;; Unfortunately magit hijacks my preferred window switching keybinding.
-        #   (magit-mode
-        #    . (lambda ()
-        #        (local-unset-key [C-tab])))
-        # ''];
       };
 
       ido = {
@@ -190,13 +183,6 @@
           #        (add-hook 'completion-at-point-functions
           #                  'pcomplete-completions-at-point nil t)))
           # ''
-          # Try to use ace-window
-          # ''
-          #   ;; Unfortunately org-mode takes over my preferred window switching keybinding.
-          #   (org-mode
-          #    . (lambda ()
-          #        (local-unset-key [C-tab])))
-          # ''
         ];
         config = ''
           ;; Some general stuff.
@@ -211,13 +197,6 @@
                 org-refile-use-outline-path t
                 org-outline-path-complete-in-steps nil
                 org-refile-allow-creating-parent-nodes 'confirm)
-        '';
-      };
-
-      ace-window = {
-        enable = true;
-        extraConfig = ''
-          :bind* (("M-o" . ace-window))
         '';
       };
 

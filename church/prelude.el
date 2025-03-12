@@ -111,9 +111,8 @@
 ;(setq compilation-scroll-output t)
 
 ;; Cycle windows with C-tab and C-S-tab
-;; Try to use ace-window
-;; (global-set-key [C-tab] 'other-window)
-;; (global-set-key [C-S-iso-lefttab] (lambda () (interactive) (other-window -1)))
+(global-set-key [M-o] 'other-window)
+(global-set-key [M-S-o] (lambda () (interactive) (other-window -1)))
 
 ;; Font size
 (define-key global-map (kbd "C-+") 'text-scale-increase)
