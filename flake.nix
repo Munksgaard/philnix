@@ -114,6 +114,7 @@
             system = "${system}";
             specialArgs = inputs;
             modules = [
+              inputs.niri.nixosModules.niri
               { nixpkgs.overlays = [ inputs.nur.overlay ]; }
               church/church.nix
               home-manager.nixosModules.default

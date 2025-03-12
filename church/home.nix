@@ -5,7 +5,8 @@
   # originally installed.
   home.stateVersion = "23.11";
 
-  imports = [ ./alacritty.nix ./emacs.nix ./firefox.nix ./niri.nix ];
+  imports =
+    [ ./alacritty.nix ./emacs.nix ./firefox.nix ./niri.nix ./waybar.nix ];
 
   programs = {
     bash.enable = true;
@@ -60,6 +61,7 @@
     };
 
     vim.enable = true;
+
     zathura.enable = true;
   };
 }

@@ -53,6 +53,7 @@ in {
     dina-font
     proggyfonts
     hack-font
+    font-awesome
   ];
 
   programs.gnupg.agent = { enable = true; };
@@ -159,11 +160,11 @@ in {
 
   location.provider = "geoclue2";
 
-  programs.waybar.enable = true;
-
   programs.ssh.startAgent = true;
 
   programs.steam.enable = true;
+
+  programs.niri.enable = true;
 
   systemd.user.services.kanshi = {
     description = "Kanshi output autoconfig ";

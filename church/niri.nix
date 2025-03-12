@@ -1,7 +1,6 @@
 { pkgs, config, ... }: {
 
   programs.niri = {
-    enable = true;
     settings = {
       input = {
         focus-follows-mouse.enable = true;
@@ -16,7 +15,10 @@
         "Mod+Return".action.spawn = "${pkgs.alacritty}/bin/alacritty";
         "Mod+P".action.spawn = "${pkgs.fuzzel}/bin/fuzzel";
         "Mod+E".action.spawn = "emacsclient -c";
-        "Super+Alt+L".action.spawn = "${pkgs.swaylock}/bin/swaylock";
+        "Super+Shift+L".action.spawn = "${pkgs.swaylock}/bin/swaylock";
+
+        "XF86MonBrightnessDown".action.spawn = ["brightnessctl" "set" "10%-"];
+        "XF86MonBrightnessUp".action.spawn = ["brightnessctl" "set" "10%+"];
 
         "XF86AudioRaiseVolume" = {
           allow-when-locked = true;
