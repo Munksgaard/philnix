@@ -139,21 +139,6 @@ in {
     enable32Bit = true;
   };
 
-  programs.sway = {
-    enable = true;
-    wrapperFeatures.gtk = true; # so that gtk works properly
-    extraPackages = with pkgs; [
-      swaylock
-      swayidle
-      wl-clipboard
-      waybar # status bar
-      mako # notification daemon
-      alacritty # Alacritty is the default terminal in the config
-      dmenu
-      kanshi # autorandr
-    ];
-  };
-
   environment = {
     extraOutputsToInstall = [ "dev" ];
     etc = {
@@ -163,12 +148,6 @@ in {
       # "xdg/waybar/style.css".source = ./dotfiles/waybar/style.css;
     };
   };
-
-  environment.loginShellInit = ''
-    if [ -z $DISPLAY ] && [ "$(tty)" = "/dev/tty1" ]; then
-      exec sway
-    fi
-  '';
 
   services.redshift = {
     enable = true;
@@ -335,8 +314,6 @@ in {
     futhark
   ];
 
-  xdg.mime.enable = true;
-
   services.udev.packages = [ pkgs.android-udev-rules ];
 
   # Stuff for the Ergodox Moonlander
@@ -391,18 +368,8 @@ in {
   # systemd.services.podman-funkwhale.serviceConfig.User = "funkwhale";
   # systemd.services.podman-funkwhale.wantedBy = [ "default.target" ];
 
-  # From https://github.com/calbrecht/nixpkgs-overlays
-  xdg.portal.enable = true;
-  xdg.portal.extraPortals = [ # pkgs.xdg-desktop-portal-gtk
-    pkgs.xdg-desktop-portal-wlr
-  ];
-
   environment.sessionVariables = {
     MOZ_ENABLE_WAYLAND = "1";
-    XDG_CURRENT_DESKTOP =
-      "sway"; # https://github.com/emersion/xdg-desktop-portal-wlr/issues/20
-    XDG_SESSION_TYPE =
-      "wayland"; # https://github.com/emersion/xdg-desktop-portal-wlr/pull/11
     NIXOS_OZONE_WL = "1";
   };
 
