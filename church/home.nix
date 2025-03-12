@@ -5,7 +5,7 @@
   # originally installed.
   home.stateVersion = "23.11";
 
-  imports = [ ./alacritty.nix ./emacs.nix ./firefox.nix ];
+  imports = [ ./alacritty.nix ./emacs.nix ./firefox.nix ./niri.nix ];
 
   programs = {
     bash.enable = true;
@@ -32,6 +32,7 @@
         signByDefault = true;
       };
     };
+
     ripgrep.enable = true;
 
     tmux = {

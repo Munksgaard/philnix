@@ -37,6 +37,11 @@
 
   inputs.sorgenfri.url = "sourcehut:~munksgaard/sorgenfri";
 
+  inputs.niri = {
+    url = "github:sodiboo/niri-flake";
+    inputs.nixpkgs.follows = "nixpkgs";
+  };
+
   outputs = inputs@{ flake-parts, self, nixpkgs, deploy-rs, geomyidae, agenix
     , munksgaard-gopher, photos, home-manager, sorgenfri, ... }:
     let
