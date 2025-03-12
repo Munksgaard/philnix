@@ -22,19 +22,19 @@ deploy-church:
 	sudo nixos-rebuild switch --flake .#church
 
 update-munksgaard.me-gopher:
-	nix flake lock --update-input munksgaard-gopher
+	nix flake update munksgaard-gopher
 
 update-photos:
-	nix flake lock --update-input photos
+	nix flake update photos
 
 update-nixpkgs:
-	nix flake lock --update-input nixpkgs
+	nix flake update nixpkgs
 
 update-digit:
-	nix flake lock --update-input digit
+	nix flake update digit
 
 update-sorgenfri:
-	nix flake lock --update-input sorgenfri
+	nix flake update sorgenfri
 
 update-home-manager:
-	nix flake lock --update-input home-manager
+	nix flake update home-manager
