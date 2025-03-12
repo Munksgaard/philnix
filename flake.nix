@@ -55,11 +55,6 @@
         ];
       };
 
-      nurNoPkgs = import inputs.nur {
-        pkgs = null;
-        nurpkgs = pkgs;
-      };
-
     in flake-parts.lib.mkFlake { inherit inputs; } {
       systems = [ system ];
       flake =
@@ -122,7 +117,6 @@
                 home-manager.useUserPackages = true;
                 home-manager.users.munksgaard.imports = [
                   ./church/home.nix
-                  nurNoPkgs.repos.rycee.hmModules.emacs-init
                 ];
               }
             ];

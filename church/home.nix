@@ -61,11 +61,4 @@
     vim.enable = true;
     zathura.enable = true;
   };
-
-  services = {
-    emacs = {
-      enable = true;
-      defaultEditor = true;
-    };
-  };
 }
