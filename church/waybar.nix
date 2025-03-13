@@ -3,60 +3,116 @@
   programs.waybar = {
     enable = true;
     systemd.enable = true;
+    style = ''
+      * {
+          border: none;
+          border-radius: 0;
+          font-family: Roboto, Helvetica, Arial, sans-serif;
+          font-size: 13px;
+          min-height: 0;
+      }
+
+      window#waybar {
+          background: rgba(43, 48, 59, 0.5);
+          border-bottom: 3px solid rgba(100, 114, 125, 0.5);
+          color: white;
+      }
+
+      tooltip {
+        background: rgba(43, 48, 59, 0.5);
+        border: 1px solid rgba(100, 114, 125, 0.5);
+      }
+
+      tooltip label {
+        color: white;
+      }
+
+      #workspaces button {
+          padding: 0 5px;
+          background: transparent;
+          color: white;
+          border-bottom: 3px solid transparent;
+      }
+
+      #workspaces button.focused {
+          background: #64727D;
+          border-bottom: 3px solid white;
+      }
+
+      #mode, #clock, #battery {
+          padding: 0 10px;
+      }
+
+      #mode {
+          background: #64727D;
+          border-bottom: 3px solid white;
+      }
+
+      #clock {
+          background-color: #64727D;
+      }
+
+      #battery {
+          background-color: #ffffff;
+          color: black;
+      }
+
+      #battery.charging {
+          color: white;
+          background-color: #26A65B;
+      }
+
+      #clock,
+      #battery,
+      #cpu,
+      #memory,
+      #disk,
+      #network,
+      #pulseaudio,
+      #tray,
+      #mode {
+          padding: 4px 4px;
+      }
+
+      @keyframes blink {
+          to {
+              background-color: #ffffff;
+              color: black;
+          }
+      }
+
+      #battery.warning:not(.charging) {
+          background: #f53c3c;
+          color: white;
+          animation-name: blink;
+          animation-duration: 0.5s;
+          animation-timing-function: steps(12);
+          animation-iteration-count: infinite;
+          animation-direction: alternate;
+      }
+    '';
+
     settings = {
       mainBar = {
         layer = "top"; # Waybar at top layer
         position = "top"; # Waybar position (top|bottom|left|right)
-        height = 30; # Waybar height (to be removed for auto height)
+        # height = 30; # Waybar height (to be removed for auto height)
         # "width": 1280, # Waybar width
         spacing = 4; # Gaps between modules (4px)
         # Choose the order of the modules
         modules-left = [ "niri/workspaces" ];
         modules-center = [ "niri/window" ];
         modules-right = [
-          "mpd"
-          "idle_inhibitor"
           "pulseaudio"
           "network"
-          "power-profiles-daemon"
+          "disk"
           "cpu"
           "memory"
-          "temperature"
-          "backlight"
-          "keyboard-state"
-          "sway/language"
+          "tray"
           "battery"
           "battery#bat2"
           "clock"
-          "tray"
-          "custom/power"
         ];
-        # Modules configuration
-        # "sway/workspaces": {
-        #     "disable-scroll": true,
-        #     "all-outputs": true,
-        #     "warp-on-scroll": false,
-        #     "format": "{name}: {icon}",
-        #     "format-icons": {
-        #         "1": "",
-        #         "2": "",
-        #         "3": "",
-        #         "4": "",
-        #         "5": "",
-        #         "urgent": "",
-        #         "focused": "",
-        #         "default": ""
-        #     }
-        # },
-        keyboard-state = {
-          numlock = true;
-          capslock = true;
-          format = "{name} {icon}";
-          format-icons = {
-            "locked" = "";
-            "unlocked" = "";
-          };
-        };
         "niri/workspaces" = {
           format = "{icon}";
           format-icons = {
@@ -72,25 +128,10 @@
           };
         };
         "niri/window" = {
-	        format = "{}";
-	        rewrite = {
-		        "(.*) - Mozilla Firefox" = "🌎 $1";
-		        "(.*) - zsh" = "> [$1]";
-          };
-	      };
-        "sway/mode" = { format = ''<span style="italic">{}</span>''; };
-        "sway/scratchpad" = {
-          format = "{icon} {count}";
-          show-empty = false;
-          format-icons = [ "" "" ];
-          tooltip = true;
-          tooltip-format = "{app}: {title}";
-        };
-        idle_inhibitor = {
-          format = "{icon}";
-          format-icons = {
-            "activated" = "";
-            "deactivated" = "";
+          format = "{}";
+          rewrite = {
+            "(.*) - Mozilla Firefox" = "🌎 $1";
+            "(.*) - zsh" = "> [$1]";
           };
         };
         tray = {
@@ -100,28 +141,18 @@
         clock = {
           # "timezone" = "America/New_York",
           tooltip-format = ''
-            <big>{:%Y %B}</big>
+            <big>{:%Y-%m-%d} {:%Y %B}</big>
             <tt><small>{calendar}</small></tt>'';
-          format-alt = "{:%Y-%m-%d}";
         };
         cpu = {
           format = "{usage}% ";
           tooltip = false;
         };
+        disk = {
+          format = "{free}% ";
+          tooltip = false;
+        };
         memory = { format = "{}% "; };
-        temperature = {
-          # "thermal-zone" = 2,
-          # "hwmon-path" = "/sys/class/hwmon/hwmon2/temp1_input",
-          critical-threshold = 80;
-          # "format-critical" = "{temperatureC}°C {icon}",
-          format = "{temperatureC}°C {icon}";
-          format-icons = [ "" "" "" ];
-        };
-        backlight = {
-          # "device" = "acpi_video1",
-          format = "{percent}% {icon}";
-          format-icons = [ "" "" "" "" "" "" "" "" "" ];
-        };
         battery = {
           states = {
             # "good" = 95,
@@ -138,19 +169,6 @@
           format-icons = [ "" "" "" "" "" ];
         };
         "battery#bat2" = { "bat" = "BAT2"; };
-        power-profiles-daemon = {
-          format = "{icon}";
-          tooltip-format = ''
-            Power profile: {profile}
-            Driver: {driver}'';
-          tooltip = true;
-          format-icons = {
-            "default" = "";
-            "performance" = "";
-            "balanced" = "";
-            "power-saver" = "";
-          };
-        };
         network = {
           # "interface" = "wlp2*" # (Optional) To force the use of this interface
           format-wifi = "{essid} ({signalStrength}%) ";
@@ -178,30 +196,6 @@
             default = [ "" "" "" ];
           };
           on-click = "pavucontrol";
-        };
-        # "custom/media" = {
-        #     format = "{icon} {text}";
-        #     return-type = "json";
-        #     max-length = 40;
-        #     format-icons = {
-        #         spotify = "";
-        #         default = "🎜";
-        #     };
-        #     escape = true;
-        #     exec = "$HOME/.config/waybar/mediaplayer.py 2> /dev/null" # Script in resources folder
-        #     # "exec" = "$HOME/.config/waybar/mediaplayer.py --player spotify 2> /dev/null" # Filter player based on name
-        # },
-        "custom/power" = {
-          format = "⏻ ";
-          tooltip = false;
-          #   menu = "on-click";
-          # "menu-file" = "$HOME/.config/waybar/power_menu.xml" # Menu file in resources folder
-          # "menu-actions" = {
-          # 	"shutdown" = "shutdown"
-          # 	"reboot" = "reboot"
-          # 	"suspend" = "systemctl suspend"
-          # 	"hibernate" = "systemctl hibernate"
-          # }
         };
       };
     };

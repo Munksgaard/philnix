@@ -33,6 +33,12 @@
           scale = 1.0;
         };
       };
+
+      # Disable all animations
+      animations = {
+        workspace-switch = null;
+      };
+
       binds = with config.lib.niri.actions; {
         "Mod+Shift+Slash".action = show-hotkey-overlay;
 
