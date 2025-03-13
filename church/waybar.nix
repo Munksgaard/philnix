@@ -149,7 +149,7 @@
           tooltip = false;
         };
         disk = {
-          format = "{free}% ";
+          format = "{free} ";
           tooltip = false;
         };
         memory = { format = "{}% "; };
