@@ -11,14 +11,38 @@
           options = "ctrl:nocaps";
         };
       };
+      outputs = {
+        "eDP-1" = {
+          mode = {
+            width = 1920;
+            height = 1080;
+          };
+          scale = 1.0;
+          # position = {
+          #   x = 1280;
+          #   y = 0;
+          # }
+          #     variable-refresh-rate // on-demand=true
+          # background-color "#003300"
+        };
+        "Dell Inc. DELL U2715H GH85D7B20LUS" = {
+          mode = {
+            width = 2560;
+            height = 1440;
+          };
+          scale = 1.0;
+        };
+      };
       binds = with config.lib.niri.actions; {
+        "Mod+Shift+Slash".action = show-hotkey-overlay;
+
         "Mod+Return".action.spawn = "${pkgs.alacritty}/bin/alacritty";
         "Mod+P".action.spawn = "${pkgs.fuzzel}/bin/fuzzel";
         "Mod+E".action.spawn = "emacsclient -c";
         "Super+Shift+L".action.spawn = "${pkgs.swaylock}/bin/swaylock";
 
-        "XF86MonBrightnessDown".action.spawn = ["brightnessctl" "set" "10%-"];
-        "XF86MonBrightnessUp".action.spawn = ["brightnessctl" "set" "10%+"];
+        "XF86MonBrightnessDown".action.spawn = [ "brightnessctl" "set" "10%-" ];
+        "XF86MonBrightnessUp".action.spawn = [ "brightnessctl" "set" "10%+" ];
 
         "XF86AudioRaiseVolume" = {
           allow-when-locked = true;
