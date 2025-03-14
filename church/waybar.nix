@@ -139,9 +139,9 @@
           spacing = 10;
         };
         clock = {
-          # "timezone" = "America/New_York",
+          format = "{:%Y-%m-%d %H:%M}";
           tooltip-format = ''
-            <big>{:%Y-%m-%d} {:%Y %B}</big>
+            <big>{:%Y %B}</big>
             <tt><small>{calendar}</small></tt>'';
         };
         cpu = {
