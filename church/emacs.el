@@ -160,6 +160,9 @@ The DWIM behaviour of this command is as follows:
 ;; Put customizations in separate file
 (setq custom-file (concat user-emacs-directory "custom.el"))
 
+;; Use emacs loopback for pinentry
+;;
+;; https://www.gnu.org/software/emacs/manual/html_node/epa/GnuPG-Pinentry.html
 (setq epg-pinentry-mode 'loopback)
 
 ;;; Packages
