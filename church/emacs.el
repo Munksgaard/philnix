@@ -160,6 +160,8 @@ The DWIM behaviour of this command is as follows:
 ;; Put customizations in separate file
 (setq custom-file (concat user-emacs-directory "custom.el"))
 
+(setq epg-pinentry-mode 'loopback)
+
 ;;; Packages
 
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/"))
