@@ -12,25 +12,39 @@
         };
       };
       outputs = {
+        "Ancor Communications Inc ASUS PB277 0x0002A92A" = {
+          mode = {
+            width = 2560;
+            height = 1440;
+          };
+          position = {
+            x = -2560;
+            y = -700;
+          };
+        };
+
         "eDP-1" = {
           mode = {
             width = 1920;
             height = 1080;
           };
           scale = 1.0;
-          # position = {
-          #   x = 1280;
-          #   y = 0;
-          # }
-          #     variable-refresh-rate // on-demand=true
-          # background-color "#003300"
+          position = {
+            x = 0;
+            y = 0;
+          };
         };
+
         "Dell Inc. DELL U2715H GH85D7B20LUS" = {
           mode = {
             width = 2560;
             height = 1440;
           };
           scale = 1.0;
+          position = {
+            x = 1920;
+            y = 0;
+          };
         };
       };
 
