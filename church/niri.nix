@@ -59,18 +59,19 @@
         "Mod+Return".action.spawn = "${pkgs.alacritty}/bin/alacritty";
         "Mod+P".action.spawn = "${pkgs.fuzzel}/bin/fuzzel";
         "Mod+E".action.spawn = "emacsclient -c";
-        "Super+Shift+L".action.spawn = "${pkgs.swaylock}/bin/swaylock";
+        "Mod+Shift+O".action.spawn = "${pkgs.swaylock}/bin/swaylock";
+        "Mod+Shift+V".action.spawn = "pavucontrol";
 
         "XF86MonBrightnessDown".action.spawn = [ "brightnessctl" "set" "10%-" ];
         "XF86MonBrightnessUp".action.spawn = [ "brightnessctl" "set" "10%+" ];
 
         "XF86AudioRaiseVolume" = {
           allow-when-locked = true;
-          action.spawn = [ "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "0.1+" ];
+          action.spawn = [ "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "0.05+" ];
         };
         "XF86AudioLowerVolume" = {
           allow-when-locked = true;
-          action.spawn = [ "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "0.1-" ];
+          action.spawn = [ "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "0.05-" ];
         };
         "XF86AudioMute" = {
           allow-when-locked = true;
@@ -123,20 +124,6 @@
         "Mod+Shift+Ctrl+J".action = move-column-to-monitor-down;
         "Mod+Shift+Ctrl+K".action = move-column-to-monitor-up;
         "Mod+Shift+Ctrl+L".action = move-column-to-monitor-right;
-
-        "Mod+Page_Down".action = focus-workspace-down;
-        "Mod+Page_Up".action = focus-workspace-up;
-        "Mod+U".action = focus-workspace-down;
-        "Mod+I".action = focus-workspace-up;
-        "Mod+Ctrl+Page_Down".action = move-column-to-workspace-down;
-        "Mod+Ctrl+Page_Up".action = move-column-to-workspace-up;
-        "Mod+Ctrl+U".action = move-column-to-workspace-down;
-        "Mod+Ctrl+I".action = move-column-to-workspace-up;
-
-        "Mod+Shift+Page_Down".action = move-workspace-down;
-        "Mod+Shift+Page_Up".action = move-workspace-up;
-        "Mod+Shift+U".action = move-workspace-down;
-        "Mod+Shift+I".action = move-workspace-up;
 
         # You can refer to workspaces by index. However, keep in mind that
         # niri is a dynamic workspace system, so these commands are kind of
@@ -204,8 +191,8 @@
         "Mod+Shift+Equal".action = set-window-height "+10%";
 
         # Move the focused window between the floating and the tiling layout.
-        "Mod+V".action = toggle-window-floating;
-        "Mod+Shift+V".action = switch-focus-between-floating-and-tiling;
+        "Mod+Space".action = toggle-window-floating;
+        "Mod+Shift+Space".action = switch-focus-between-floating-and-tiling;
 
         # Toggle tabbed column display mode.
         # Windows in this column will appear as vertical tabs,
