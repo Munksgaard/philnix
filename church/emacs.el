@@ -208,10 +208,10 @@ The DWIM behaviour of this command is as follows:
 
 (use-package buffer-move
   :ensure t
-  :bind (("C-M-<up>" . "buf-move-up")
-         ("C-M-<down>" . "buf-move-down")
-         ("C-M-<left>" . "buf-move-left")
-         ("C-M-<right>" . "buf-move-right")))
+  :bind (("C-M-<up>" . buf-move-up)
+         ("C-M-<down>" . buf-move-down)
+         ("C-M-<left>" . buf-move-left)
+         ("C-M-<right>" . buf-move-right)))
 
 (use-package ido
   :ensure t
@@ -228,11 +228,11 @@ The DWIM behaviour of this command is as follows:
 
 (use-package avy
   :ensure t
-  :bind ("M-j" . "avy-goto-char-timer"))
+  :bind ("M-j" . avy-goto-char-timer))
 
 (use-package eglot
   :ensure t
-  :bind ("C-." . "eglot-code-actions"))
+  :bind ("C-." . eglot-code-actions))
 
 (use-package haskell-mode
         :ensure t
@@ -254,9 +254,9 @@ The DWIM behaviour of this command is as follows:
 
 (use-package org
   :ensure t
-  :bind (("C-c c" . "org-capture")
-         ("C-c a" . "org-agenda")
-         ("C-c l" . "org-store-link"))
+  :bind (("C-c c" . org-capture)
+         ("C-c a" . org-agenda)
+         ("C-c l" . org-store-link))
   :config
   ;; Some general stuff.
   (setq org-reverse-note-order t
@@ -337,17 +337,17 @@ The DWIM behaviour of this command is as follows:
 
 (use-package flymake
   :ensure t
-  :bind (("M-n" . "flymake-goto-next-error")
-         ("M-p" . "flymake-goto-prev-error")))
+  :bind (("M-n" . flymake-goto-next-error)
+         ("M-p" . flymake-goto-prev-error)))
 
 (use-package inf-elixir
   :ensure t
-  :bind (("C-c i i" . "inf-elixir")
-         ("C-c i p" . "inf-elixir-project")
-         ("C-c i l" . "inf-elixir-send-line")
-         ("C-c i r" . "inf-elixir-send-region")
-         ("C-c i b" . "inf-elixir-send-buffer")
-          ("C-c i R" . "inf-elixir-reload-module")))
+  :bind (("C-c i i" . inf-elixir)
+         ("C-c i p" . inf-elixir-project)
+         ("C-c i l" . inf-elixir-send-line)
+         ("C-c i r" . inf-elixir-send-region)
+         ("C-c i b" . inf-elixir-send-buffer)
+          ("C-c i R" . inf-elixir-reload-module)))
 
 (use-package just-mode
   :ensure t
