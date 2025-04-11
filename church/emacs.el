@@ -300,7 +300,8 @@ The DWIM behaviour of this command is as follows:
 
 (use-package exunit
   :ensure t
-  :hook (elixir-mode . exunit-mode))
+  :hook (elixir-mode . exunit-mode)
+  :hook (magit-status-mode . exunit-mode))
 
 (use-package rust-mode
   :ensure t
@@ -354,4 +355,5 @@ The DWIM behaviour of this command is as follows:
   :config (setq just-indent-offset 2))
 
 (use-package deadgrep
-  :ensure t)
+  :ensure t
+  :bind (("<f5>" . deadgrep)))
