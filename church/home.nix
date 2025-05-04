@@ -6,7 +6,7 @@
   home.stateVersion = "23.11";
 
   imports =
-    [ ./alacritty.nix ./emacs.nix ./firefox.nix ./niri.nix ./waybar.nix ];
+    [ ./alacritty.nix ./emacs.nix ./firefox.nix ./sway.nix ];
 
   programs = {
     bash.enable = true;

@@ -382,4 +382,7 @@ in {
 
   services.tailscale.enable = true;
 
+  # For sway
+  security.polkit.enable = true;
+
 }
