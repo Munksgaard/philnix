@@ -65,5 +65,6 @@
 
   services = {
     kanshi.enable = true;
+    mako.enable = true;
   };
 }
