@@ -20,13 +20,10 @@
         { command = "emacsclient -c"; }
       ];
       assigns = {
-        "1: term" = [{ app_id = "Alacritty"; }];
-        "1: emacs" = [{ app_id = "emacs"; }];
-        "3: web" = [{ class = "^Firefox$"; }];
-        "0: extra" = [{
-          class = "^Firefox$";
-          window_role = "About";
-        }];
+        "1" = [{ app_id = "Alacritty"; }];
+        "2" = [{ app_id = "emacs"; }];
+        "3" = [{ app_id = "^firefox$"; }];
+        "4" = [{ app_id = "^Element$"; }];
       };
 
       input = {
