@@ -62,4 +62,8 @@
 
     zathura.enable = true;
   };
+
+  services = {
+    kanshi.enable = true;
+  };
 }
