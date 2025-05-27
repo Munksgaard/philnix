@@ -2,7 +2,7 @@
 
 let
   beam_pkgs = pkgs.beam.packagesWith pkgs.beam.interpreters.erlang;
-  my_elixir = beam_pkgs.elixir_1_17;
+  my_elixir = beam_pkgs.elixir_1_18;
   livebook = pkgs.livebook.override { elixir = my_elixir; };
 
 in {
