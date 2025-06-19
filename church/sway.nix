@@ -33,8 +33,10 @@
       focus.mouseWarping = false;
 
       floating = {
-        criteria =
-          [ { title = "Steam - Update News"; } { app_id = "org.pulseaudio.pavucontrol"; } ];
+        criteria = [
+          { title = "Steam - Update News"; }
+          { app_id = "org.pulseaudio.pavucontrol"; }
+        ];
       };
 
       bars = [{
@@ -114,8 +116,11 @@
         "XF86AudioMicMute" =
           "exec ${pkgs.wireplumber}/bin/wpctl set-mute @DEFAULT_SOURCE@ toggle";
 
-        "Print" =
-          "exec ${pkgs.grim}/bin/grim -g '$(${pkgs.slurp}/bin/slurp)' ~/tmp/screenshot.png";
+        "Print" = ''
+          exec ${pkgs.grim}/bin/grim -g "$(${pkgs.slurp}/bin/slurp)" - \
+            | tee ~/tmp/screenshot.png \
+            | ${pkgs.wl-clipboard}/bin/wl-copy
+        '';
 
         #
         # Workspaces:
