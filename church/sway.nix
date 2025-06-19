@@ -19,12 +19,6 @@
         { command = terminal; }
         { command = "emacsclient -c"; }
       ];
-      assigns = {
-        "1" = [{ app_id = "Alacritty"; }];
-        "2" = [{ app_id = "emacs"; }];
-        "3" = [{ app_id = "^firefox$"; }];
-        "4" = [{ app_id = "^Element$"; }];
-      };
 
       input = {
         "type:touchpad" = { events = "disabled"; };
