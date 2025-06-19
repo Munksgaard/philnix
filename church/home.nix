@@ -66,5 +66,6 @@
   services = {
     kanshi.enable = true;
     mako.enable = true;
+    gnome-keyring.enable = true;
   };
 }
