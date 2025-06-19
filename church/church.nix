@@ -367,5 +367,6 @@ in {
 
   # For sway
   security.polkit.enable = true;
+  programs.sway.enable = true;
 
 }
