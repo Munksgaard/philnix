@@ -190,6 +190,15 @@ The DWIM behaviour of this command is as follows:
 (use-package elixir-mode
   :ensure t)
 
+;; mhtml-mode is used for e.g. heex templates and overrides M-o. This config
+;; unsets the local definition of M-o so that we can use it for switching
+;; windows.
+(use-package mhtml-mode
+  :config
+  (add-hook 'mhtml-mode-hook
+      (lambda ()
+        (keymap-local-unset "M-o"))))
+
 (use-package direnv
   :ensure t
   :config (direnv-mode))
