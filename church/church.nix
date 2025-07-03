@@ -296,6 +296,8 @@ in {
     my_elixir
 
     futhark
+
+    claude-code
   ];
 
   services.udev.packages = [ pkgs.android-udev-rules ];
