@@ -82,6 +82,7 @@
 ;; Shouldn't highlight trailing spaces in terminal mode.
 (add-hook 'term-mode (lambda () (setq show-trailing-whitespace nil)))
 (add-hook 'term-mode-hook (lambda () (setq show-trailing-whitespace nil)))
+(add-hook 'justl-mode-hook (lambda () (setq show-trailing-whitespace nil)))
 
 ;; Show matching paren
 (show-paren-mode 1)
@@ -187,32 +188,20 @@ The DWIM behaviour of this command is as follows:
   (add-to-list 'git-commit-style-convention-checks
                'overlong-summary-line))
 
-(use-package elixir-mode
-  :ensure t)
-
-;; mhtml-mode is used for e.g. heex templates and overrides M-o. This config
-;; unsets the local definition of M-o so that we can use it for switching
-;; windows.
-(use-package mhtml-mode
-  :config
-  (add-hook 'mhtml-mode-hook
-      (lambda ()
-        (keymap-local-unset "M-o"))))
-
 (use-package direnv
   :ensure t
   :config (direnv-mode))
 
 (use-package notifications
-  :ensure t
+  :ensure nil
   :commands notifications-notify)
 
 (use-package hippie-exp
-  :ensure t
+  :ensure nil
   :config (global-set-key [remap dabbrev-expand] 'hippie-expand))
 
 (use-package winner
-  :ensure t
+  :ensure nil
   :config (winner-mode 1))
 
 (use-package buffer-move
@@ -223,12 +212,13 @@ The DWIM behaviour of this command is as follows:
          ("C-M-<right>" . buf-move-right)))
 
 (use-package ido
-  :ensure t
+  :ensure nil
   :config
   (ido-mode t)
   (define-key ido-common-completion-map
               (kbd "C-x g") 'ido-enter-magit-status)
   (setq ido-enable-prefix nil)
+  (setq ido-everywhere 1)
   (setq ido-enable-flex-matching t)
   (setq ido-create-new-buffer 'always)
   (setq ido-use-filename-at-point 'guess)
@@ -303,13 +293,22 @@ The DWIM behaviour of this command is as follows:
 (use-package erlang
   :ensure t)
 
-(use-package elixir-mode
+(use-package elixir-ts-mode
   :ensure t
-  :hook (elixir-mode . (lambda () (add-hook 'before-save-hook 'elixir-format nil t))))
+  :hook (elixir-ts-mode . (lambda () (add-hook 'before-save-hook 'elixir-format nil t))))
+
+(use-package heex-ts-mode
+  :ensure t
+  :hook (heex-ts-mode . (lambda () (add-hook 'before-save-hook 'elixir-format nil t)))
+  :config
+  (add-hook 'heex-ts-mode-hook
+      (lambda ()
+        (keymap-local-unset "M-o"))))
 
 (use-package exunit
   :ensure t
-  :hook (elixir-mode . exunit-mode)
+  :hook (elixir-ts-mode . exunit-mode)
+  :hook (heex-ts-mode . exunit-mode)
   :hook (magit-status-mode . exunit-mode))
 
 (use-package rust-mode
@@ -366,3 +365,18 @@ The DWIM behaviour of this command is as follows:
 (use-package deadgrep
   :ensure t
   :bind (("<f5>" . deadgrep)))
+
+(defun justl-exec-recipe-in-dir-new-buffer ()
+  (interactive)
+  (let ((justl-per-recipe-buffer t))
+    (justl-exec-recipe-in-dir)))
+
+(use-package justl
+  :ensure t
+  :config
+  (define-key project-prefix-map "j" 'justl-exec-recipe-in-dir)
+  (define-key project-prefix-map "J" 'justl-exec-recipe-in-dir-new-buffer))
+
+(use-package gleam-ts-mode
+  :ensure t
+  :mode (rx ".gleam" eos))

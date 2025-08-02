@@ -37,6 +37,11 @@
 
   inputs.sorgenfri.url = "sourcehut:~munksgaard/sorgenfri";
 
+  inputs.emacs-overlay = {
+    url = "github:nix-community/emacs-overlay";
+    inputs.nixpkgs.follows = "nixpkgs";
+  };
+
   outputs = inputs@{ flake-parts, self, nixpkgs, deploy-rs, geomyidae, agenix
     , munksgaard-gopher, photos, home-manager, sorgenfri, ... }:
     let
@@ -109,15 +114,16 @@
             system = "${system}";
             specialArgs = inputs;
             modules = [
-              { nixpkgs.overlays = [ inputs.nur.overlay ]; }
+              {
+                nixpkgs.overlays =
+                  [ inputs.nur.overlay (import self.inputs.emacs-overlay) ];
+              }
               church/church.nix
               home-manager.nixosModules.default
               {
                 home-manager.useGlobalPkgs = true;
                 home-manager.useUserPackages = true;
-                home-manager.users.munksgaard.imports = [
-                  ./church/home.nix
-                ];
+                home-manager.users.munksgaard.imports = [ ./church/home.nix ];
               }
             ];
           };
