@@ -5,11 +5,17 @@
   # originally installed.
   home.stateVersion = "23.11";
 
-  imports =
-    [ ./alacritty.nix ./emacs.nix ./firefox.nix ./sway.nix ];
+  imports = [ ./alacritty.nix ./emacs.nix ./firefox.nix ./sway.nix ];
 
   programs = {
-    bash.enable = true;
+    bash = {
+      enable = true;
+      bashrcExtra = ''
+        [ -n "$EAT_SHELL_INTEGRATION_DIR" ] && \
+        source "$EAT_SHELL_INTEGRATION_DIR/bash"
+      '';
+    };
+
     bat.enable = true;
     bottom.enable = true;
     chromium.enable = true;

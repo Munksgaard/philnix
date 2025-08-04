@@ -192,6 +192,9 @@ The DWIM behaviour of this command is as follows:
   :ensure t
   :config (direnv-mode))
 
+;; for eat terminal backend:
+(use-package eat :ensure t)
+
 (use-package notifications
   :ensure nil
   :commands notifications-notify)
@@ -380,3 +383,18 @@ The DWIM behaviour of this command is as follows:
 (use-package gleam-ts-mode
   :ensure t
   :mode (rx ".gleam" eos))
+
+;; install claude-code.el
+(use-package claude-code :ensure t
+  :vc (:url "https://github.com/stevemolitor/claude-code.el" :rev :newest)
+  :config (claude-code-mode)
+  :bind-keymap ("C-c c" . claude-code-command-map))
+
+;; For GNOME/Unity desktops
+(defun my-claude-notify (title message)
+  "Display a Linux notification using notify-send."
+  (if (executable-find "notify-send")
+      (call-process "notify-send" nil nil nil title message)
+    (message "%s: %s" title message)))
+
+(setq claude-code-notification-function #'my-claude-notify)
