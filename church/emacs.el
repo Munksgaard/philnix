@@ -320,6 +320,7 @@ The DWIM behaviour of this command is as follows:
 
 (use-package exunit
   :ensure t
+  :hook (elixir-mode . exunit-mode)
   :hook (elixir-ts-mode . exunit-mode)
   :hook (heex-ts-mode . exunit-mode)
   :hook (magit-status-mode . exunit-mode))
