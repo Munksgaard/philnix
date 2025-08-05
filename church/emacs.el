@@ -166,6 +166,10 @@ The DWIM behaviour of this command is as follows:
 ;; https://www.gnu.org/software/emacs/manual/html_node/epa/GnuPG-Pinentry.html
 (setq epg-pinentry-mode 'loopback)
 
+;; Remote files
+
+(setq remote-file-name-access-timeout 10)
+
 ;;; Packages
 
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/"))
