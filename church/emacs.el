@@ -312,6 +312,7 @@ The DWIM behaviour of this command is as follows:
 
 (use-package elixir-ts-mode
   :ensure t
+  :mode "\\.exs?\\'"
   :hook (elixir-ts-mode . (lambda () (add-hook 'before-save-hook 'elixir-format nil t))))
 
 (use-package heex-ts-mode
