@@ -186,7 +186,8 @@ The DWIM behaviour of this command is as follows:
   (setq magit-diff-refine-hunk 'all)
   (add-to-list 'magit-repository-directories '("~/src/" . 1))
   (add-to-list 'git-commit-style-convention-checks
-               'overlong-summary-line))
+               'overlong-summary-line)
+  (setq magit-completing-read-function 'magit-ido-completing-read))
 
 (use-package magit-ido
   :ensure t)
@@ -233,6 +234,9 @@ The DWIM behaviour of this command is as follows:
   (setq ido-use-filename-at-point 'guess)
   (setq ido-max-prospects 10)
   (setq ido-default-file-method 'selected-window))
+
+(use-package ido-completing-read+
+  :ensure t)
 
 (use-package avy
   :ensure t
