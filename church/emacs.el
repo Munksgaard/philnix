@@ -193,7 +193,10 @@ The DWIM behaviour of this command is as follows:
   :config (direnv-mode))
 
 ;; for eat terminal backend:
-(use-package eat :ensure t)
+(use-package eat
+  :ensure t
+  :config
+  (add-hook 'eat-mode-hook (lambda () (setq show-trailing-whitespace nil))))
 
 (use-package notifications
   :ensure nil
