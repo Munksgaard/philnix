@@ -188,6 +188,9 @@ The DWIM behaviour of this command is as follows:
   (add-to-list 'git-commit-style-convention-checks
                'overlong-summary-line))
 
+(use-package magit-ido
+  :ensure t)
+
 (use-package direnv
   :ensure t
   :config (direnv-mode))
@@ -222,7 +225,7 @@ The DWIM behaviour of this command is as follows:
   :config
   (ido-mode t)
   (define-key ido-common-completion-map
-              (kbd "C-x g") 'ido-enter-magit-status)
+              (kbd "C-x g") 'magit-ido-enter-magit-status)
   (setq ido-enable-prefix nil)
   (setq ido-everywhere 1)
   (setq ido-enable-flex-matching t)
