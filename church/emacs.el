@@ -237,7 +237,8 @@ The DWIM behaviour of this command is as follows:
   (setq ido-create-new-buffer 'always)
   (setq ido-use-filename-at-point 'guess)
   (setq ido-max-prospects 10)
-  (setq ido-default-file-method 'selected-window))
+  (setq ido-default-file-method 'selected-window)
+  (setq ido-use-virtual-buffers t))
 
 (use-package ido-completing-read+
   :ensure t)
@@ -414,3 +415,9 @@ The DWIM behaviour of this command is as follows:
     (message "%s: %s" title message)))
 
 (setq claude-code-notification-function #'my-claude-notify)
+
+;; recentf
+(use-package recentf
+  :ensure nil
+  :config
+  (setq recentf-max-saved-items 200))
