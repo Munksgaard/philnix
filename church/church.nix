@@ -154,8 +154,6 @@ in {
     executable = "/bin/gammastep";
   };
 
-  services.lorri.enable = true;
-
   location.provider = "geoclue2";
 
   programs.ssh.startAgent = true;
