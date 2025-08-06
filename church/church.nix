@@ -347,9 +347,6 @@ in {
   #   };
   # };
 
-  # systemd.services.podman-funkwhale.serviceConfig.User = "funkwhale";
-  # systemd.services.podman-funkwhale.wantedBy = [ "default.target" ];
-
   environment.sessionVariables = {
     MOZ_ENABLE_WAYLAND = "1";
     NIXOS_OZONE_WL = "1";
