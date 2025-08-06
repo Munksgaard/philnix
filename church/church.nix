@@ -124,8 +124,6 @@ in {
     vaapiIntel = pkgs.vaapiIntel.override { enableHybridCodec = true; };
   };
 
-  programs.adb.enable = true;
-
   hardware.graphics = {
     enable = true;
     extraPackages = with pkgs; [
