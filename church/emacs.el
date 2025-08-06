@@ -190,11 +190,7 @@ The DWIM behaviour of this command is as follows:
   (setq magit-diff-refine-hunk 'all)
   (add-to-list 'magit-repository-directories '("~/src/" . 1))
   (add-to-list 'git-commit-style-convention-checks
-               'overlong-summary-line)
-  (setq magit-completing-read-function 'magit-ido-completing-read))
-
-(use-package magit-ido
-  :ensure t)
+               'overlong-summary-line))
 
 (use-package direnv
   :ensure t
@@ -224,24 +220,6 @@ The DWIM behaviour of this command is as follows:
          ("C-M-<down>" . buf-move-down)
          ("C-M-<left>" . buf-move-left)
          ("C-M-<right>" . buf-move-right)))
-
-(use-package ido
-  :ensure nil
-  :config
-  (ido-mode t)
-  (define-key ido-common-completion-map
-              (kbd "C-x g") 'magit-ido-enter-magit-status)
-  (setq ido-enable-prefix nil)
-  (setq ido-everywhere 1)
-  (setq ido-enable-flex-matching t)
-  (setq ido-create-new-buffer 'always)
-  (setq ido-use-filename-at-point 'guess)
-  (setq ido-max-prospects 10)
-  (setq ido-default-file-method 'selected-window)
-  (setq ido-use-virtual-buffers t))
-
-(use-package ido-completing-read+
-  :ensure t)
 
 (use-package avy
   :ensure t
@@ -416,8 +394,42 @@ The DWIM behaviour of this command is as follows:
 
 (setq claude-code-notification-function #'my-claude-notify)
 
-;; recentf
-(use-package recentf
+;; Enable Vertico.
+(use-package vertico
+  :ensure t
+  :init
+  (vertico-mode))
+
+;; Persist history over Emacs restarts. Vertico sorts by history position.
+(use-package savehist
   :ensure nil
-  :config
-  (setq recentf-max-saved-items 200))
+  :init
+  (savehist-mode))
+
+;; Emacs minibuffer configurations.
+(use-package emacs
+  :ensure nil
+  :custom
+  ;; Enable context menu. `vertico-multiform-mode' adds a menu in the minibuffer
+  ;; to switch display modes.
+  (context-menu-mode t)
+  ;; Support opening new minibuffers from inside existing minibuffers.
+  (enable-recursive-minibuffers t)
+  ;; Hide commands in M-x which do not work in the current mode.  Vertico
+  ;; commands are hidden in normal buffers. This setting is useful beyond
+  ;; Vertico.
+  (read-extended-command-predicate #'command-completion-default-include-p)
+  ;; Do not allow the cursor in the minibuffer prompt
+  (minibuffer-prompt-properties
+   '(read-only t cursor-intangible t face minibuffer-prompt)))
+
+;; Optionally use the `orderless' completion style.
+(use-package orderless
+  :ensure t
+  :custom
+  ;; Configure a custom style dispatcher (see the Consult wiki)
+  ;; (orderless-style-dispatchers '(+orderless-consult-dispatch orderless-affix-dispatch))
+  ;; (orderless-component-separator #'orderless-escapable-split-on-space)
+  (completion-styles '(orderless basic))
+  (completion-category-defaults nil)
+  (completion-category-overrides '((file (styles partial-completion)))))
