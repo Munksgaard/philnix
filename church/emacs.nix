@@ -25,6 +25,15 @@ let
       pkgs.tree-sitter-grammars.tree-sitter-just
       pkgs.tree-sitter-grammars.tree-sitter-gleam
     ];
+
+    # Manually add packages not in Melpa
+    override = epkgs:
+      epkgs // {
+        claude-code = pkgs.callPackage ./claude-code.nix {
+          inherit (pkgs) fetchFromGitHub claude-code;
+          inherit (epkgs) trivialBuild all-the-icons;
+        };
+      };
   };
 in {
 
