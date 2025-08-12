@@ -6,7 +6,7 @@ let
   livebook = pkgs.livebook.override { elixir = my_elixir; };
 
 in {
-  imports = [ ./hardware-configuration.nix ];
+  imports = [ ./hardware-configuration.nix ./wl-mirror.nix ];
 
   nix = {
     package = pkgs.nixVersions.stable;
