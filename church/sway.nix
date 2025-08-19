@@ -61,6 +61,20 @@
         };
       }];
 
+      bindswitches = let laptop = "eDP-1";
+      in {
+        "lid:on" = {
+          reload = true;
+          locked = true;
+          action = "output ${laptop} disable";
+        };
+        "lid:off" = {
+          reload = true;
+          locked = true;
+          action = "output ${laptop} enable";
+        };
+      };
+
       keybindings = lib.mkOptionDefault {
         # Start a terminal
         "${modifier}+Return" = "exec ${terminal}";
