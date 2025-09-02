@@ -42,6 +42,8 @@
     inputs.nixpkgs.follows = "nixpkgs";
   };
 
+  inputs.nixos-hardware.url = "github:NixOS/nixos-hardware/master";
+
   outputs = inputs@{ flake-parts, self, nixpkgs, deploy-rs, geomyidae, agenix
     , munksgaard-gopher, photos, home-manager, sorgenfri, ... }:
     let
@@ -125,6 +127,26 @@
                 home-manager.useUserPackages = true;
                 home-manager.users.munksgaard.imports = [ ./church/home.nix ];
               }
+              inputs.nixos-hardware.nixosModules.lenovo-thinkpad-x390
+            ];
+          };
+
+          nixosConfigurations.hoare = nixpkgs.lib.nixosSystem {
+            system = "${system}";
+            specialArgs = inputs;
+            modules = [
+              {
+                nixpkgs.overlays =
+                  [ inputs.nur.overlay (import self.inputs.emacs-overlay) ];
+              }
+              hoare/hoare.nix
+              home-manager.nixosModules.default
+              {
+                home-manager.useGlobalPkgs = true;
+                home-manager.useUserPackages = true;
+                home-manager.users.munksgaard.imports = [ ./hoare/home.nix ];
+              }
+              inputs.nixos-hardware.nixosModules.framework-amd-ai-300-series
             ];
           };
 
