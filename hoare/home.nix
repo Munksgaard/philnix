@@ -3,7 +3,7 @@
 
   # The state version is required and should stay at the version you
   # originally installed.
-  home.stateVersion = "23.11";
+  home.stateVersion = "25.05";
 
   imports = [ ./alacritty.nix ./emacs.nix ./firefox.nix ./sway.nix ];
 
