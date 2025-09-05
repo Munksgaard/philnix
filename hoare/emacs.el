@@ -291,6 +291,14 @@ The DWIM behaviour of this command is as follows:
 (use-package erlang
   :ensure t)
 
+;; Needed for 'elixir-format.
+;;
+;; We use 'elixir-format until the elixir LSPs are good enough that I want to
+;; run them all the time and we can run eglot-format instead.
+;;
+;; https://github.com/wkirschbaum/elixir-ts-mode/issues/9
+(use-package elixir-mode :ensure t)
+
 (use-package elixir-ts-mode
   :ensure t
   :mode "\\.exs?\\'"
