@@ -21,6 +21,9 @@ deploy-sorgenfri.munksgaard.me:
 deploy-church:
 	sudo nixos-rebuild switch --flake .#church
 
+deploy-hoare:
+	sudo nixos-rebuild switch --flake .#hoare
+
 update-munksgaard.me-gopher:
 	nix flake update munksgaard-gopher
 
