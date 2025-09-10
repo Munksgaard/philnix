@@ -78,7 +78,20 @@
       defaultCursor = "Adwaita";
     };
     sway.enable = true;
+    gtk.enable = true;
   };
+
+  xresources.extraConfig = ''
+    # Fix blurryness in emacs
+    # https://emacs.stackexchange.com/a/83322
+    Xft.autohint: 1
+    Xft.antialias: 1
+    Xft.hinting: 1
+    Xft.hintstyle: hintslight
+    Xft.dpi: 96
+    Xft.rgba: rgb
+    Xft.lcdfilter: lcddefault
+  '';
 
   services = {
     kanshi.enable = true;
