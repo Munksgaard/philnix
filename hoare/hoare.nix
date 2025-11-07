@@ -41,7 +41,7 @@ in {
   fonts.packages = with pkgs; [
     noto-fonts
     noto-fonts-cjk-sans
-    noto-fonts-emoji
+    noto-fonts-color-emoji
     liberation_ttf
     fira-code
     fira-code-symbols
@@ -104,9 +104,7 @@ in {
   # should.
   system.stateVersion = "25.05"; # Did you read the comment?
 
-  environment = {
-    extraOutputsToInstall = [ "dev" ];
-  };
+  environment = { extraOutputsToInstall = [ "dev" ]; };
 
   programs.ssh.startAgent = true;
 
@@ -125,7 +123,7 @@ in {
     adwaita-icon-theme
 
     gnupg
-    pinentry
+    pinentry-gnome3
     pass-wayland
     pavucontrol
     upower

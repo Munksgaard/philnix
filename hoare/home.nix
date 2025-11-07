@@ -30,10 +30,14 @@
     feh.enable = true;
     git = {
       enable = true;
-      package = pkgs.gitAndTools.gitFull;
+      package = pkgs.gitFull;
       ignores = [ "*~" "*.swp" "*#" ];
-      userName = "Philip Munksgaard";
-      userEmail = "philip@munksgaard.me";
+      settings = {
+        user = {
+          name = "Philip Munksgaard";
+          email = "philip@munksgaard.me";
+        };
+      };
       signing = {
         key = "56584D0971AFE45FCC296BD74CE62A90EFC0B9B2";
         signByDefault = true;
