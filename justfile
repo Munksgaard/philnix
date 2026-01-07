@@ -38,10 +38,6 @@ update-photos:
 update-nixpkgs:
     nix flake update nixpkgs
 
-# Update digit flake input
-update-digit:
-    nix flake update digit
-
 # Update sorgenfri flake input
 update-sorgenfri:
     nix flake update sorgenfri
