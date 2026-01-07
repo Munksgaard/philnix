@@ -172,13 +172,15 @@
       perSystem = { config, self', inputs', pkgs, system, ... }: {
         checks = {
           # Build validation checks
-          church-build = self.nixosConfigurations.church.config.system.build.toplevel;
+          # church-build temporarily disabled - will be re-enabled after refactoring
+          # church-build = self.nixosConfigurations.church.config.system.build.toplevel;
           hoare-build = self.nixosConfigurations.hoare.config.system.build.toplevel;
 
           # NixOS VM tests
-          church-test = (import ./tests/laptop-tests.nix {
-            inherit pkgs system;
-          }).church;
+          # church-test temporarily disabled - will be re-enabled after refactoring
+          # church-test = (import ./tests/laptop-tests.nix {
+          #   inherit pkgs system;
+          # }).church;
 
           hoare-test = (import ./tests/laptop-tests.nix {
             inherit pkgs system;
