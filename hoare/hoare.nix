@@ -23,6 +23,8 @@ in {
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
+  networking.networkmanager.enable = true;
+
   networking.hostName = "hoare";
 
   networking.wireless.enable = true;
@@ -100,6 +102,7 @@ in {
       "video" # Support for using the video device
       "docker" # Can run docker images
       "plugdev" # can run udev rules
+      "networkmanager" # can control network manager
     ];
   };
 
