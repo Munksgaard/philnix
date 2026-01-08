@@ -26,6 +26,7 @@ jobs:
       - name: Install Nix
         uses: cachix/install-nix-action@v24
         with:
+          install_url: https://releases.nixos.org/nix/nix-2.31.1/install
           extra_nix_config: |
             experimental-features = nix-command flakes
 
@@ -59,6 +60,7 @@ jobs:
       - name: Install Nix
         uses: cachix/install-nix-action@v24
         with:
+          install_url: https://releases.nixos.org/nix/nix-2.31.1/install
           extra_nix_config: |
             experimental-features = nix-command flakes
 
