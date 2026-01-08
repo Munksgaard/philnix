@@ -161,10 +161,10 @@ in {
 
     bc
 
-    mosml
-    mlton
-    smlfmt
-    millet
+    # mosml
+    # mlton
+    # smlfmt
+    # millet
 
     sshfs
     sshpass
