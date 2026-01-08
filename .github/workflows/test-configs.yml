@@ -15,16 +15,10 @@ jobs:
         # Only test hoare for now - church will be re-enabled after refactoring
         config: [hoare]
     steps:
-      # Free up disk space - NixOS builds need lots of space
-      # https://github.com/easimon/maximize-build-space
-      - name: Free disk space
-        uses: easimon/maximize-build-space@v10
-        with:
-          remove-dotnet: 'true'
-          remove-android: 'true'
-          remove-haskell: 'true'
-          remove-codeql: 'true'
-          remove-docker-images: 'true'
+      # Aggressively free up disk space for NixOS builds (reclaims 65-130GB)
+      # https://github.com/wimpysworld/nothing-but-nix
+      - name: Maximize disk space for Nix
+        uses: wimpysworld/nothing-but-nix@main
 
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -32,7 +26,6 @@ jobs:
       - name: Install Nix
         uses: cachix/install-nix-action@v24
         with:
-          install_url: https://releases.nixos.org/nix/nix-2.31.1/install
           extra_nix_config: |
             experimental-features = nix-command flakes
 
@@ -56,15 +49,9 @@ jobs:
         # Only test hoare for now - church checks will be re-enabled after refactoring
         check: [hoare-build, hoare-test]
     steps:
-      # Free up disk space - NixOS builds need lots of space
-      - name: Free disk space
-        uses: easimon/maximize-build-space@v10
-        with:
-          remove-dotnet: 'true'
-          remove-android: 'true'
-          remove-haskell: 'true'
-          remove-codeql: 'true'
-          remove-docker-images: 'true'
+      # Aggressively free up disk space for NixOS builds (reclaims 65-130GB)
+      - name: Maximize disk space for Nix
+        uses: wimpysworld/nothing-but-nix@main
 
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -72,7 +59,6 @@ jobs:
       - name: Install Nix
         uses: cachix/install-nix-action@v24
         with:
-          install_url: https://releases.nixos.org/nix/nix-2.31.1/install
           extra_nix_config: |
             experimental-features = nix-command flakes
 
