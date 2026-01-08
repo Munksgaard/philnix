@@ -15,6 +15,17 @@ jobs:
         # Only test hoare for now - church will be re-enabled after refactoring
         config: [hoare]
     steps:
+      # Free up disk space - NixOS builds need lots of space
+      # https://github.com/easimon/maximize-build-space
+      - name: Free disk space
+        uses: easimon/maximize-build-space@v10
+        with:
+          remove-dotnet: 'true'
+          remove-android: 'true'
+          remove-haskell: 'true'
+          remove-codeql: 'true'
+          remove-docker-images: 'true'
+
       - name: Checkout repository
         uses: actions/checkout@v4
 
@@ -45,6 +56,16 @@ jobs:
         # Only test hoare for now - church checks will be re-enabled after refactoring
         check: [hoare-build, hoare-test]
     steps:
+      # Free up disk space - NixOS builds need lots of space
+      - name: Free disk space
+        uses: easimon/maximize-build-space@v10
+        with:
+          remove-dotnet: 'true'
+          remove-android: 'true'
+          remove-haskell: 'true'
+          remove-codeql: 'true'
+          remove-docker-images: 'true'
+
       - name: Checkout repository
         uses: actions/checkout@v4
 
