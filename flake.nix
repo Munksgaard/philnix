@@ -69,7 +69,7 @@
         {
 
           devShells."${system}".default =
-            pkgs.mkShell { buildInputs = [ pkgs.deploy-rs ]; };
+            pkgs.mkShell { buildInputs = [ pkgs.deploy-rs pkgs.just ]; };
 
           nixosConfigurations."munksgaard.me" = nixpkgs.lib.nixosSystem {
             system = "${system}";
