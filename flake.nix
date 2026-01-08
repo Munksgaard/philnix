@@ -167,5 +167,25 @@
             (system: deployLib: deployLib.deployChecks self.deploy)
             deploy-rs.lib;
         };
+
+      # Add configuration tests
+      perSystem = { config, self', inputs', pkgs, system, ... }: {
+        checks = {
+          # Build validation checks
+          # church-build temporarily disabled - will be re-enabled after refactoring
+          # church-build = self.nixosConfigurations.church.config.system.build.toplevel;
+          hoare-build = self.nixosConfigurations.hoare.config.system.build.toplevel;
+
+          # NixOS VM tests
+          # church-test temporarily disabled - will be re-enabled after refactoring
+          # church-test = (import ./tests/laptop-tests.nix {
+          #   inherit pkgs system;
+          # }).church;
+
+          hoare-test = (import ./tests/laptop-tests.nix {
+            inherit pkgs system;
+          }).hoare;
+        };
+      };
     };
 }
