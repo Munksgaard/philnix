@@ -200,9 +200,7 @@ The DWIM behaviour of this command is as follows:
 (use-package eat
   :ensure t
   :config
-  (add-hook 'eat-mode-hook (lambda () (setq show-trailing-whitespace nil)))
-  (add-to-list 'eat-semi-char-non-bound-keys [M-o])
-  (eat-update-semi-char-mode-map))
+  (add-hook 'eat-mode-hook (lambda () (setq show-trailing-whitespace nil))))
 
 (use-package notifications
   :ensure nil
@@ -229,7 +227,13 @@ The DWIM behaviour of this command is as follows:
 
 (use-package eglot
   :ensure t
-  :bind ("C-." . eglot-code-actions))
+  :bind ("C-." . eglot-code-actions)
+  :config
+  (add-to-list 'eglot-server-programs
+               '(elixir-ts-mode . ("elixir-ls")))
+  (add-to-list 'eglot-server-programs
+               '(heex-ts-mode . ("elixir-ls")))
+  :hook (heex-ts-mode . 'eglot-ensure))
 
 (use-package haskell-mode
         :ensure t
@@ -443,3 +447,9 @@ The DWIM behaviour of this command is as follows:
   (completion-styles '(orderless basic))
   (completion-category-defaults nil)
   (completion-category-overrides '((file (styles partial-completion)))))
+
+(use-package fontaine
+  :ensure t)
+
+(use-package majutsu
+  :vc (:url "https://github.com/0WD0/majutsu"))
