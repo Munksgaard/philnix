@@ -12,7 +12,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        config: [church, hoare]
+        config: [church, hoare, '"munksgaard.me"', '"photos.munksgaard.me"']
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -79,3 +79,5 @@ jobs:
           echo "All NixOS configurations built and tested successfully!"
           echo "church configuration: PASSED"
           echo "hoare configuration: PASSED"
+          echo "munksgaard.me configuration: PASSED"
+          echo "photos.munksgaard.me configuration: PASSED"

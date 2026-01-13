@@ -9,7 +9,7 @@ let
   livebook = pkgs.livebook.override { elixir = my_elixir; };
 
 in {
-  imports = [ ./wl-mirror.nix ];
+  imports = [ ./wl-mirror.nix ../common ];
 
   options.laptop = {
     smlTools.enable = mkEnableOption "SML development tools (mosml, mlton, smlfmt, millet)";
@@ -18,12 +18,9 @@ in {
   };
 
   config = {
-    nix = {
-      package = pkgs.nixVersions.stable;
-      extraOptions = ''
-        experimental-features = nix-command flakes
-      '';
-    };
+    # Enable common module (but disable GC for laptops)
+    common.enable = true;
+    common.enableGC = false;
 
     # Allow unfree modules
     nixpkgs.config.allowUnfree = true;
@@ -35,17 +32,6 @@ in {
 
     networking.networkmanager.enable = true;
     networking.firewall.enable = false;
-
-    # Select internationalisation properties.
-    console = {
-      font = "Lat2-Terminus16";
-      keyMap = "us";
-    };
-
-    i18n = { defaultLocale = "en_US.UTF-8"; };
-
-    # Set your time zone.
-    time.timeZone = "Europe/Copenhagen";
 
     fonts.packages = with pkgs; [
       noto-fonts
@@ -62,9 +48,6 @@ in {
     ];
 
     programs.gnupg.agent = { enable = true; };
-
-    # Enable the OpenSSH daemon.
-    services.openssh.enable = true;
 
     # Enable CUPS to print documents.
     services.printing.enable = true;
@@ -119,10 +102,9 @@ in {
     programs.steam.enable = true;
 
     # List packages installed in system profile.
+    # Additional packages (base utils like git, vim, tmux, htop, wget, curl, ripgrep, fd are in common)
     environment.systemPackages = with pkgs;
       [
-        wget
-        vim
         dmenu
         xdg-utils
 
@@ -146,7 +128,6 @@ in {
         glibc
         entr
         file
-        htop
         killall
         mpv
 

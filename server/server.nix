@@ -1,12 +1,15 @@
 { config, pkgs, lib, geomyidae, munksgaard-gopher, ... }:
 
 {
-  imports = [ # Include the results of the hardware scan.
+  imports = [
     ./hardware-configuration.nix
     geomyidae.nixosModule
+    ../modules/server
   ];
 
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  # Enable server module with custom ports
+  server.enable = true;
+  server.allowedTCPPorts = [ 22 70 79 80 443 ];
 
   age.secrets.matrix-extra-conf = {
     file = ../secrets/matrix-extra-conf.age;
@@ -33,16 +36,9 @@
   networking = {
     hostName = "munksgaard-me";
     domain = "munksgaard.me";
+    useDHCP = false;
+    interfaces.ens3.useDHCP = true;
   };
-
-  # Set your time zone.
-  time.timeZone = "Europe/Copenhagen";
-
-  networking.useDHCP = false;
-  networking.interfaces.ens3.useDHCP = true;
-
-  # Select internationalisation properties.
-  i18n.defaultLocale = "en_US.UTF-8";
 
   # system.autoUpgrade.enable = true;
   # system.autoUpgrade.channel = "https://nixos.org/channels/nixos-21.05";
@@ -56,16 +52,6 @@
     ];
   };
 
-  environment.systemPackages = with pkgs; [ git sudo tmux htop yggdrasil ];
-
-  # Open ports in the firewall.
-  networking.firewall.allowedTCPPorts = [
-    22 # ssh
-    70 # gopher
-    79 # finger
-    80 # http
-    443 # https
-  ];
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
@@ -77,13 +63,6 @@
 
   # Initial empty root password for easy login:
   users.users.root.initialHashedPassword = "";
-  services.openssh.settings.PermitRootLogin = "prohibit-password";
-
-  services.openssh.enable = true;
-
-  users.users.root.openssh.authorizedKeys.keys = [
-    "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINlapwwXZyp/qTm1y9CA5WLVL33TAAznj5FkZW4/Ftvu"
-  ];
 
   security.acme = {
     defaults.email = "philip@munksgaard.me";
@@ -339,8 +318,6 @@
     };
   };
 
-  services.fail2ban.enable = true;
-
   systemd = {
     timers.gitea-dump = {
       wantedBy = [ "timers.target" ];
@@ -369,26 +346,6 @@
       path = [ pkgs.gitea ];
     };
   };
-
-  nix.gc = {
-    automatic = true;
-    dates = "weekly";
-    options = "--delete-older-than 5d";
-  };
-
-  services.yggdrasil = {
-    enable = true;
-    persistentKeys = true;
-
-    settings = {
-      Peers = [
-        "tls://200:9287:bc2e:cf7b:df22:8f0d:d6ce:2715" # church
-        "tls://yggdrasil.su:62586" # Why is this needed?
-      ];
-    };
-  };
-
-  services.journald.extraConfig = "SystemMaxUse=1G";
 
   services.geomyidae = {
     enable = true;
