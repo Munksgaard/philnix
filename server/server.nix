@@ -1,4 +1,11 @@
-{ config, pkgs, lib, geomyidae, munksgaard-gopher, ... }:
+{
+  config,
+  pkgs,
+  lib,
+  geomyidae,
+  munksgaard-gopher,
+  ...
+}:
 
 {
   imports = [
@@ -9,7 +16,13 @@
 
   # Enable server module with custom ports
   server.enable = true;
-  server.allowedTCPPorts = [ 22 70 79 80 443 ];
+  server.allowedTCPPorts = [
+    22
+    70
+    79
+    80
+    443
+  ];
 
   age.secrets.matrix-extra-conf = {
     file = ../secrets/matrix-extra-conf.age;
@@ -19,8 +32,7 @@
     file = ../secrets/gitea-mailer-password.age;
     owner = "gitea";
   };
-  age.secrets.vaultwarden-environment.file =
-    ../secrets/vaultwarden-environment.age;
+  age.secrets.vaultwarden-environment.file = ../secrets/vaultwarden-environment.age;
   age.secrets.foundry-password = {
     file = ../secrets/foundry-password.age;
     owner = "nginx";
@@ -51,7 +63,6 @@
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINlapwwXZyp/qTm1y9CA5WLVL33TAAznj5FkZW4/Ftvu"
     ];
   };
-
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
@@ -101,8 +112,7 @@
         forceSSL = true;
         enableACME = true;
         locations."/" = {
-          proxyPass =
-            "http://localhost:8222"; # changed the default rocket port due to some conflict
+          proxyPass = "http://localhost:8222"; # changed the default rocket port due to some conflict
           proxyWebsockets = true;
         };
         locations."/notifications/hub" = {
@@ -131,26 +141,36 @@
           '';
         };
 
-        locations."= /.well-known/matrix/server".extraConfig = let
-          # use 443 instead of the default 8448 port to unite
-          # the client-server and server-server port for simplicity
-          server = { "m.server" = "matrix.munksgaard.me:443"; };
-        in ''
-          add_header Content-Type application/json;
-          return 200 '${builtins.toJSON server}';
-        '';
+        locations."= /.well-known/matrix/server".extraConfig =
+          let
+            # use 443 instead of the default 8448 port to unite
+            # the client-server and server-server port for simplicity
+            server = {
+              "m.server" = "matrix.munksgaard.me:443";
+            };
+          in
+          ''
+            add_header Content-Type application/json;
+            return 200 '${builtins.toJSON server}';
+          '';
 
-        locations."= /.well-known/matrix/client".extraConfig = let
-          client = {
-            "m.homeserver" = { "base_url" = "https://matrix.munksgaard.me"; };
-            "m.identity_server" = { "base_url" = "https://vector.im"; };
-          };
-          # ACAO required to allow element-web on any URL to request this json file
-        in ''
-          add_header Content-Type application/json;
-          add_header Access-Control-Allow-Origin *;
-          return 200 '${builtins.toJSON client}';
-        '';
+        locations."= /.well-known/matrix/client".extraConfig =
+          let
+            client = {
+              "m.homeserver" = {
+                "base_url" = "https://matrix.munksgaard.me";
+              };
+              "m.identity_server" = {
+                "base_url" = "https://vector.im";
+              };
+            };
+            # ACAO required to allow element-web on any URL to request this json file
+          in
+          ''
+            add_header Content-Type application/json;
+            add_header Access-Control-Allow-Origin *;
+            return 200 '${builtins.toJSON client}';
+          '';
       };
 
       "git.munksgaard.me" = {
@@ -190,17 +210,24 @@
     enable = true;
     settings = {
       server_name = "matrix.munksgaard.me";
-      listeners = [{
-        port = 8008;
-        bind_addresses = [ "::1" ];
-        type = "http";
-        tls = false;
-        x_forwarded = true;
-        resources = [{
-          names = [ "client" "federation" ];
-          compress = false;
-        }];
-      }];
+      listeners = [
+        {
+          port = 8008;
+          bind_addresses = [ "::1" ];
+          type = "http";
+          tls = false;
+          x_forwarded = true;
+          resources = [
+            {
+              names = [
+                "client"
+                "federation"
+              ];
+              compress = false;
+            }
+          ];
+        }
+      ];
       public_baseurl = "https://matrix.munksgaard.me/";
     };
     extraConfigFiles = [ "${config.age.secrets.matrix-extra-conf.path}" ];
@@ -258,10 +285,12 @@
         LC_CTYPE = "C";
     '';
     ensureDatabases = [ "bitwarden" ];
-    ensureUsers = [{
-      name = "bitwarden";
-      ensureDBOwnership = true;
-    }];
+    ensureUsers = [
+      {
+        name = "bitwarden";
+        ensureDBOwnership = true;
+      }
+    ];
     settings = {
       log_connections = true;
       log_statement = "all";
@@ -354,7 +383,6 @@
   };
 
   services.cloud-init.enable = true;
-
 
   virtualisation = {
     podman = {

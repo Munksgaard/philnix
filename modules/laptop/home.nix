@@ -1,11 +1,23 @@
-{ pkgs, homeStateVersion, ... }: {
-  home.packages = with pkgs; [ atool fd httpie wget nix-init ];
+{ pkgs, homeStateVersion, ... }:
+{
+  home.packages = with pkgs; [
+    atool
+    fd
+    httpie
+    wget
+    nix-init
+  ];
 
   # The state version is required and should stay at the version you
   # originally installed.
   home.stateVersion = homeStateVersion;
 
-  imports = [ ./alacritty.nix ./emacs.nix ./firefox.nix ./sway.nix ];
+  imports = [
+    ./alacritty.nix
+    ./emacs.nix
+    ./firefox.nix
+    ./sway.nix
+  ];
 
   programs = {
     bash = {
@@ -31,7 +43,11 @@
     git = {
       enable = true;
       package = pkgs.gitFull;
-      ignores = [ "*~" "*.swp" "*#" ];
+      ignores = [
+        "*~"
+        "*.swp"
+        "*#"
+      ];
       settings = {
         user = {
           name = "Philip Munksgaard";
@@ -50,14 +66,16 @@
       enable = true;
 
       clock24 = true;
-      plugins = with pkgs.tmuxPlugins; [{
-        plugin = dracula;
-        extraConfig = ''
-          set -g @dracula-show-powerline true
-          set -g @dracula-show-battery false
-          set -g @dracula-plugins " "
-        '';
-      }];
+      plugins = with pkgs.tmuxPlugins; [
+        {
+          plugin = dracula;
+          extraConfig = ''
+            set -g @dracula-show-powerline true
+            set -g @dracula-show-battery false
+            set -g @dracula-plugins " "
+          '';
+        }
+      ];
 
       sensibleOnTop = true;
 

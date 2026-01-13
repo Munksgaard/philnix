@@ -8,7 +8,9 @@
     inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  inputs.geomyidae = { url = "sourcehut:~munksgaard/geomyidae-flake"; };
+  inputs.geomyidae = {
+    url = "sourcehut:~munksgaard/geomyidae-flake";
+  };
 
   inputs.munksgaard-gopher = {
     url = "sourcehut:~munksgaard/munksgaard.me-gopher";
@@ -26,7 +28,9 @@
     inputs.home-manager.follows = "home-manager";
   };
 
-  inputs.flake-parts = { url = "github:hercules-ci/flake-parts"; };
+  inputs.flake-parts = {
+    url = "github:hercules-ci/flake-parts";
+  };
 
   inputs.home-manager = {
     url = "github:nix-community/home-manager";
@@ -44,8 +48,20 @@
 
   inputs.nixos-hardware.url = "github:NixOS/nixos-hardware/master";
 
-  outputs = inputs@{ flake-parts, self, nixpkgs, deploy-rs, geomyidae, agenix
-    , munksgaard-gopher, photos, home-manager, sorgenfri, ... }:
+  outputs =
+    inputs@{
+      flake-parts,
+      self,
+      nixpkgs,
+      deploy-rs,
+      geomyidae,
+      agenix,
+      munksgaard-gopher,
+      photos,
+      home-manager,
+      sorgenfri,
+      ...
+    }:
     let
       system = "x86_64-linux";
       pkgs = import nixpkgs { inherit system; };
@@ -62,19 +78,28 @@
         ];
       };
 
-    in flake-parts.lib.mkFlake { inherit inputs; } {
+    in
+    flake-parts.lib.mkFlake { inherit inputs; } {
       systems = [ system ];
       flake =
         # nixpkgs with deploy-rs overlay but force the nixpkgs package
         {
 
-          devShells."${system}".default =
-            pkgs.mkShell { buildInputs = [ pkgs.deploy-rs pkgs.just pkgs.gh ]; };
+          devShells."${system}".default = pkgs.mkShell {
+            buildInputs = [
+              pkgs.deploy-rs
+              pkgs.just
+              pkgs.gh
+            ];
+          };
 
           nixosConfigurations."munksgaard.me" = nixpkgs.lib.nixosSystem {
             system = "${system}";
             specialArgs = inputs;
-            modules = [ server/server.nix agenix.nixosModules.default ];
+            modules = [
+              server/server.nix
+              agenix.nixosModules.default
+            ];
           };
 
           nixosConfigurations."photos.munksgaard.me" = nixpkgs.lib.nixosSystem {
@@ -95,8 +120,7 @@
             profiles.system = {
               sshUser = "root";
               user = "root";
-              path = deployPkgs.deploy-rs.lib.activate.nixos
-                self.nixosConfigurations."munksgaard.me";
+              path = deployPkgs.deploy-rs.lib.activate.nixos self.nixosConfigurations."munksgaard.me";
             };
           };
 
@@ -106,8 +130,7 @@
             profiles.system = {
               sshUser = "root";
               user = "root";
-              path = deployPkgs.deploy-rs.lib.activate.nixos
-                self.nixosConfigurations."photos.munksgaard.me";
+              path = deployPkgs.deploy-rs.lib.activate.nixos self.nixosConfigurations."photos.munksgaard.me";
               magicRollback = false;
             };
           };
@@ -117,17 +140,20 @@
             specialArgs = inputs;
             modules = [
               {
-                nixpkgs.overlays =
-                  [ inputs.nur.overlay (import self.inputs.emacs-overlay) ];
+                nixpkgs.overlays = [
+                  inputs.nur.overlay
+                  (import self.inputs.emacs-overlay)
+                ];
               }
               church/church.nix
               home-manager.nixosModules.default
               {
                 home-manager.useGlobalPkgs = true;
                 home-manager.useUserPackages = true;
-                home-manager.extraSpecialArgs = { homeStateVersion = "23.11"; };
-                home-manager.users.munksgaard.imports =
-                  [ ./modules/laptop/home.nix ];
+                home-manager.extraSpecialArgs = {
+                  homeStateVersion = "23.11";
+                };
+                home-manager.users.munksgaard.imports = [ ./modules/laptop/home.nix ];
               }
               inputs.nixos-hardware.nixosModules.lenovo-thinkpad-x390
             ];
@@ -138,17 +164,20 @@
             specialArgs = inputs;
             modules = [
               {
-                nixpkgs.overlays =
-                  [ inputs.nur.overlay (import self.inputs.emacs-overlay) ];
+                nixpkgs.overlays = [
+                  inputs.nur.overlay
+                  (import self.inputs.emacs-overlay)
+                ];
               }
               hoare/hoare.nix
               home-manager.nixosModules.default
               {
                 home-manager.useGlobalPkgs = true;
                 home-manager.useUserPackages = true;
-                home-manager.extraSpecialArgs = { homeStateVersion = "25.05"; };
-                home-manager.users.munksgaard.imports =
-                  [ ./modules/laptop/home.nix ];
+                home-manager.extraSpecialArgs = {
+                  homeStateVersion = "25.05";
+                };
+                home-manager.users.munksgaard.imports = [ ./modules/laptop/home.nix ];
               }
               inputs.nixos-hardware.nixosModules.framework-amd-ai-300-series
             ];
@@ -167,28 +196,37 @@
           # };
 
           # This is highly advised, and will prevent many possible mistakes
-          checks = builtins.mapAttrs
-            (system: deployLib: deployLib.deployChecks self.deploy)
-            deploy-rs.lib;
+          checks = builtins.mapAttrs (system: deployLib: deployLib.deployChecks self.deploy) deploy-rs.lib;
         };
 
       # Add configuration tests
-      perSystem = { config, self', inputs', pkgs, system, ... }: {
-        checks = {
-          # Build validation checks
-          church-build =
-            self.nixosConfigurations.church.config.system.build.toplevel;
-          hoare-build =
-            self.nixosConfigurations.hoare.config.system.build.toplevel;
+      perSystem =
+        {
+          config,
+          self',
+          inputs',
+          pkgs,
+          system,
+          ...
+        }:
+        {
+          formatter = pkgs.nixfmt;
 
-          # NixOS VM tests
-          hoare-test = (import ./tests/laptop-tests.nix {
-            inherit pkgs system;
-          }).hoare;
-          church-test = (import ./tests/laptop-tests.nix {
-            inherit pkgs system;
-          }).church;
+          checks = {
+            # Build validation checks
+            church-build = self.nixosConfigurations.church.config.system.build.toplevel;
+            hoare-build = self.nixosConfigurations.hoare.config.system.build.toplevel;
+
+            # NixOS VM tests
+            hoare-test =
+              (import ./tests/laptop-tests.nix {
+                inherit pkgs system;
+              }).hoare;
+            church-test =
+              (import ./tests/laptop-tests.nix {
+                inherit pkgs system;
+              }).church;
+          };
         };
-      };
     };
 }

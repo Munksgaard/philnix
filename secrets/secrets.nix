@@ -5,13 +5,43 @@ let
   sorgenfri-test-root = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJ8Q/6udC5yG6i5FoYLjhGIaLc+9u5Pe+iEWSPWWYD/k root@sorgenfri-test";
 in
 {
-  "matrix-extra-conf.age".publicKeys = [ munksgaard server-root ];
-  "gitea-mailer-password.age".publicKeys = [ munksgaard server-root ];
-  "vaultwarden-environment.age".publicKeys = [ munksgaard server-root ];
-  "photos-secret-key.age".publicKeys = [ munksgaard server-root photos-root ];
-  "photos-secret-key-base.age".publicKeys = [ munksgaard sorgenfri-test-root ];
-  "photos-smtp-password.age".publicKeys = [ munksgaard server-root photos-root sorgenfri-test-root ];
-  "foundry-password.age".publicKeys = [ munksgaard server-root ];
-  "sorgenfri-s3-access-key.age".publicKeys = [  munksgaard sorgenfri-test-root ];
-  "sorgenfri-s3-secret-access-key.age".publicKeys = [  munksgaard sorgenfri-test-root ];
+  "matrix-extra-conf.age".publicKeys = [
+    munksgaard
+    server-root
+  ];
+  "gitea-mailer-password.age".publicKeys = [
+    munksgaard
+    server-root
+  ];
+  "vaultwarden-environment.age".publicKeys = [
+    munksgaard
+    server-root
+  ];
+  "photos-secret-key.age".publicKeys = [
+    munksgaard
+    server-root
+    photos-root
+  ];
+  "photos-secret-key-base.age".publicKeys = [
+    munksgaard
+    sorgenfri-test-root
+  ];
+  "photos-smtp-password.age".publicKeys = [
+    munksgaard
+    server-root
+    photos-root
+    sorgenfri-test-root
+  ];
+  "foundry-password.age".publicKeys = [
+    munksgaard
+    server-root
+  ];
+  "sorgenfri-s3-access-key.age".publicKeys = [
+    munksgaard
+    sorgenfri-test-root
+  ];
+  "sorgenfri-s3-secret-access-key.age".publicKeys = [
+    munksgaard
+    sorgenfri-test-root
+  ];
 }

@@ -1,4 +1,10 @@
-{ pkgs, lib, config, ... }: {
+{
+  pkgs,
+  lib,
+  config,
+  ...
+}:
+{
 
   wayland.windowManager.sway = {
     enable = true;
@@ -11,8 +17,7 @@
       down = "j";
       up = "k";
       right = "l";
-      menu =
-        "${pkgs.dmenu}/bin/dmenu_path | ${pkgs.dmenu}/bin/dmenu | ${pkgs.findutils}/bin/xargs swaymsg exec --";
+      menu = "${pkgs.dmenu}/bin/dmenu_path | ${pkgs.dmenu}/bin/dmenu | ${pkgs.findutils}/bin/xargs swaymsg exec --";
       startup = [
         # Launch Firefox on start
         { command = "firefox"; }
@@ -41,41 +46,46 @@
         ];
       };
 
-      bars = [{
-        position = "top";
+      bars = [
+        {
+          position = "top";
 
-        # When the status_command prints a new line to stdout, swaybar updates.
-        # The default just shows the current date and time.
-        # status_command while date +'%Y-%m-%d %l:%M:%S %p'; do sleep 1; done
-        # statusCommand = "while ~/.config/sway/sway_bar.sh; do sleep 1; done";
-        # statusCommand = "while ${./sway_bar.sh}; do sleep 1; done";
-        statusCommand = "${pkgs.i3status}/bin/i3status";
-        # statusCommand = "${./sway_bar.sh}";
+          # When the status_command prints a new line to stdout, swaybar updates.
+          # The default just shows the current date and time.
+          # status_command while date +'%Y-%m-%d %l:%M:%S %p'; do sleep 1; done
+          # statusCommand = "while ~/.config/sway/sway_bar.sh; do sleep 1; done";
+          # statusCommand = "while ${./sway_bar.sh}; do sleep 1; done";
+          statusCommand = "${pkgs.i3status}/bin/i3status";
+          # statusCommand = "${./sway_bar.sh}";
 
-        colors = {
-          statusline = "#ffffff";
-          background = "#323232";
-          inactiveWorkspace = {
-            border = "#32323200";
-            background = "#32323200";
-            text = "#5c5c5c";
+          colors = {
+            statusline = "#ffffff";
+            background = "#323232";
+            inactiveWorkspace = {
+              border = "#32323200";
+              background = "#32323200";
+              text = "#5c5c5c";
+            };
+          };
+        }
+      ];
+
+      bindswitches =
+        let
+          laptop = "eDP-1";
+        in
+        {
+          "lid:on" = {
+            reload = true;
+            locked = true;
+            action = "output ${laptop} disable";
+          };
+          "lid:off" = {
+            reload = true;
+            locked = true;
+            action = "output ${laptop} enable";
           };
         };
-      }];
-
-      bindswitches = let laptop = "eDP-1";
-      in {
-        "lid:on" = {
-          reload = true;
-          locked = true;
-          action = "output ${laptop} disable";
-        };
-        "lid:off" = {
-          reload = true;
-          locked = true;
-          action = "output ${laptop} enable";
-        };
-      };
 
       keybindings = lib.mkOptionDefault {
         # Start a terminal
@@ -118,19 +128,13 @@
         "${modifier}+Shift+Up" = "move up";
         "${modifier}+Shift+Right" = "move right";
 
-        "XF86MonBrightnessDown" =
-          "exec ${pkgs.brightnessctl}/bin/brightnessctl set 10%-";
-        "XF86MonBrightnessUp" =
-          "exec ${pkgs.brightnessctl}/bin/brightnessctl set 10%+";
+        "XF86MonBrightnessDown" = "exec ${pkgs.brightnessctl}/bin/brightnessctl set 10%-";
+        "XF86MonBrightnessUp" = "exec ${pkgs.brightnessctl}/bin/brightnessctl set 10%+";
 
-        "XF86AudioRaiseVolume" =
-          "exec ${pkgs.wireplumber}/bin/wpctl set-volume @DEFAULT_SINK@ 5%+";
-        "XF86AudioLowerVolume" =
-          "exec ${pkgs.wireplumber}/bin/wpctl set-volume @DEFAULT_SINK@ 5%-";
-        "XF86AudioMute" =
-          "exec ${pkgs.wireplumber}/bin/wpctl set-mute @DEFAULT_SINK@ toggle";
-        "XF86AudioMicMute" =
-          "exec ${pkgs.wireplumber}/bin/wpctl set-mute @DEFAULT_SOURCE@ toggle";
+        "XF86AudioRaiseVolume" = "exec ${pkgs.wireplumber}/bin/wpctl set-volume @DEFAULT_SINK@ 5%+";
+        "XF86AudioLowerVolume" = "exec ${pkgs.wireplumber}/bin/wpctl set-volume @DEFAULT_SINK@ 5%-";
+        "XF86AudioMute" = "exec ${pkgs.wireplumber}/bin/wpctl set-mute @DEFAULT_SINK@ toggle";
+        "XF86AudioMicMute" = "exec ${pkgs.wireplumber}/bin/wpctl set-mute @DEFAULT_SOURCE@ toggle";
 
         "Print" = ''
           exec ${pkgs.grim}/bin/grim -g "$(${pkgs.slurp}/bin/slurp)" - \

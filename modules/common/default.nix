@@ -1,10 +1,16 @@
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 
 with lib;
 
 let
   cfg = config.common;
-in {
+in
+{
   options.common = {
     enable = mkEnableOption "common configuration shared by all devices";
 

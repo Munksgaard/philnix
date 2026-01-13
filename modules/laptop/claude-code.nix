@@ -2,7 +2,7 @@
   trivialBuild,
   fetchFromGitHub,
   all-the-icons,
-  claude-code
+  claude-code,
 }:
 trivialBuild rec {
   pname = "claude-code";

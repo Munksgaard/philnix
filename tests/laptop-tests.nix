@@ -1,4 +1,7 @@
-{ pkgs ? import <nixpkgs> { }, system ? "x86_64-linux" }:
+{
+  pkgs ? import <nixpkgs> { },
+  system ? "x86_64-linux",
+}:
 
 let
   # Import the testing framework from nixpkgs
@@ -7,13 +10,16 @@ let
   };
 
   # Helper to create a laptop configuration test
-  makeLaptopTest = { name, configuration }:
+  makeLaptopTest =
+    { name, configuration }:
     makeTest.makeTest {
       inherit name;
 
-      nodes.machine = { ... }: {
-        imports = [ configuration ];
-      };
+      nodes.machine =
+        { ... }:
+        {
+          imports = [ configuration ];
+        };
 
       testScript = ''
         machine.start()
@@ -66,7 +72,8 @@ let
       '';
     };
 
-in {
+in
+{
   # Note: These tests validate that configurations build and basic structure is correct
   # They use dummy hardware-configuration.nix since we're not testing actual hardware
 

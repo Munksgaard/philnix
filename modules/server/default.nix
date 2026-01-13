@@ -1,11 +1,17 @@
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 
 with lib;
 
 let
   cfg = config.server;
   commonCfg = config.common;
-in {
+in
+{
   imports = [ ../common ];
 
   options.server = {
@@ -25,7 +31,11 @@ in {
 
     allowedTCPPorts = mkOption {
       type = types.listOf types.port;
-      default = [ 22 80 443 ];
+      default = [
+        22
+        80
+        443
+      ];
       description = "Allowed TCP ports in firewall";
     };
   };
