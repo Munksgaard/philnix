@@ -1,9 +1,9 @@
-{ pkgs, ... }: {
+{ pkgs, homeStateVersion, ... }: {
   home.packages = with pkgs; [ atool fd httpie wget nix-init ];
 
   # The state version is required and should stay at the version you
   # originally installed.
-  home.stateVersion = "23.11";
+  home.stateVersion = homeStateVersion;
 
   imports = [ ./alacritty.nix ./emacs.nix ./firefox.nix ./sway.nix ];
 
@@ -32,8 +32,12 @@
       enable = true;
       package = pkgs.gitFull;
       ignores = [ "*~" "*.swp" "*#" ];
-      userName = "Philip Munksgaard";
-      userEmail = "philip@munksgaard.me";
+      settings = {
+        user = {
+          name = "Philip Munksgaard";
+          email = "philip@munksgaard.me";
+        };
+      };
       signing = {
         key = "56584D0971AFE45FCC296BD74CE62A90EFC0B9B2";
         signByDefault = true;
@@ -78,7 +82,20 @@
       defaultCursor = "Adwaita";
     };
     sway.enable = true;
+    gtk.enable = true;
   };
+
+  xresources.extraConfig = ''
+    # Fix blurryness in emacs
+    # https://emacs.stackexchange.com/a/83322
+    Xft.autohint: 1
+    Xft.antialias: 1
+    Xft.hinting: 1
+    Xft.hintstyle: hintslight
+    Xft.dpi: 96
+    Xft.rgba: rgb
+    Xft.lcdfilter: lcddefault
+  '';
 
   services = {
     kanshi.enable = true;
