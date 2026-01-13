@@ -42,7 +42,7 @@
   time.timeZone = "Europe/Copenhagen";
 
   # Select internationalisation properties.
-  i18n.defaultLocale = "en_DK.utf8";
+  i18n.defaultLocale = "en_DK.UTF-8";
 
   # Configure keymap in X11
   services.xserver = {
