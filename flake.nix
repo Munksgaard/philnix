@@ -125,7 +125,9 @@
               {
                 home-manager.useGlobalPkgs = true;
                 home-manager.useUserPackages = true;
-                home-manager.users.munksgaard.imports = [ ./church/home.nix ];
+                home-manager.extraSpecialArgs = { homeStateVersion = "23.11"; };
+                home-manager.users.munksgaard.imports =
+                  [ ./modules/laptop/home.nix ];
               }
               inputs.nixos-hardware.nixosModules.lenovo-thinkpad-x390
             ];
@@ -144,7 +146,9 @@
               {
                 home-manager.useGlobalPkgs = true;
                 home-manager.useUserPackages = true;
-                home-manager.users.munksgaard.imports = [ ./hoare/home.nix ];
+                home-manager.extraSpecialArgs = { homeStateVersion = "25.05"; };
+                home-manager.users.munksgaard.imports =
+                  [ ./modules/laptop/home.nix ];
               }
               inputs.nixos-hardware.nixosModules.framework-amd-ai-300-series
             ];
@@ -172,19 +176,18 @@
       perSystem = { config, self', inputs', pkgs, system, ... }: {
         checks = {
           # Build validation checks
-          # church-build temporarily disabled - will be re-enabled after refactoring
-          # church-build = self.nixosConfigurations.church.config.system.build.toplevel;
-          hoare-build = self.nixosConfigurations.hoare.config.system.build.toplevel;
+          church-build =
+            self.nixosConfigurations.church.config.system.build.toplevel;
+          hoare-build =
+            self.nixosConfigurations.hoare.config.system.build.toplevel;
 
           # NixOS VM tests
-          # church-test temporarily disabled - will be re-enabled after refactoring
-          # church-test = (import ./tests/laptop-tests.nix {
-          #   inherit pkgs system;
-          # }).church;
-
           hoare-test = (import ./tests/laptop-tests.nix {
             inherit pkgs system;
           }).hoare;
+          church-test = (import ./tests/laptop-tests.nix {
+            inherit pkgs system;
+          }).church;
         };
       };
     };
