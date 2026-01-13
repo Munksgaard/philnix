@@ -2,9 +2,9 @@ name: Test NixOS Configurations
 
 on:
   push:
-    branches: [ main, claude/* ]
+    branches: [ master, claude/* ]
   pull_request:
-    branches: [ main ]
+    branches: [ master ]
 
 jobs:
   test-builds:
