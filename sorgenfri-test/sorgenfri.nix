@@ -29,7 +29,7 @@
   time.timeZone = "Europe/Copenhagen";
 
   # Select internationalisation properties.
-  i18n.defaultLocale = "en_DK.utf8";
+  i18n.defaultLocale = "en_DK.UTF-8";
 
   users.users.root.openssh.authorizedKeys.keys = [
     "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINlapwwXZyp/qTm1y9CA5WLVL33TAAznj5FkZW4/Ftvu"

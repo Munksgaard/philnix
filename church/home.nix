@@ -30,7 +30,7 @@
     feh.enable = true;
     git = {
       enable = true;
-      package = pkgs.gitAndTools.gitFull;
+      package = pkgs.gitFull;
       ignores = [ "*~" "*.swp" "*#" ];
       userName = "Philip Munksgaard";
       userEmail = "philip@munksgaard.me";

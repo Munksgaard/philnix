@@ -1,0 +1,83 @@
+name: Test NixOS Configurations
+
+on:
+  push:
+    branches: [ main, claude/* ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  test-builds:
+    name: Build NixOS Configurations
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        # Only test hoare for now - church will be re-enabled after refactoring
+        config: [hoare]
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+
+      - uses: wimpysworld/nothing-but-nix@main
+
+      - name: Install Nix
+        uses: DeterminateSystems/nix-installer-action@main
+
+      - name: Get Nix version
+        run: |
+          nix --version
+
+      - name: Build ${{ matrix.config }} configuration
+        run: |
+          nix build .#nixosConfigurations.${{ matrix.config }}.config.system.build.toplevel \
+            --show-trace \
+            --print-build-logs
+
+      - name: Report build size
+        run: |
+          SIZE=$(du -sh result | cut -f1)
+          echo "✅ ${{ matrix.config }} configuration built successfully (size: $SIZE)"
+
+  test-checks:
+    name: Run NixOS Tests
+    runs-on: ubuntu-latest
+    needs: test-builds
+    strategy:
+      matrix:
+        # Only test hoare for now - church checks will be re-enabled after refactoring
+        check: [hoare-build, hoare-test]
+    steps:
+      # Aggressively free up disk space for NixOS builds (reclaims 65-130GB)
+      - name: Maximize disk space for Nix
+        uses: wimpysworld/nothing-but-nix@main
+
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install Nix
+        uses: cachix/install-nix-action@v24
+        with:
+          install_url: https://releases.nixos.org/nix/nix-2.31.1/install
+          extra_nix_config: |
+            experimental-features = nix-command flakes
+
+      - name: Run ${{ matrix.check }}
+        run: |
+          nix build .#checks.x86_64-linux.${{ matrix.check }} \
+            --show-trace \
+            --print-build-logs
+
+      - name: Report success
+        run: echo "✅ ${{ matrix.check }} passed successfully!"
+
+  summary:
+    name: Test Summary
+    runs-on: ubuntu-latest
+    needs: [test-builds, test-checks]
+    steps:
+      - name: Report overall success
+        run: |
+          echo "🎉 All NixOS configurations built and tested successfully!"
+          echo "✅ hoare configuration: PASSED"
+          echo "Note: church tests temporarily disabled until refactoring updates the config"

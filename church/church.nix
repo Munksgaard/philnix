@@ -121,14 +121,14 @@ in {
 
   # Stuff to make OpenCL work properly...
   nixpkgs.config.packageOverrides = pkgs: {
-    vaapiIntel = pkgs.vaapiIntel.override { enableHybridCodec = true; };
+    vaapiIntel = pkgs.intel-vaapi-driver.override { enableHybridCodec = true; };
   };
 
   hardware.graphics = {
     enable = true;
     extraPackages = with pkgs; [
-      vaapiIntel
-      vaapiVdpau
+      intel-vaapi-driver
+      libva-vdpau-driver
       libvdpau-va-gl
       intel-media-driver
       intel-ocl
