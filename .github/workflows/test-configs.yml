@@ -15,11 +15,6 @@ jobs:
         # Only test hoare for now - church will be re-enabled after refactoring
         config: [hoare]
     steps:
-      # Aggressively free up disk space for NixOS builds (reclaims 65-130GB)
-      # https://github.com/wimpysworld/nothing-but-nix
-      - name: Maximize disk space for Nix
-        uses: wimpysworld/nothing-but-nix@main
-
       - name: Checkout repository
         uses: actions/checkout@v4
 
@@ -29,6 +24,11 @@ jobs:
           install_url: https://releases.nixos.org/nix/nix-2.31.2/install
           extra_nix_config: |
             experimental-features = nix-command flakes
+
+      # Aggressively free up disk space for NixOS builds (reclaims 65-130GB)
+      # https://github.com/wimpysworld/nothing-but-nix
+      - name: Maximize disk space for Nix
+        uses: wimpysworld/nothing-but-nix@main
 
       - name: Build ${{ matrix.config }} configuration
         run: |
