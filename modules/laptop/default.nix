@@ -34,7 +34,6 @@ in {
     boot.loader.efi.canTouchEfiVariables = true;
 
     networking.networkmanager.enable = true;
-    networking.wireless.enable = true;
     networking.firewall.enable = false;
 
     # Select internationalisation properties.
