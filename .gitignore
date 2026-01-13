@@ -1,2 +1,4 @@
 secrets.nix
 /result
+/.claude/
+/.direnv/
