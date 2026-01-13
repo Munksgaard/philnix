@@ -27,15 +27,18 @@ let
     ];
 
     # Manually add packages not in Melpa
-    override = epkgs:
-      epkgs // {
+    override =
+      epkgs:
+      epkgs
+      // {
         claude-code = pkgs.callPackage ./claude-code.nix {
           inherit (pkgs) fetchFromGitHub claude-code;
           inherit (epkgs) trivialBuild all-the-icons;
         };
       };
   };
-in {
+in
+{
 
   programs.emacs = {
     enable = true;

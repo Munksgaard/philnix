@@ -450,6 +450,3 @@ The DWIM behaviour of this command is as follows:
 
 (use-package fontaine
   :ensure t)
-
-(use-package majutsu
-  :vc (:url "https://github.com/0WD0/majutsu"))

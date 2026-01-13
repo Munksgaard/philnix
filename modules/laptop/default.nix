@@ -151,7 +151,7 @@ in {
         brightnessctl
 
         # nix stuff
-        nixfmt-classic
+        nixfmt
 
         discord
         element-desktop

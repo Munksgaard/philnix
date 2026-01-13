@@ -19,7 +19,10 @@
   boot.loader.grub.useOSProber = true;
 
   # Trusted users for nix
-  nix.settings.trusted-users = [ "root" "@wheel" ];
+  nix.settings.trusted-users = [
+    "root"
+    "@wheel"
+  ];
 
   networking = {
     hostName = "photos";
@@ -40,7 +43,10 @@
   users.users.munksgaard = {
     isNormalUser = true;
     description = "Philip Munksgaard";
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = [
+      "networkmanager"
+      "wheel"
+    ];
     openssh.authorizedKeys.keys = [
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINlapwwXZyp/qTm1y9CA5WLVL33TAAznj5FkZW4/Ftvu"
     ];

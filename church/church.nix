@@ -1,7 +1,15 @@
-{ config, pkgs, lib, ... }:
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}:
 
 {
-  imports = [ ../modules/laptop ./hardware-configuration.nix ];
+  imports = [
+    ../modules/laptop
+    ./hardware-configuration.nix
+  ];
 
   networking.hostName = "church";
 

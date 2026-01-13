@@ -29,7 +29,7 @@ jobs:
 
       - name: Build ${{ matrix.config }} configuration
         run: |
-          nix build .#nixosConfigurations.${{ matrix.config }}.config.system.build.toplevel \
+          nix build '.#nixosConfigurations.${{ matrix.config }}.config.system.build.toplevel' \
             --show-trace \
             --print-build-logs
 
