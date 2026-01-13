@@ -5,52 +5,30 @@
 { config, pkgs, sorgenfri, ... }:
 
 {
-  imports =
-    [ # Include the results of the hardware scan.
-      ./hardware-configuration.nix
-    ];
+  imports = [
+    ./hardware-configuration.nix
+    ../modules/server
+  ];
+
+  # Enable server module
+  server.enable = true;
 
   boot.tmp.cleanOnBoot = true;
   zramSwap.enable = true;
-
-  nix = {
-    package = pkgs.nixVersions.stable;
-    extraOptions = ''
-      experimental-features = nix-command flakes
-    '';
-  };
 
   networking = {
     hostName = "photos";
     domain = "photos.munksgaard.me";
   };
 
-  # Set your time zone.
-  time.timeZone = "Europe/Copenhagen";
-
-  # Select internationalisation properties.
+  # Override locale from common (this server uses Danish locale)
   i18n.defaultLocale = "en_DK.UTF-8";
 
-  users.users.root.openssh.authorizedKeys.keys = [
-    "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINlapwwXZyp/qTm1y9CA5WLVL33TAAznj5FkZW4/Ftvu"
-  ];
-
-  # List packages installed in system profile. To search, run:
-  # $ nix search wget
+  # Additional packages (base utils are in common module)
   environment.systemPackages = with pkgs; [
-    git
-    sudo
-    tmux
-    htop
     sorgenfri
     sqlite
   ];
-
-  # Enable the OpenSSH daemon.
-  services.openssh.enable = true;
-
-  # Open ports in the firewall.
-  networking.firewall.allowedTCPPorts = [ 22 80 443 ];
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
@@ -59,14 +37,6 @@
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "23.11"; # Did you read the comment?
-
-  services.fail2ban.enable = true;
-
-  nix.gc = {
-    automatic = true;
-    dates = "weekly";
-    options = "--delete-older-than 5d";
-  };
 
   age.secrets.photos-secret-key-base.file = ../secrets/photos-secret-key-base.age;
 
