@@ -1,4 +1,9 @@
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 
 with lib;
 
@@ -8,8 +13,12 @@ let
   my_elixir = beam_pkgs.elixir_1_18;
   livebook = pkgs.livebook.override { elixir = my_elixir; };
 
-in {
-  imports = [ ./wl-mirror.nix ../common ];
+in
+{
+  imports = [
+    ./wl-mirror.nix
+    ../common
+  ];
 
   options.laptop = {
     smlTools.enable = mkEnableOption "SML development tools (mosml, mlton, smlfmt, millet)";
@@ -47,12 +56,17 @@ in {
       font-awesome
     ];
 
-    programs.gnupg.agent = { enable = true; };
+    programs.gnupg.agent = {
+      enable = true;
+    };
 
     # Enable CUPS to print documents.
     services.printing.enable = true;
-    services.printing.drivers =
-      [ pkgs.gutenprint pkgs.gutenprintBin pkgs.canon-cups-ufr2 ];
+    services.printing.drivers = [
+      pkgs.gutenprint
+      pkgs.gutenprintBin
+      pkgs.canon-cups-ufr2
+    ];
 
     services.pulseaudio.enable = false;
     # rtkit is optional but recommended
@@ -67,7 +81,9 @@ in {
 
       # https://github.com/NixOS/nixos-hardware/issues/1603
       wireplumber.extraConfig.no-ucm = {
-        "monitor.alsa.properties" = { "alsa.use-ucm" = false; };
+        "monitor.alsa.properties" = {
+          "alsa.use-ucm" = false;
+        };
       };
     };
 
@@ -95,7 +111,9 @@ in {
       ];
     };
 
-    environment = { extraOutputsToInstall = [ "dev" ]; };
+    environment = {
+      extraOutputsToInstall = [ "dev" ];
+    };
 
     programs.ssh.startAgent = true;
 
@@ -103,7 +121,8 @@ in {
 
     # List packages installed in system profile.
     # Additional packages (base utils like git, vim, tmux, htop, wget, curl, ripgrep, fd are in common)
-    environment.systemPackages = with pkgs;
+    environment.systemPackages =
+      with pkgs;
       [
         dmenu
         xdg-utils
@@ -208,7 +227,13 @@ in {
         futhark
 
         claude-code
-      ] ++ optionals cfg.smlTools.enable [ mosml mlton smlfmt millet ];
+      ]
+      ++ optionals cfg.smlTools.enable [
+        mosml
+        mlton
+        smlfmt
+        millet
+      ];
 
     # Stuff for the Ergodox Moonlander
     services.udev.extraRules = ''
@@ -226,7 +251,6 @@ in {
       # Rule for the Moonlander
       SUBSYSTEM=="usb", ATTR{idVendor}=="3297", ATTR{idProduct}=="1969", GROUP="plugdev"
     '';
-
 
     environment.sessionVariables = {
       MOZ_ENABLE_WAYLAND = "1";

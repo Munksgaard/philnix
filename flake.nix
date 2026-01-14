@@ -48,6 +48,8 @@
 
   inputs.nixos-hardware.url = "github:NixOS/nixos-hardware/master";
 
+  inputs.treefmt-nix.url = "github:numtide/treefmt-nix";
+
   outputs =
     inputs@{
       flake-parts,
@@ -60,11 +62,14 @@
       photos,
       home-manager,
       sorgenfri,
+      treefmt-nix,
       ...
     }:
     let
       system = "x86_64-linux";
-      pkgs = import nixpkgs { inherit system; };
+      pkgs = import nixpkgs {
+        inherit system;
+      };
       deployPkgs = import nixpkgs {
         inherit system;
         overlays = [
@@ -80,6 +85,7 @@
 
     in
     flake-parts.lib.mkFlake { inherit inputs; } {
+      imports = [ inputs.treefmt-nix.flakeModule ];
       systems = [ system ];
       flake =
         # nixpkgs with deploy-rs overlay but force the nixpkgs package
@@ -210,7 +216,11 @@
           ...
         }:
         {
-          formatter = pkgs.nixfmt;
+          treefmt = {
+            projectRootFile = "flake.nix";
+            programs.nixfmt.enable = pkgs.lib.meta.availableOn pkgs.stdenv.buildPlatform pkgs.nixfmt-rfc-style.compiler;
+            programs.nixfmt.package = pkgs.nixfmt-rfc-style;
+          };
 
           checks = {
             # Build validation checks
@@ -218,14 +228,8 @@
             hoare-build = self.nixosConfigurations.hoare.config.system.build.toplevel;
 
             # NixOS VM tests
-            hoare-test =
-              (import ./tests/laptop-tests.nix {
-                inherit pkgs system;
-              }).hoare;
-            church-test =
-              (import ./tests/laptop-tests.nix {
-                inherit pkgs system;
-              }).church;
+            hoare-test = (import ./tests/laptop-tests.nix { inherit pkgs system; }).hoare;
+            church-test = (import ./tests/laptop-tests.nix { inherit pkgs system; }).church;
           };
         };
     };
