@@ -19,7 +19,7 @@ jobs:
 
       - name: Check formatting
         run: |
-          nix fmt -- --check .
+          nix fmt -- --ci
           echo "✅ All files are properly formatted"
 
   test-builds:
