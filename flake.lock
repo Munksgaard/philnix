@@ -411,6 +411,22 @@
         "type": "github"
       }
     },
+    "nixpkgs-pi-coding-agent": {
+      "locked": {
+        "lastModified": 1770036167,
+        "narHash": "sha256-m/UR3f8x5chb/ArS2IJYrZ/ZS9H/Zr7FU7xcG+ls18s=",
+        "owner": "Munksgaard",
+        "repo": "nixpkgs",
+        "rev": "7259deb401702b666422475cae65b27dd680ab7a",
+        "type": "github"
+      },
+      "original": {
+        "owner": "Munksgaard",
+        "ref": "init-pi-coding-agent",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
     "nixpkgs-stable": {
       "locked": {
         "lastModified": 1767313136,
@@ -509,6 +525,7 @@
         "munksgaard-gopher": "munksgaard-gopher",
         "nixos-hardware": "nixos-hardware",
         "nixpkgs": "nixpkgs",
+        "nixpkgs-pi-coding-agent": "nixpkgs-pi-coding-agent",
         "nur": "nur",
         "photos": "photos",
         "sorgenfri": "sorgenfri"

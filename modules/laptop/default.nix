@@ -213,7 +213,14 @@ in
         futhark
 
         claude-code
-      ] ++ optionals cfg.smlTools.enable [ mosml mlton smlfmt millet ];
+        pi-coding-agent
+      ]
+      ++ optionals cfg.smlTools.enable [
+        mosml
+        mlton
+        smlfmt
+        millet
+      ];
 
     # Stuff for the Ergodox Moonlander
     services.udev.extraRules = ''

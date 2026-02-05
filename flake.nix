@@ -48,6 +48,12 @@
 
   inputs.nixos-hardware.url = "github:NixOS/nixos-hardware/master";
 
+  inputs.nixpkgs-pi-coding-agent = {
+    url = "github:Munksgaard/nixpkgs/init-pi-coding-agent";
+  };
+
+  inputs.treefmt-nix.url = "github:numtide/treefmt-nix";
+
   outputs =
     inputs@{
       flake-parts,
@@ -60,6 +66,8 @@
       photos,
       home-manager,
       sorgenfri,
+      nixpkgs-pi-coding-agent,
+      treefmt-nix,
       ...
     }:
     let
@@ -143,6 +151,10 @@
                 nixpkgs.overlays = [
                   inputs.nur.overlay
                   (import self.inputs.emacs-overlay)
+                  # Add pi-coding-agent from PR branch
+                  (final: prev: {
+                    inherit (inputs.nixpkgs-pi-coding-agent.legacyPackages.${system}) pi-coding-agent;
+                  })
                 ];
               }
               church/church.nix
@@ -167,6 +179,10 @@
                 nixpkgs.overlays = [
                   inputs.nur.overlay
                   (import self.inputs.emacs-overlay)
+                  # Add pi-coding-agent from PR branch
+                  (final: prev: {
+                    inherit (inputs.nixpkgs-pi-coding-agent.legacyPackages.${system}) pi-coding-agent;
+                  })
                 ];
               }
               hoare/hoare.nix
