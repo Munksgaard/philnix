@@ -8,8 +8,13 @@ let
   my_elixir = beam_pkgs.elixir_1_18;
   livebook = pkgs.livebook.override { elixir = my_elixir; };
 
-in {
-  imports = [ ./wl-mirror.nix ../common ];
+in
+{
+  imports = [
+    ./wl-mirror.nix
+    ./printing.nix
+    ../common
+  ];
 
   options.laptop = {
     smlTools.enable = mkEnableOption "SML development tools (mosml, mlton, smlfmt, millet)";
