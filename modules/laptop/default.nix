@@ -214,6 +214,9 @@ in
 
         claude-code
         pi-coding-agent
+
+        # notifications
+        libnotify
       ]
       ++ optionals cfg.smlTools.enable [
         mosml
