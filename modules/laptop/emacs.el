@@ -230,9 +230,9 @@ The DWIM behaviour of this command is as follows:
   :bind ("C-." . eglot-code-actions)
   :config
   (add-to-list 'eglot-server-programs
-               '(elixir-ts-mode . ("elixir-ls")))
+               '(elixir-ts-mode . ("expert" "--stdio")))
   (add-to-list 'eglot-server-programs
-               '(heex-ts-mode . ("elixir-ls")))
+               '(heex-ts-mode . ("expert" "--stdio")))
   :hook (heex-ts-mode . 'eglot-ensure))
 
 (use-package haskell-mode
