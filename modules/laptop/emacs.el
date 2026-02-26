@@ -393,21 +393,6 @@ The DWIM behaviour of this command is as follows:
   :ensure t
   :mode (rx ".gleam" eos))
 
-;; install claude-code.el
-(use-package claude-code :ensure t
-  :vc (:url "https://github.com/stevemolitor/claude-code.el" :rev :newest)
-  :config (claude-code-mode)
-  :bind-keymap ("C-c c" . claude-code-command-map))
-
-;; For GNOME/Unity desktops
-(defun my-claude-notify (title message)
-  "Display a Linux notification using notify-send."
-  (if (executable-find "notify-send")
-      (call-process "notify-send" nil nil nil title message)
-    (message "%s: %s" title message)))
-
-(setq claude-code-notification-function #'my-claude-notify)
-
 ;; Enable Vertico.
 (use-package vertico
   :ensure t
