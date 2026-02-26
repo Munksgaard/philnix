@@ -188,7 +188,7 @@ The DWIM behaviour of this command is as follows:
   :config
   (setq magit-diff-options (quote ("--word-diff")))
   (setq magit-diff-refine-hunk 'all)
-  (add-to-list 'magit-repository-directories '("~/src/" . 1))
+  (add-to-list 'magit-repository-directories '("~/src/" . 2))
   (add-to-list 'git-commit-style-convention-checks
                'overlong-summary-line))
 
