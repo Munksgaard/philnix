@@ -13,6 +13,7 @@
 
   networking.hostName = "hoare";
 
+  laptop.elixir.enable = true;
   laptop.sway.enable = true;
   laptop.claude-code.enable = true;
 

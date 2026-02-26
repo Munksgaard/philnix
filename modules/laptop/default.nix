@@ -4,9 +4,6 @@ with lib;
 
 let
   cfg = config.laptop;
-  beam_pkgs = pkgs.beam.packagesWith pkgs.beam.interpreters.erlang;
-  my_elixir = beam_pkgs.elixir_1_18;
-  livebook = pkgs.livebook.override { elixir = my_elixir; };
 
 in
 {
@@ -14,6 +11,7 @@ in
     ./wl-mirror.nix
     ./printing.nix
     ./claude-code.nix
+    ./elixir.nix
     ./sway.nix
     ../common
   ];
@@ -207,10 +205,6 @@ in
         notmuch
 
         libreoffice
-
-        beam_pkgs.erlang
-        beam_pkgs.elixir-ls
-        my_elixir
 
         futhark
 

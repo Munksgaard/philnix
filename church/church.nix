@@ -25,6 +25,7 @@
   # Enable optional features used on church
   laptop.smlTools.enable = true;
   laptop.redshift.enable = true;
+  laptop.elixir.enable = true;
   laptop.sway.enable = true;
   laptop.claude-code.enable = true;
 }
