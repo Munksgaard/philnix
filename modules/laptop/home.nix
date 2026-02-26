@@ -16,7 +16,6 @@
     ./alacritty.nix
     ./emacs.nix
     ./firefox.nix
-    ./sway.nix
   ];
 
   programs = {

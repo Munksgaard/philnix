@@ -13,6 +13,8 @@ in
   imports = [
     ./wl-mirror.nix
     ./printing.nix
+    ./claude-code.nix
+    ./sway.nix
     ../common
   ];
 
@@ -212,11 +214,7 @@ in
 
         futhark
 
-        claude-code
         pi-coding-agent
-
-        # notifications
-        libnotify
       ]
       ++ optionals cfg.smlTools.enable [
         mosml
@@ -251,10 +249,6 @@ in
     programs.dconf.enable = true;
 
     services.tailscale.enable = true;
-
-    # For sway
-    security.polkit.enable = true;
-    programs.sway.enable = true;
 
     # Redshift/gammastep configuration (optional)
     services.redshift = mkIf cfg.redshift.enable {

@@ -1,7 +1,10 @@
-{ pkgs, config, ... }:
+{ pkgs, config, lib, ... }:
 let
+  cfg = config.emacsConfig;
+  combinedConfig = builtins.readFile ./emacs.el + cfg.extraConfig;
+  configFile = builtins.toFile "init.el" combinedConfig;
   emacs = pkgs.emacsWithPackagesFromUsePackage {
-    config = ./emacs.el;
+    config = configFile;
     package = pkgs.emacs30-pgtk;
     defaultInitFile = true;
     alwaysEnsure = true;
@@ -28,18 +31,27 @@ let
   };
 in
 {
-
-  programs.emacs = {
-    enable = true;
-    package = emacs;
+  options.emacsConfig = {
+    extraConfig = lib.mkOption {
+      type = lib.types.lines;
+      default = "";
+      description = "Extra elisp configuration to append to emacs.el";
+    };
   };
 
-  services = {
-    emacs = {
+  config = {
+    programs.emacs = {
       enable = true;
       package = emacs;
-      defaultEditor = true;
-      startWithUserSession = true;
+    };
+
+    services = {
+      emacs = {
+        enable = true;
+        package = emacs;
+        defaultEditor = true;
+        startWithUserSession = true;
+      };
     };
   };
 }
