@@ -23,9 +23,13 @@
   laptop.intelGpu.enable = true;
 
   # Enable optional features used on church
-  laptop.smlTools.enable = true;
+  laptop.sml.enable = true;
   laptop.redshift.enable = true;
+  laptop.ergodox.enable = true;
+  laptop.steam.enable = true;
   laptop.elixir.enable = true;
+  laptop.rust.enable = true;
+  laptop.futhark.enable = true;
   laptop.sway.enable = true;
   laptop.claude-code.enable = true;
 }

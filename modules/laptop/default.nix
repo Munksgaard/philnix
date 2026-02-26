@@ -12,12 +12,16 @@ in
     ./printing.nix
     ./claude-code.nix
     ./elixir.nix
+    ./ergodox.nix
+    ./futhark.nix
+    ./rust.nix
+    ./steam.nix
+    ./sml.nix
     ./sway.nix
     ../common
   ];
 
   options.laptop = {
-    smlTools.enable = mkEnableOption "SML development tools (mosml, mlton, smlfmt, millet)";
     redshift.enable = mkEnableOption "Gammastep/redshift for blue light filtering";
     intelGpu.enable = mkEnableOption "Intel GPU packages (VAAPI, OpenCL)";
   };
@@ -85,8 +89,6 @@ in
     # Add docker virtualization
     virtualisation.docker.enable = true;
 
-    users.groups.plugdev = { };
-
     # Define a user account. Don't forget to set a password with 'passwd'.
     users.users.munksgaard = {
       isNormalUser = true;
@@ -94,7 +96,6 @@ in
         "wheel" # Enable 'sudo' for the user.
         "video" # Support for using the video device
         "docker" # Can run docker images
-        "plugdev" # can run udev rules
         "networkmanager" # can control network manager
         "adbusers" # Can run adb
       ];
@@ -103,8 +104,6 @@ in
     environment = { extraOutputsToInstall = [ "dev" ]; };
 
     programs.ssh.startAgent = true;
-
-    programs.steam.enable = true;
 
     # List packages installed in system profile.
     # Additional packages (base utils like git, vim, tmux, htop, wget, curl, ripgrep, fd are in common)
@@ -139,9 +138,6 @@ in
         spotify
 
         gnumake
-        rustup
-        rust-analyzer
-        cargo-crev
         sbcl
 
         bc
@@ -162,10 +158,6 @@ in
         element-desktop
         signal-desktop
 
-        # lutris
-        vulkan-loader
-        vulkan-headers
-
         # Screenshots (use `grim -g "$(slurp)" screenshot.png`)
         grim
         slurp
@@ -181,9 +173,6 @@ in
 
         # Accounting
         ledger
-
-        # wally for keyboard config
-        wally-cli
 
         # For guix stuff
         guile
@@ -206,34 +195,8 @@ in
 
         libreoffice
 
-        futhark
-
         pi-coding-agent
-      ]
-      ++ optionals cfg.smlTools.enable [
-        mosml
-        mlton
-        smlfmt
-        millet
       ];
-
-    # Stuff for the Ergodox Moonlander
-    services.udev.extraRules = ''
-      # Teensy rules for the Ergodox EZ
-      ATTRS{idVendor}=="16c0", ATTRS{idProduct}=="04[789B]?", ENV{ID_MM_DEVICE_IGNORE}="1"
-      ATTRS{idVendor}=="16c0", ATTRS{idProduct}=="04[789A]?", ENV{MTP_NO_PROBE}="1"
-      SUBSYSTEMS=="usb", ATTRS{idVendor}=="16c0", ATTRS{idProduct}=="04[789ABCD]?", MODE:="0666"
-      KERNEL=="ttyACM*", ATTRS{idVendor}=="16c0", ATTRS{idProduct}=="04[789B]?", MODE:="0666"
-
-      # STM32 rules for the Moonlander and Planck EZ
-      SUBSYSTEMS=="usb", ATTRS{idVendor}=="0483", ATTRS{idProduct}=="df11", \
-          MODE:="0666", \
-          SYMLINK+="stm32_dfu"
-
-      # Rule for the Moonlander
-      SUBSYSTEM=="usb", ATTR{idVendor}=="3297", ATTR{idProduct}=="1969", GROUP="plugdev"
-    '';
-
 
     environment.sessionVariables = {
       MOZ_ENABLE_WAYLAND = "1";

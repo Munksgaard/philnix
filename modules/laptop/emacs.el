@@ -119,15 +119,6 @@
 (keymap-global-set "C-\\" 'text-scale-increase)
 (keymap-global-set "C--" 'text-scale-decrease)
 
-;; smlfmt
-(defun smlfmt ()
-  (interactive)
-  (save-buffer)
-  (let ((ret (call-process "${pkgs.smlfmt}/bin/smlfmt" nil nil nil "--force" (buffer-file-name))))
-    (if (= ret 0)
-        (revert-buffer t t t)
-      (message "smlfmt failed: %s" ret))))
-
 ;; Fix colors in dark terminal
 (setq frame-background-mode 'dark)
 
@@ -286,20 +277,7 @@ The DWIM behaviour of this command is as follows:
   :ensure t
   :mode "\\.yaml\\'")
 
-(use-package rust-mode
-  :ensure t
-  :mode "\\.rs\\'"
-  :config
-  (setq rust-format-on-save t))
-
 (use-package systemd
-  :ensure t)
-
-(use-package futhark-mode
-  :ensure t
-  :mode "\\.fut\\(_[a-z_]+\\)?\\'")
-
-(use-package sml-mode
   :ensure t)
 
 (use-package elpher

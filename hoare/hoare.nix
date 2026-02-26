@@ -13,7 +13,10 @@
 
   networking.hostName = "hoare";
 
+  laptop.steam.enable = true;
   laptop.elixir.enable = true;
+  laptop.rust.enable = true;
+  laptop.futhark.enable = true;
   laptop.sway.enable = true;
   laptop.claude-code.enable = true;
 
