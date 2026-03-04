@@ -413,11 +413,11 @@
     },
     "nixpkgs-pi-coding-agent": {
       "locked": {
-        "lastModified": 1770036167,
-        "narHash": "sha256-m/UR3f8x5chb/ArS2IJYrZ/ZS9H/Zr7FU7xcG+ls18s=",
+        "lastModified": 1772526937,
+        "narHash": "sha256-Si1ir5L7ZjhIPTO+mh8O8Qcw5nYfdXuVlIRZk9axXPA=",
         "owner": "Munksgaard",
         "repo": "nixpkgs",
-        "rev": "7259deb401702b666422475cae65b27dd680ab7a",
+        "rev": "6557c87154b1ae7aeb94d0b688324deb11113d7d",
         "type": "github"
       },
       "original": {
