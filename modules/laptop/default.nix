@@ -196,6 +196,7 @@ in
         libreoffice
 
         pi-coding-agent
+        jujutsu
       ];
 
     environment.sessionVariables = {
