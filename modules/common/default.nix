@@ -62,7 +62,6 @@ in
     environment.systemPackages = with pkgs; [
       git
       vim
-      tmux
       htop
       wget
       curl

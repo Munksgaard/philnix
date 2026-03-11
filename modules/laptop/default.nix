@@ -18,6 +18,7 @@ in
     ./steam.nix
     ./sml.nix
     ./sway.nix
+    ./tmux.nix
     ../common
   ];
 
@@ -106,7 +107,7 @@ in
     programs.ssh.startAgent = true;
 
     # List packages installed in system profile.
-    # Additional packages (base utils like git, vim, tmux, htop, wget, curl, ripgrep, fd are in common)
+    # Additional packages (base utils like git, vim, htop, wget, curl, ripgrep, fd are in common)
     environment.systemPackages = with pkgs;
       [
         dmenu

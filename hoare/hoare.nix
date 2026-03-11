@@ -18,6 +18,7 @@
   laptop.rust.enable = true;
   laptop.futhark.enable = true;
   laptop.sway.enable = true;
+  laptop.tmux.enable = true;
   laptop.claude-code.enable = true;
 
   # This value determines the NixOS release with which your system is to be
