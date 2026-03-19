@@ -36,6 +36,11 @@ in
       # they are unintentionally overwritten by programs.tmux
       terminal = "screen-256color";
       historyLimit = 50000;
+
+      extraConfig = ''
+        set -g extended-keys on
+        set -g extended-keys-format csi-u
+      '';
     };
   };
 }
