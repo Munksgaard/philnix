@@ -14,6 +14,8 @@ in
     ./elixir.nix
     ./ergodox.nix
     ./futhark.nix
+    ./livebook.nix
+    ./ghostty.nix
     ./rust.nix
     ./steam.nix
     ./sml.nix

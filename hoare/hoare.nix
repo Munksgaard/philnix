@@ -17,9 +17,11 @@
   laptop.elixir.enable = true;
   laptop.rust.enable = true;
   laptop.futhark.enable = true;
+  laptop.ghostty.enable = true;
   laptop.sway.enable = true;
   laptop.tmux.enable = true;
   laptop.claude-code.enable = true;
+  laptop.livebook.enable = true;
 
   # This value determines the NixOS release with which your system is to be
   # compatible, in order to avoid breaking some software such as database
