@@ -21,6 +21,7 @@ in
         LIVEBOOK_TOKEN_ENABLED = false;
       };
       extraPackages = with pkgs; [
+        git
         gcc
         gnumake
       ];
