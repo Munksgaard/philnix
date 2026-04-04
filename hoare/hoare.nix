@@ -17,6 +17,7 @@
   laptop.elixir.enable = true;
   laptop.rust.enable = true;
   laptop.futhark.enable = true;
+  laptop.gcompris.enable = true;
   laptop.ghostty.enable = true;
   laptop.sway.enable = true;
   laptop.tmux.enable = true;
