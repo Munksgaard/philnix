@@ -14,6 +14,7 @@
   networking.hostName = "hoare";
 
   laptop.steam.enable = true;
+  laptop.calibre.enable = true;
   laptop.elixir.enable = true;
   laptop.rust.enable = true;
   laptop.futhark.enable = true;
