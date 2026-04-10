@@ -255,6 +255,26 @@
         "type": "github"
       }
     },
+    "gcompris-da": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1775855989,
+        "narHash": "sha256-S8SoqHbVAkRzF5BQwnNoOLVH7tU0hIALL/zTf/oH5aw=",
+        "owner": "Munksgaard",
+        "repo": "gcompris-da-flake",
+        "rev": "bd49d32b67985a75157c9f1f4946600bd0d72d8d",
+        "type": "github"
+      },
+      "original": {
+        "owner": "Munksgaard",
+        "repo": "gcompris-da-flake",
+        "type": "github"
+      }
+    },
     "geomyidae": {
       "locked": {
         "lastModified": 1660647614,
@@ -536,6 +556,7 @@
         "deploy-rs": "deploy-rs",
         "emacs-overlay": "emacs-overlay",
         "flake-parts": "flake-parts",
+        "gcompris-da": "gcompris-da",
         "geomyidae": "geomyidae",
         "home-manager": "home-manager",
         "munksgaard-gopher": "munksgaard-gopher",

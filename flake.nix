@@ -52,6 +52,11 @@
     url = "github:Munksgaard/nixpkgs/init-pi-coding-agent";
   };
 
+  inputs.gcompris-da = {
+    url = "github:Munksgaard/gcompris-da-flake";
+    inputs.nixpkgs.follows = "nixpkgs";
+  };
+
   inputs.treefmt-nix.url = "github:numtide/treefmt-nix";
 
   outputs =
@@ -182,6 +187,10 @@
                   # Add pi-coding-agent from PR branch
                   (final: prev: {
                     inherit (inputs.nixpkgs-pi-coding-agent.legacyPackages.${system}) pi-coding-agent;
+                  })
+                  # Use GCompris with Danish translations
+                  (final: prev: {
+                    gcompris = inputs.gcompris-da.packages.${system}.default;
                   })
                 ];
               }
