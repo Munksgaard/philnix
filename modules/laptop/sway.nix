@@ -22,8 +22,7 @@ in
       checkConfig = true;
       config = rec {
         modifier = "Mod4";
-        # Use kitty as default terminal
-        terminal = "${pkgs.alacritty}/bin/alacritty";
+        terminal = "${pkgs.ghostty}/bin/ghostty";
         left = "h";
         down = "j";
         up = "k";
