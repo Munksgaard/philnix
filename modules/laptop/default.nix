@@ -10,6 +10,7 @@ in
   imports = [
     ./wl-mirror.nix
     ./printing.nix
+    ./beadwork.nix
     ./calibre.nix
     ./claude-code.nix
     ./elixir.nix

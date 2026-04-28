@@ -25,6 +25,26 @@
         "type": "github"
       }
     },
+    "beadwork": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1777294422,
+        "narHash": "sha256-epNBJBXJnfPR1rbN46FXnrrXpML7L+T5x9lWYh+VcQc=",
+        "ref": "refs/heads/main",
+        "rev": "e7f1df7972ee0a8f000dac371257bbfb97029606",
+        "revCount": 1,
+        "type": "git",
+        "url": "https://tangled.org/munksgaard.tngl.sh/beadwork-flake"
+      },
+      "original": {
+        "type": "git",
+        "url": "https://tangled.org/munksgaard.tngl.sh/beadwork-flake"
+      }
+    },
     "crane": {
       "inputs": {
         "nixpkgs": [
@@ -553,6 +573,7 @@
     "root": {
       "inputs": {
         "agenix": "agenix",
+        "beadwork": "beadwork",
         "deploy-rs": "deploy-rs",
         "emacs-overlay": "emacs-overlay",
         "flake-parts": "flake-parts",

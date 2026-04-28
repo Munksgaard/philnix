@@ -57,6 +57,11 @@
     inputs.nixpkgs.follows = "nixpkgs";
   };
 
+  inputs.beadwork = {
+    url = "git+https://tangled.org/munksgaard.tngl.sh/beadwork-flake";
+    inputs.nixpkgs.follows = "nixpkgs";
+  };
+
   inputs.treefmt-nix.url = "github:numtide/treefmt-nix";
 
   outputs =
@@ -191,6 +196,10 @@
                   # Use GCompris with Danish translations
                   (final: prev: {
                     gcompris = inputs.gcompris-da.packages.${system}.default;
+                  })
+                  # Add beadwork CLI
+                  (final: prev: {
+                    beadwork = inputs.beadwork.packages.${system}.default;
                   })
                 ];
               }
