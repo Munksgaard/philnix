@@ -220,9 +220,19 @@ in
     location.provider = mkIf cfg.redshift.enable "geoclue2";
 
     # Intel GPU overlay (optional)
-    nixpkgs.config.packageOverrides = mkIf cfg.intelGpu.enable (pkgs: {
-      vaapiIntel = pkgs.intel-vaapi-driver.override { enableHybridCodec = true; };
-    });
+    # NOTE: using a plain conditional instead of `mkIf` is important here.
+    # `nixpkgs.config.packageOverrides` feeds into `pkgs` evaluation, so
+    # wrapping it in `mkIf` creates a `pkgs`-depends-on-`config` cycle that
+    # trips up the NixOS manual build (see nixpkgs PR #503686 regression:
+    # `pythonTestDriverPackage` default forces `hostPkgs` eval during
+    # options.json generation).
+    nixpkgs.config.packageOverrides =
+      if cfg.intelGpu.enable then
+        (pkgs: {
+          vaapiIntel = pkgs.intel-vaapi-driver.override { enableHybridCodec = true; };
+        })
+      else
+        (_: { });
 
     hardware.graphics = mkIf cfg.intelGpu.enable {
       enable = true;
