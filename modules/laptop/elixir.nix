@@ -60,13 +60,6 @@ in
                ("C-c i r" . inf-elixir-send-region)
                ("C-c i b" . inf-elixir-send-buffer)
                 ("C-c i R" . inf-elixir-reload-module)))
-
-      (with-eval-after-load 'eglot
-        (add-to-list 'eglot-server-programs
-                     '(elixir-ts-mode . ("expert" "--stdio")))
-        (add-to-list 'eglot-server-programs
-                     '(heex-ts-mode . ("expert" "--stdio")))
-        (add-hook 'heex-ts-mode-hook 'eglot-ensure))
     '';
   };
 }
