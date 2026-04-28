@@ -182,9 +182,6 @@ in
         # For guix stuff
         guile
 
-        # Bitwarden
-        bitwarden-cli
-
         # for `man ascii` and others
         man-pages
 
