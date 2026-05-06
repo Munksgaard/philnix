@@ -200,6 +200,9 @@ in
 
         pi-coding-agent
         jujutsu
+
+        # Claude likes to use jq
+        jq
       ];
 
     environment.sessionVariables = {
