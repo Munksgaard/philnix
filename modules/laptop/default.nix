@@ -203,6 +203,9 @@ in
 
         # Claude likes to use jq
         jq
+
+        # nix quality of life
+        nix-output-monitor
       ];
 
     environment.sessionVariables = {
