@@ -32,11 +32,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1777294422,
-        "narHash": "sha256-epNBJBXJnfPR1rbN46FXnrrXpML7L+T5x9lWYh+VcQc=",
+        "lastModified": 1778581688,
+        "narHash": "sha256-pqJ4hf/eV8+coZDJSzAtAw3oOG26eP4u7KG0t7EXX8A=",
         "ref": "refs/heads/main",
-        "rev": "e7f1df7972ee0a8f000dac371257bbfb97029606",
-        "revCount": 1,
+        "rev": "0ac47849cddb3de1b42e40e3049218192ea81534",
+        "revCount": 2,
         "type": "git",
         "url": "https://tangled.org/munksgaard.tngl.sh/beadwork-flake"
       },
