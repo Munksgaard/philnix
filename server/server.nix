@@ -24,6 +24,10 @@
     443
   ];
 
+  services.dbus.implementation = "broker";
+
+  boot.initrd.network.enable = true;
+
   age.secrets.matrix-extra-conf = {
     file = ../secrets/matrix-extra-conf.age;
     owner = "matrix-synapse";
@@ -381,8 +385,6 @@
     base = "${munksgaard-gopher}/src";
     host = "munksgaard.me";
   };
-
-  services.cloud-init.enable = true;
 
   virtualisation = {
     podman = {
