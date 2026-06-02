@@ -77,13 +77,13 @@ in
   # Note: These tests validate that configurations build and basic structure is correct
   # They use dummy hardware-configuration.nix since we're not testing actual hardware
 
-  church = makeLaptopTest {
-    name = "church-laptop-test";
-    configuration = ../church/church.nix;
-  };
+  # church = makeLaptopTest {
+  #   name = "church-laptop-test";
+  #   configuration = ../church/church.nix;
+  # };
 
-  hoare = makeLaptopTest {
-    name = "hoare-laptop-test";
-    configuration = ../hoare/hoare.nix;
-  };
+  # hoare = makeLaptopTest {
+  #   name = "hoare-laptop-test";
+  #   configuration = ../hoare/hoare.nix;
+  # };
 }

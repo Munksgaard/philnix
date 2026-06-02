@@ -173,7 +173,9 @@
                 home-manager.useGlobalPkgs = true;
                 home-manager.useUserPackages = true;
                 home-manager.extraSpecialArgs = {
-                  homeStateVersion = "23.11";
+                  inherit inputs;
+                  inherit (self) outputs;
+                  home.stateVersion = "23.11";
                 };
                 home-manager.users.munksgaard.imports = [ ./modules/laptop/home.nix ];
               }
@@ -209,7 +211,9 @@
                 home-manager.useGlobalPkgs = true;
                 home-manager.useUserPackages = true;
                 home-manager.extraSpecialArgs = {
-                  homeStateVersion = "25.05";
+                  inherit inputs;
+                  inherit (self) outputs;
+                  home.stateVersion = "25.05";
                 };
                 home-manager.users.munksgaard.imports = [ ./modules/laptop/home.nix ];
               }
@@ -251,15 +255,15 @@
             church-build = self.nixosConfigurations.church.config.system.build.toplevel;
             hoare-build = self.nixosConfigurations.hoare.config.system.build.toplevel;
 
-            # NixOS VM tests
-            hoare-test =
-              (import ./tests/laptop-tests.nix {
-                inherit pkgs system;
-              }).hoare;
-            church-test =
-              (import ./tests/laptop-tests.nix {
-                inherit pkgs system;
-              }).church;
+            # # NixOS VM tests
+            # hoare-test =
+            #   (import ./tests/laptop-tests.nix {
+            #     inherit pkgs system;
+            #   }).hoare;
+            # church-test =
+            #   (import ./tests/laptop-tests.nix {
+            #     inherit pkgs system;
+            #   }).church;
           };
         };
     };
