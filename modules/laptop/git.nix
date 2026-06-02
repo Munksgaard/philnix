@@ -27,6 +27,9 @@ in
           name = "Philip Munksgaard";
           email = "philip@munksgaard.me";
         };
+        rebase = {
+          updateRefs = true;
+        };
       };
       signing = {
         key = "56584D0971AFE45FCC296BD74CE62A90EFC0B9B2";
