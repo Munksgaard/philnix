@@ -27,6 +27,9 @@ in
           name = "Philip Munksgaard";
           email = "philip@munksgaard.me";
         };
+        merge = {
+          conflictstyle = "diff3";
+        };
         rebase = {
           updateRefs = true;
         };
