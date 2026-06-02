@@ -22,6 +22,7 @@ in
     ./rust.nix
     ./steam.nix
     ./sml.nix
+    ./git.nix
     ./sway.nix
     ./tmux.nix
     ../common

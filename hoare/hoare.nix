@@ -21,6 +21,7 @@
   laptop.beadwork.enable = true;
   laptop.gcompris.enable = true;
   laptop.ghostty.enable = true;
+  laptop.git.enable = true;
   laptop.sway.enable = true;
   laptop.tmux.enable = true;
   laptop.claude-code.enable = true;

@@ -175,7 +175,7 @@
                 home-manager.extraSpecialArgs = {
                   inherit inputs;
                   inherit (self) outputs;
-                  home.stateVersion = "23.11";
+                  homeStateVersion = "23.11";
                 };
                 home-manager.users.munksgaard.imports = [ ./modules/laptop/home.nix ];
               }
@@ -213,7 +213,7 @@
                 home-manager.extraSpecialArgs = {
                   inherit inputs;
                   inherit (self) outputs;
-                  home.stateVersion = "25.05";
+                  homeStateVersion = "25.05";
                 };
                 home-manager.users.munksgaard.imports = [ ./modules/laptop/home.nix ];
               }

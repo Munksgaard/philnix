@@ -30,6 +30,7 @@
   laptop.elixir.enable = true;
   laptop.rust.enable = true;
   laptop.futhark.enable = true;
+  laptop.git.enable = true;
   laptop.sway.enable = true;
   laptop.tmux.enable = true;
   laptop.claude-code.enable = true;
