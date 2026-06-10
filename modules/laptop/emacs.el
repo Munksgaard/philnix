@@ -183,6 +183,10 @@ The DWIM behaviour of this command is as follows:
   (add-to-list 'git-commit-style-convention-checks
                'overlong-summary-line))
 
+(use-package beadwork
+  :ensure nil
+  :commands (beadwork beadwork-list beadwork-create beadwork-show))
+
 (use-package direnv
   :ensure t
   :config (direnv-mode))
