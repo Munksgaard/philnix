@@ -13,6 +13,7 @@ in
     ./beadwork.nix
     ./calibre.nix
     ./claude-code.nix
+    ./codex.nix
     ./elixir.nix
     ./ergodox.nix
     ./futhark.nix
