@@ -18,6 +18,7 @@ in
       enable = true;
 
       clock24 = true;
+      focusEvents = true;
       plugins = with pkgs.tmuxPlugins; [
         {
           plugin = dracula;
