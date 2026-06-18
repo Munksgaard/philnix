@@ -63,7 +63,7 @@ in
         enable = true;
         package = emacs;
         defaultEditor = true;
-        startWithUserSession = true;
+        startWithUserSession = "graphical";
       };
     };
   };
