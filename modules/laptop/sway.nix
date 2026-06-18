@@ -28,12 +28,6 @@ in
         up = "k";
         right = "l";
         menu = "${pkgs.dmenu}/bin/dmenu_path | ${pkgs.dmenu}/bin/dmenu | ${pkgs.findutils}/bin/xargs swaymsg exec --";
-        startup = [
-          # Launch Firefox on start
-          { command = "firefox"; }
-          { command = terminal; }
-          { command = "emacsclient -c"; }
-        ];
 
         input = {
           "type:keyboard" = {
