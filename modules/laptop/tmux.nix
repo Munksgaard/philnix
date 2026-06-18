@@ -41,7 +41,6 @@ in
       extraConfig = ''
         set -g extended-keys on
         set -g extended-keys-format csi-u
-        set-option -g renumber-windows on
         set -g set-clipboard on
       '';
     };
