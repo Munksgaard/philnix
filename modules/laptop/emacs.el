@@ -190,8 +190,14 @@ The DWIM behaviour of this command is as follows:
 ;; for eat terminal backend:
 (use-package eat
   :ensure t
+  :hook ((eat-mode . (lambda () (setq show-trailing-whitespace nil)))
+         (eat--semi-char-mode . phil/eat-semi-char-mode-setup))
   :config
-  (add-hook 'eat-mode-hook (lambda () (setq show-trailing-whitespace nil))))
+  ;; Work around Eat semi-char mode swallowing M-o.
+  ;; In Eat semi-char mode, M-o is handled as the terminal-style ESC o sequence.
+  ;; https://codeberg.org/akib/emacs-eat/issues/233#issuecomment-7748717
+  (defun phil/eat-semi-char-mode-setup ()
+    (define-key eat-semi-char-mode-map (kbd "ESC o") nil)))
 
 (use-package notifications
   :ensure nil
