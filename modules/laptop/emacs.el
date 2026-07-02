@@ -211,6 +211,12 @@ The DWIM behaviour of this command is as follows:
   :ensure nil
   :config (winner-mode 1))
 
+(use-package ediff
+  :ensure nil
+  :config
+  (setq ediff-split-window-function 'split-window-horizontally)
+  (setq ediff-window-setup-function 'ediff-setup-windows-plain))
+
 (use-package buffer-move
   :ensure t
   :bind (("C-M-<up>" . buf-move-up)
