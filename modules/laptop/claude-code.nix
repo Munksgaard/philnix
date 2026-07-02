@@ -7,6 +7,7 @@
 
 let
   cfg = config.laptop.claude-code;
+  agentGit = import ./lib/agent-git.nix { inherit lib pkgs; };
 in
 {
   options.laptop.claude-code = {
@@ -14,10 +15,10 @@ in
   };
 
   config = lib.mkIf cfg.enable {
-    environment.systemPackages = with pkgs; [
-      claude-code
-      claude-agent-acp
-      libnotify
+    environment.systemPackages = [
+      (agentGit.wrapMainProgramWithUnsignedGit pkgs.claude-code)
+      (agentGit.wrapMainProgramWithUnsignedGit pkgs.claude-agent-acp)
+      pkgs.libnotify
     ];
 
     home-manager.users.munksgaard.emacsConfig.extraConfig = ''

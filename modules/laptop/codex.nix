@@ -7,6 +7,7 @@
 
 let
   cfg = config.laptop.codex;
+  agentGit = import ./lib/agent-git.nix { inherit lib pkgs; };
 in
 {
   options.laptop.codex = {
@@ -14,9 +15,9 @@ in
   };
 
   config = lib.mkIf cfg.enable {
-    environment.systemPackages = with pkgs; [
-      codex
-      codex-acp
+    environment.systemPackages = [
+      (agentGit.wrapMainProgramWithUnsignedGit pkgs.codex)
+      (agentGit.wrapMainProgramWithUnsignedGit pkgs.codex-acp)
     ];
   };
 }
