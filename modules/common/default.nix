@@ -36,6 +36,8 @@ in
       extraOptions = ''
         experimental-features = nix-command flakes
       '';
+
+      settings.max-jobs = 2;
     };
 
     # Garbage collection
