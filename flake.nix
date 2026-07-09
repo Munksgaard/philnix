@@ -48,17 +48,8 @@
 
   inputs.nixos-hardware.url = "github:NixOS/nixos-hardware/master";
 
-  inputs.nixpkgs-pi-coding-agent = {
-    url = "github:Munksgaard/nixpkgs/init-pi-coding-agent";
-  };
-
   inputs.gcompris-da = {
     url = "github:Munksgaard/gcompris-da-flake";
-    inputs.nixpkgs.follows = "nixpkgs";
-  };
-
-  inputs.beadwork = {
-    url = "git+https://tangled.org/munksgaard.tngl.sh/beadwork-flake";
     inputs.nixpkgs.follows = "nixpkgs";
   };
 
@@ -76,7 +67,6 @@
       photos,
       home-manager,
       sorgenfri,
-      nixpkgs-pi-coding-agent,
       treefmt-nix,
       ...
     }:
@@ -161,10 +151,6 @@
                 nixpkgs.overlays = [
                   inputs.nur.overlay
                   (import self.inputs.emacs-overlay)
-                  # Add pi-coding-agent from PR branch
-                  (final: prev: {
-                    inherit (inputs.nixpkgs-pi-coding-agent.legacyPackages.${system}) pi-coding-agent;
-                  })
                 ];
               }
               church/church.nix
@@ -191,17 +177,9 @@
                 nixpkgs.overlays = [
                   inputs.nur.overlay
                   (import self.inputs.emacs-overlay)
-                  # Add pi-coding-agent from PR branch
-                  (final: prev: {
-                    inherit (inputs.nixpkgs-pi-coding-agent.legacyPackages.${system}) pi-coding-agent;
-                  })
                   # Use GCompris with Danish translations
                   (final: prev: {
                     gcompris = inputs.gcompris-da.packages.${system}.default;
-                  })
-                  # Add beadwork CLI
-                  (final: prev: {
-                    beadwork = inputs.beadwork.packages.${system}.default;
                   })
                 ];
               }

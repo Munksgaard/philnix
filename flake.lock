@@ -25,26 +25,6 @@
         "type": "github"
       }
     },
-    "beadwork": {
-      "inputs": {
-        "nixpkgs": [
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1778581688,
-        "narHash": "sha256-pqJ4hf/eV8+coZDJSzAtAw3oOG26eP4u7KG0t7EXX8A=",
-        "ref": "refs/heads/main",
-        "rev": "0ac47849cddb3de1b42e40e3049218192ea81534",
-        "revCount": 2,
-        "type": "git",
-        "url": "https://tangled.org/munksgaard.tngl.sh/beadwork-flake"
-      },
-      "original": {
-        "type": "git",
-        "url": "https://tangled.org/munksgaard.tngl.sh/beadwork-flake"
-      }
-    },
     "crane": {
       "inputs": {
         "nixpkgs": [
@@ -451,22 +431,6 @@
         "type": "github"
       }
     },
-    "nixpkgs-pi-coding-agent": {
-      "locked": {
-        "lastModified": 1773647789,
-        "narHash": "sha256-/fFlgndjZGBUtBvZ1mKiEGt8wcy3iPzlfAyTgCTSuSA=",
-        "owner": "Munksgaard",
-        "repo": "nixpkgs",
-        "rev": "556f12f17737d6a28d19a7d83c8dfe83619c9e53",
-        "type": "github"
-      },
-      "original": {
-        "owner": "Munksgaard",
-        "ref": "init-pi-coding-agent",
-        "repo": "nixpkgs",
-        "type": "github"
-      }
-    },
     "nixpkgs-stable": {
       "locked": {
         "lastModified": 1767313136,
@@ -573,7 +537,6 @@
     "root": {
       "inputs": {
         "agenix": "agenix",
-        "beadwork": "beadwork",
         "deploy-rs": "deploy-rs",
         "emacs-overlay": "emacs-overlay",
         "flake-parts": "flake-parts",
@@ -583,7 +546,6 @@
         "munksgaard-gopher": "munksgaard-gopher",
         "nixos-hardware": "nixos-hardware",
         "nixpkgs": "nixpkgs",
-        "nixpkgs-pi-coding-agent": "nixpkgs-pi-coding-agent",
         "nur": "nur",
         "photos": "photos",
         "sorgenfri": "sorgenfri",
