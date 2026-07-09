@@ -33,6 +33,9 @@ in
         rebase = {
           updateRefs = true;
         };
+        init = {
+          defaultBranch = "main";
+        };
       };
       signing = {
         key = "56584D0971AFE45FCC296BD74CE62A90EFC0B9B2";
