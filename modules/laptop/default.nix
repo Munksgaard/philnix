@@ -208,6 +208,9 @@ in
 
         # nix quality of life
         nix-output-monitor
+
+        # raspberry pi
+        rpi-imager
       ];
 
     environment.sessionVariables = {
