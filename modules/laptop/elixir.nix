@@ -17,7 +17,7 @@ in
   config = lib.mkIf cfg.enable {
     environment.systemPackages = [
       beam_pkgs.erlang
-      beam_pkgs.elixir_1_18
+      beam_pkgs.elixir_1_20
     ];
 
     home-manager.users.munksgaard.emacsConfig.extraConfig = ''
