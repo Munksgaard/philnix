@@ -34,4 +34,5 @@
   laptop.sway.enable = true;
   laptop.tmux.enable = true;
   laptop.claude-code.enable = true;
+  laptop.pi-coding-agent.enable = true;
 }

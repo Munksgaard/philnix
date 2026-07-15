@@ -26,6 +26,7 @@
   laptop.tmux.enable = true;
   laptop.claude-code.enable = true;
   laptop.codex.enable = true;
+  laptop.pi-coding-agent.enable = true;
   laptop.livebook.enable = true;
 
   # This value determines the NixOS release with which your system is to be

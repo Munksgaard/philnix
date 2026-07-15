@@ -19,6 +19,7 @@ in
     ./futhark.nix
     ./gcompris.nix
     ./livebook.nix
+    ./pi-coding-agent.nix
     ./ghostty.nix
     ./rust.nix
     ./steam.nix
@@ -200,7 +201,6 @@ in
 
         libreoffice
 
-        pi-coding-agent
         jujutsu
 
         # Claude likes to use jq
