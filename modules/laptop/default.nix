@@ -211,6 +211,9 @@ in
 
         # raspberry pi
         rpi-imager
+
+        # tree
+        tree
       ];
 
     environment.sessionVariables = {
