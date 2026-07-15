@@ -17,7 +17,6 @@ in
   config = lib.mkIf cfg.enable {
     environment.systemPackages = [
       (agentGit.wrapMainProgramWithUnsignedGit pkgs.claude-code)
-      (agentGit.wrapMainProgramWithUnsignedGit pkgs.claude-agent-acp)
       pkgs.libnotify
     ];
 
