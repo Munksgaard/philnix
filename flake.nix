@@ -46,7 +46,10 @@
     inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  inputs.nixos-hardware.url = "github:NixOS/nixos-hardware/master";
+  inputs.nixos-hardware = {
+    url = "github:NixOS/nixos-hardware/master";
+    inputs.nixpkgs.follows = "nixpkgs";
+  };
 
   inputs.gcompris-da = {
     url = "github:Munksgaard/gcompris-da-flake";
