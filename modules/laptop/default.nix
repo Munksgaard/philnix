@@ -24,6 +24,7 @@ in
     ./rust.nix
     ./steam.nix
     ./sml.nix
+    ./teams.nix
     ./git.nix
     ./sway.nix
     ./tmux.nix
