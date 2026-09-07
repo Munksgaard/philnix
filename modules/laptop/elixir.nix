@@ -7,7 +7,7 @@
 
 let
   cfg = config.laptop.elixir;
-  beam_pkgs = pkgs.beam.packagesWith pkgs.beam.interpreters.erlang;
+  beam_pkgs = pkgs.beam28Packages;
 in
 {
   options.laptop.elixir = {
@@ -17,7 +17,7 @@ in
   config = lib.mkIf cfg.enable {
     environment.systemPackages = [
       beam_pkgs.erlang
-      beam_pkgs.elixir_1_20
+      beam_pkgs.elixir
     ];
 
     home-manager.users.munksgaard.emacsConfig.extraConfig = ''

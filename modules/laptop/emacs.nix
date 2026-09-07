@@ -10,7 +10,7 @@ let
   configFile = builtins.toFile "init.el" combinedConfig;
   emacs = pkgs.emacsWithPackagesFromUsePackage {
     config = configFile;
-    package = pkgs.emacs30-pgtk;
+    package = pkgs.emacs-pgtk;
     defaultInitFile = true;
     alwaysEnsure = true;
 
