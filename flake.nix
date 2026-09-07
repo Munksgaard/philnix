@@ -56,6 +56,11 @@
     inputs.nixpkgs.follows = "nixpkgs";
   };
 
+  inputs.gcompris-voices = {
+    url = "github:Munksgaard/GCompris-voices";
+    flake = false;
+  };
+
   inputs.treefmt-nix.url = "github:numtide/treefmt-nix";
 
   outputs =
@@ -180,10 +185,6 @@
                 nixpkgs.overlays = [
                   inputs.nur.overlay
                   (import self.inputs.emacs-overlay)
-                  # Use GCompris with Danish translations
-                  (final: prev: {
-                    gcompris = inputs.gcompris-da.packages.${system}.default;
-                  })
                 ];
               }
               hoare/hoare.nix

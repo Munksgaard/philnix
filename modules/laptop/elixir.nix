@@ -7,7 +7,7 @@
 
 let
   cfg = config.laptop.elixir;
-  beam_pkgs = pkgs.beam28Packages;
+  beam_pkgs = pkgs.beam29Packages.overrideScope (final: prev: { elixir = final.elixir_1_20; });
 in
 {
   options.laptop.elixir = {

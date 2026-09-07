@@ -275,6 +275,22 @@
         "type": "github"
       }
     },
+    "gcompris-voices": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1775576125,
+        "narHash": "sha256-Gmz+UbPcq80QWY7BDZbZnXtx/qvTF+M6EdvRgUkfhVE=",
+        "owner": "Munksgaard",
+        "repo": "GCompris-voices",
+        "rev": "5f09b499ec1a38c8df69ef4eb2ce6984aacdbd8a",
+        "type": "github"
+      },
+      "original": {
+        "owner": "Munksgaard",
+        "repo": "GCompris-voices",
+        "type": "github"
+      }
+    },
     "geomyidae": {
       "locked": {
         "lastModified": 1660647614,
@@ -546,6 +562,7 @@
         "emacs-overlay": "emacs-overlay",
         "flake-parts": "flake-parts",
         "gcompris-da": "gcompris-da",
+        "gcompris-voices": "gcompris-voices",
         "geomyidae": "geomyidae",
         "home-manager": "home-manager",
         "munksgaard-gopher": "munksgaard-gopher",
