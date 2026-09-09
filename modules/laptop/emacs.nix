@@ -21,6 +21,7 @@ let
       epkgs:
       (map (packageBuilder: packageBuilder epkgs) cfg.extraPackageBuilders)
       ++ [
+        pkgs.hujsonfmt
         epkgs.treesit-grammars.with-all-grammars
         pkgs.tree-sitter-grammars.tree-sitter-elixir
         pkgs.tree-sitter-grammars.tree-sitter-heex

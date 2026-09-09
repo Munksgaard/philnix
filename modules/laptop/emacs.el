@@ -285,6 +285,21 @@ The DWIM behaviour of this command is as follows:
   :commands company-quickhelp-mode
   :config (company-quickhelp-mode 1))
 
+(use-package reformatter
+  :ensure t
+  :config
+  (reformatter-define hujson-format
+    :program "hujsonfmt"))
+
+(defun phil/enable-hujson-format-on-save ()
+  (when (string-equal (file-name-extension (or buffer-file-name "")) "hujson")
+    (hujson-format-on-save-mode 1)))
+
+(use-package json5-ts-mode
+  :ensure t
+  :mode "\\.hujson\\'"
+  :hook (json5-ts-mode . phil/enable-hujson-format-on-save))
+
 (use-package yaml-mode
   :ensure t
   :mode "\\.yaml\\'")
