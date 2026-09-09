@@ -20,6 +20,7 @@ let
     extraEmacsPackages =
       epkgs:
       (map (packageBuilder: packageBuilder epkgs) cfg.extraPackageBuilders)
+      ++ cfg.extraEmacsPackages
       ++ [
         pkgs.hujsonfmt
         epkgs.treesit-grammars.with-all-grammars
@@ -45,6 +46,11 @@ in
       type = lib.types.lines;
       default = "";
       description = "Extra elisp configuration to append to emacs.el";
+    };
+    extraEmacsPackages = lib.mkOption {
+      type = lib.types.listOf lib.types.package;
+      default = [ ];
+      description = "Extra packages available to Emacs, including language servers and formatters";
     };
     extraPackageBuilders = lib.mkOption {
       type = lib.types.listOf (lib.types.functionTo lib.types.package);

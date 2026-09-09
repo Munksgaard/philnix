@@ -14,6 +14,7 @@ in
     ./calibre.nix
     ./claude-code.nix
     ./codex.nix
+    ./dhall.nix
     ./elixir.nix
     ./ergodox.nix
     ./futhark.nix

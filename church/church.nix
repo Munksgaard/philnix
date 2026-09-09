@@ -27,6 +27,7 @@
   laptop.redshift.enable = true;
   laptop.ergodox.enable = true;
   laptop.steam.enable = true;
+  laptop.dhall.enable = true;
   laptop.elixir.enable = true;
   laptop.rust.enable = true;
   laptop.futhark.enable = true;

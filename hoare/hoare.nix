@@ -16,6 +16,7 @@
   laptop.steam.enable = true;
   laptop.teams.enable = true;
   laptop.calibre.enable = true;
+  laptop.dhall.enable = true;
   laptop.elixir.enable = true;
   laptop.rust.enable = true;
   laptop.futhark.enable = true;
