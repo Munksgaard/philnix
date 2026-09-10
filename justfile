@@ -2,8 +2,12 @@
 help:
     @just --list
 
-# Deploy everything
+# Deploy the local host (HOSTNAME, falling back to hostname)
 deploy:
+    sudo nixos-rebuild switch --flake ".#${HOSTNAME:-$(hostname)}"
+
+# Deploy everything
+deploy-all:
     nix develop -c deploy '.'
 
 # Deploy munksgaard.me

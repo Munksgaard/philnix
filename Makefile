@@ -1,5 +1,11 @@
+HOSTNAME ?= $(shell hostname)
+
+.PHONY: deploy deploy-all deploy-church deploy-hoare
+
 help:
 	@echo "Targets:"
+	@echo "  deploy (local host: $(HOSTNAME))"
+	@echo "  deploy-all"
 	@echo "  deploy-munksgaard.me"
 	@echo "  deploy-photos.munksgaard.me"
 	@echo "  deploy-church"
@@ -7,6 +13,9 @@ help:
 	@echo "  update-photos"
 
 deploy:
+	sudo nixos-rebuild switch --flake '.#$(HOSTNAME)'
+
+deploy-all:
 	nix develop -c deploy '.'
 
 deploy-munksgaard.me:
