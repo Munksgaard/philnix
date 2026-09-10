@@ -14,6 +14,18 @@ let
     defaultInitFile = true;
     alwaysEnsure = true;
 
+    override = final: prev: {
+      eglot = prev.eglot.overrideAttrs (old: {
+        dontUnpack = false;
+        patches = (old.patches or [ ]) ++ [ ./patches/eglot-semantic-tokens-full.patch ];
+        # The ELPA installer reads a tarball, not the patched source directory.
+        preInstall = (old.preInstall or "") + ''
+          src="$TMPDIR/eglot-patched.tar"
+          tar -cf "$src" -C .. "$sourceRoot"
+        '';
+      });
+    };
+
     # Optionally provide extra packages not in the configuration file.
     # This can also include extra executables to be run by Emacs (linters,
     # language servers, formatters, etc)
