@@ -13,6 +13,7 @@
 
   networking.hostName = "hoare";
 
+  laptop.ergodox.enable = true;
   laptop.steam.enable = true;
   laptop.teams.enable = true;
   laptop.calibre.enable = true;
