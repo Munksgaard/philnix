@@ -33,9 +33,10 @@
 ;; Don't want to move based on visual line.
 ;(setq line-move-visual nil)
 
-;; Stop creating backup and autosave files.
-;(setq make-backup-files nil
-;      auto-save-default nil)
+;; Keep backups out of project directories. Leave autosave behavior unchanged.
+(let ((backup-directory (expand-file-name "backups/" user-emacs-directory)))
+  (make-directory backup-directory t)
+  (setq backup-directory-alist `(("." . ,backup-directory))))
 
 ;; Always show line and column number in the mode line.
 (line-number-mode)
@@ -70,17 +71,15 @@
 ;; Nicer scrolling
 (pixel-scroll-precision-mode)
 
-;; Improved handling of clipboard in GNU/Linux and otherwise.
-;(setq select-enable-clipboard t
-;      select-enable-primary t
-;      save-interprogram-paste-before-kill t)
+;; Preserve external clipboard contents before killing text, and avoid duplicates.
+(setq save-interprogram-paste-before-kill t
+      kill-do-not-save-duplicates t)
 
 ;; Pasting with middle click should insert at point, not where the
 ;; click happened.
 ;(setq mouse-yank-at-point t)
 
 ;; Shouldn't highlight trailing spaces in terminal mode.
-(add-hook 'term-mode (lambda () (setq show-trailing-whitespace nil)))
 (add-hook 'term-mode-hook (lambda () (setq show-trailing-whitespace nil)))
 (add-hook 'justl-mode-hook (lambda () (setq show-trailing-whitespace nil)))
 
@@ -357,6 +356,12 @@ The DWIM behaviour of this command is as follows:
   :ensure t
   :init
   (vertico-mode))
+
+;; Annotate minibuffer candidates with descriptions and other useful metadata.
+(use-package marginalia
+  :ensure t
+  :config
+  (marginalia-mode 1))
 
 ;; Persist history over Emacs restarts. Vertico sorts by history position.
 (use-package savehist
