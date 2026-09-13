@@ -238,8 +238,8 @@ The DWIM behaviour of this command is as follows:
         :mode (("\\.hs\\'" . haskell-mode)
                ("\\.lhs\\'" . literate-haskell-mode)))
 
-(use-package markdown-mode
-  :ensure t
+(use-package markdown-ts-mode
+  :ensure nil
   :mode ("\\.mdwn\\'"
          "\\.markdown\\'"
          "\\.md\\'"
