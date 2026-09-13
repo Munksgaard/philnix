@@ -69,6 +69,8 @@ in
       curl
       ripgrep
       fd
+      python3
+      jq
     ];
   };
 }
