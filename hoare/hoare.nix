@@ -13,6 +13,13 @@
 
   networking.hostName = "hoare";
 
+  swapDevices = [
+    {
+      device = "/swapfile";
+      size = 16 * 1024; # MiB
+    }
+  ];
+
   laptop.ergodox.enable = true;
   laptop.steam.enable = true;
   laptop.teams.enable = true;
