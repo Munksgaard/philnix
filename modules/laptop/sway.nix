@@ -7,6 +7,47 @@
 
 let
   cfg = config.laptop.sway;
+
+  # Preserve i3status's JSON blocks and colours while adding Linux swap usage.
+  swapStatus = pkgs.writeText "swaybar-swap.py" ''
+    import json
+    import sys
+
+    def swap_block():
+        with open("/proc/meminfo") as meminfo:
+            values = {
+                fields[0].rstrip(":"): int(fields[1])
+                for line in meminfo
+                if (fields := line.split())
+            }
+        total = values["SwapTotal"]
+        used = total - values["SwapFree"]
+        text = (
+            f"SWAP {used / 1024**2:.1f}/{total / 1024**2:.1f} GiB"
+            if total else "SWAP off"
+        )
+        return {"name": "swap", "full_text": text}
+
+    for line in sys.stdin:
+        prefix = "," if line.lstrip().startswith(",") else ""
+        payload = line.lstrip().removeprefix(",")
+        try:
+            blocks = json.loads(payload)
+        except json.JSONDecodeError:
+            # The opening bracket of the streaming array is on its own line.
+            print(line, end="", flush=True)
+            continue
+        if not isinstance(blocks, list):
+            # Pass through the i3bar protocol header unchanged.
+            print(line, end="", flush=True)
+            continue
+        position = next(
+            (i + 1 for i, block in enumerate(blocks) if block.get("name") == "memory"),
+            len(blocks),
+        )
+        blocks.insert(position, swap_block())
+        print(prefix + json.dumps(blocks), flush=True)
+  '';
 in
 {
   options.laptop.sway = {
@@ -16,6 +57,12 @@ in
   config = lib.mkIf cfg.enable {
     security.polkit.enable = true;
     programs.sway.enable = true;
+
+    home-manager.users.munksgaard.programs.i3status = {
+      enable = true;
+      # Explicitly use JSON even when i3status writes into the swap filter pipe.
+      general.output_format = "i3bar";
+    };
 
     home-manager.users.munksgaard.wayland.windowManager.sway = {
       enable = true;
@@ -54,13 +101,7 @@ in
           {
             position = "top";
 
-            # When the status_command prints a new line to stdout, swaybar updates.
-            # The default just shows the current date and time.
-            # status_command while date +'%Y-%m-%d %l:%M:%S %p'; do sleep 1; done
-            # statusCommand = "while ~/.config/sway/sway_bar.sh; do sleep 1; done";
-            # statusCommand = "while ${./sway_bar.sh}; do sleep 1; done";
-            statusCommand = "${pkgs.i3status}/bin/i3status";
-            # statusCommand = "${./sway_bar.sh}";
+            statusCommand = "${pkgs.i3status}/bin/i3status | ${pkgs.python3}/bin/python3 ${swapStatus}";
 
             colors = {
               statusline = "#ffffff";
