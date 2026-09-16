@@ -44,7 +44,7 @@ jobs:
     needs: test-builds
     strategy:
       matrix:
-        check: [church-build, hoare-build, hoare-test]
+        check: [church-build, hoare-build, gcompris-config, gcompris-kiosk, meier-iso]
     steps:
       # Aggressively free up disk space for NixOS builds (reclaims 65-130GB)
       - name: Maximize disk space for Nix
@@ -59,6 +59,10 @@ jobs:
           install_url: https://releases.nixos.org/nix/nix-2.31.1/install
           extra_nix_config: |
             experimental-features = nix-command flakes
+
+      - name: Allow the Nix build sandbox to use KVM
+        if: matrix.check == 'gcompris-kiosk'
+        run: sudo chmod a+rw /dev/kvm
 
       - name: Run ${{ matrix.check }}
         run: |

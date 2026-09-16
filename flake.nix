@@ -203,6 +203,18 @@
             ];
           };
 
+          nixosConfigurations.meier = nixpkgs.lib.nixosSystem {
+            inherit system;
+            specialArgs = inputs;
+            modules = [ ./meier/meier.nix ];
+          };
+
+          nixosConfigurations.meier-installer = nixpkgs.lib.nixosSystem {
+            inherit system;
+            specialArgs = inputs;
+            modules = [ ./meier/iso.nix ];
+          };
+
           # No deploy for localhost, use `sudo nixos-rebuild switch --flake .#church` instead
           # deploy.nodes.church = {
           #   hostname = "localhost";
@@ -232,7 +244,16 @@
         {
           formatter = pkgs.nixfmt;
 
+          packages.meier-iso = self.nixosConfigurations.meier-installer.config.system.build.isoImage;
+
           checks = {
+            gcompris-config = import ./tests/gcompris-config.nix {
+              inherit inputs pkgs;
+              configurations = self.nixosConfigurations;
+            };
+            gcompris-kiosk = import ./tests/gcompris-kiosk.nix { inherit inputs pkgs; };
+            meier-iso = self.nixosConfigurations.meier-installer.config.system.build.isoImage;
+            # Add meier's toplevel here once its real hardware is configured.
             # Build validation checks
             church-build = self.nixosConfigurations.church.config.system.build.toplevel;
             hoare-build = self.nixosConfigurations.hoare.config.system.build.toplevel;
