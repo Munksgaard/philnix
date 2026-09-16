@@ -13,6 +13,8 @@
 
   networking.hostName = "hoare";
 
+  boot.zswap.enable = true;
+
   swapDevices = [
     {
       device = "/swapfile";
