@@ -77,7 +77,7 @@
             criteria = laptop;
             mode = "2880x1920@120Hz";
             scale = 2.0;
-            # Leave enable/disable to Sway's lid bindings.
+            # Keep the output enabled so Kanshi can configure it with the lid closed.
           };
         }
         {
@@ -134,11 +134,9 @@
               ];
         }) (lib.range 1 10);
 
-        # Reapply geometry if the dock was connected/disconnected with the lid
-        # closed: Kanshi skips mode/position changes on disabled outputs.
-        bindswitches."lid:off".action = lib.mkForce (
-          "output ${laptop} enable; exec ${pkgs.kanshi}/bin/kanshictl reload"
-        );
+        # Only turn off the panel: retain workspaces and let Kanshi manage geometry.
+        bindswitches."lid:on".action = lib.mkForce "output ${laptop} power off";
+        bindswitches."lid:off".action = lib.mkForce "output ${laptop} power on";
       };
     };
 
