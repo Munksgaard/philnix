@@ -237,6 +237,10 @@ The DWIM behaviour of this command is as follows:
         :mode (("\\.hs\\'" . haskell-mode)
                ("\\.lhs\\'" . literate-haskell-mode)))
 
+(use-package olivetti
+  :ensure t
+  :commands olivetti-mode)
+
 (use-package markdown-ts-mode
   :ensure nil
   :mode ("\\.mdwn\\'"
