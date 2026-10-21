@@ -216,6 +216,9 @@ in
 
         # tree
         tree
+
+        # herdr
+        herdr
       ];
 
     environment.sessionVariables = {
