@@ -1,4 +1,4 @@
-{ config, lib, ... }:
+{ config, ... }:
 
 {
   imports = [
@@ -13,7 +13,7 @@
   };
 
   services.gcompris-kiosk.enable = true;
-  console.keyMap = lib.mkForce "dk";
+  services.xserver.xkb.layout = "dk";
   networking.networkmanager.enable = true;
 
   users.users.munksgaard = {

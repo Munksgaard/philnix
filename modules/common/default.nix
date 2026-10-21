@@ -54,7 +54,13 @@ in
     # Console settings
     console = {
       font = "Lat2-Terminus16";
-      keyMap = "us";
+      useXkbConfig = true;
+    };
+
+    # Share the Caps Lock remapping with text consoles (no X server required).
+    services.xserver.xkb = {
+      layout = lib.mkDefault "us";
+      options = "ctrl:nocaps";
     };
 
     # Enable SSH
