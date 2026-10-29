@@ -18,6 +18,7 @@ in
       enable = true;
       settings = {
         theme = "Dracula";
+        keybind = [ "ctrl+enter=unbind" ];
       };
     };
   };
